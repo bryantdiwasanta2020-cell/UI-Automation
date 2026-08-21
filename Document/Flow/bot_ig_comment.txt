@@ -1,0 +1,62 @@
+{
+  "COMMENT": {
+    "steps": [
+      {
+        "step": "1/5",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2/5",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "2.5",
+        "name": "Clear Previous Session",
+        "module": "bot_instagram_clear_popups.py",
+        "description": "Menutup sisa keyboard/dialog komentar yang masih terbuka di layar."
+      },
+      {
+        "step": "PRE-RUN",
+        "name": "Switch Account",
+        "module": "switch_akun_ig.py",
+        "description": "Beralih ke akun yang ditentukan pada parameter my_account."
+      },
+      {
+        "step": "3/5",
+        "name": "Search & Navigate Target",
+        "module": "bot_ig_comment.py",
+        "description": "Membuka target postingan via URL intent, atau mengetik kata kunci di halaman pencarian lalu menggulir layar ke bawah."
+      },
+      {
+        "step": "4/5",
+        "name": "Open First Post",
+        "module": "bot_ig_comment.py",
+        "description": "Mengeklik postingan teratas di kolom kiri grid hasil pencarian dan memverifikasi halaman detail terbuka."
+      },
+      {
+        "step": "5/5",
+        "name": "Comment Post",
+        "module": "bot_ig_comment.py",
+        "description": "Mengeklik tombol Komentar, mengetik teks komentar kustom, dan mengirimkannya. Jika limit > 1, swipe up ke postingan berikutnya."
+      },
+      {
+        "step": "CLEANUP",
+        "name": "Clean Exit",
+        "module": "bot_ig_comment.py",
+        "description": "Mengirim BACK hingga tab Beranda terdeteksi, me-refresh feed, dan mencatat status complete."
+      }
+    ]
+  }
+}     {
+        "step": "CLEANUP",
+        "name": "Clean Exit",
+        "module": "bot_ig_comment.py",
+        "description": "Mengirim BACK hingga tab Beranda terdeteksi, me-refresh feed, dan mencatat status complete."
+      }
+    ]
+  }
+}

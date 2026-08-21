@@ -1,0 +1,11 @@
+{"step": "post_reels", "status": "on_progress", "error": null, "timestamp": "2026-07-31 14:01:16"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-07-31 14:01:16"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-07-31 14:01:26"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-07-31 14:01:33"}
+{"step": "open_creation_menu", "status": "complete", "error": null, "timestamp": "2026-07-31 14:01:39"}
+{"step": "select_reels_option", "status": "complete", "error": null, "timestamp": "2026-07-31 14:01:43"}
+{"step": "select_media", "status": "complete", "error": null, "timestamp": "2026-07-31 14:01:49"}
+{"step": "edit_media", "status": "complete", "error": null, "timestamp": "2026-07-31 14:01:59"}
+{"step": "write_caption", "status": "complete", "error": null, "timestamp": "2026-07-31 14:02:08"}
+{"step": "share_post", "status": "on_progress", "error": null, "timestamp": "2026-07-31 14:02:20"}
+{"step": "post_reels", "status": "complete", "error": null, "timestamp": "2026-07-31 14:02:28"}

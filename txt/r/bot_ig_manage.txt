@@ -1,0 +1,27 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_manage.py
+================================================================================
+ Nama Bot    : Bot Manage Instagram (Follow/Unfollow)
+ File Name   : bot_ig_manage.py
+ Deskripsi   : Mengelola hubungan akun seperti Follow atau Unfollow target.
+ API Server  : /api/jalankan-bot-manage
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_manage.py <target> [aksi] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target> (String) [WAJIB]
+     Deskripsi : Username target Instagram
+
+   * Posisi 2 : <aksi> (String) [OPSIONAL] | Default: 'follow'
+     Deskripsi : Aksi yang dilakukan: 'follow' atau 'unfollow'
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_manage.py "target_user" follow R9RY801LRPW
+   $ python3 bot_ig_manage.py "target_user" unfollow R9RY801LRPW
+
+================================================================================

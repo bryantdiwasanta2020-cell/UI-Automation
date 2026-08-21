@@ -1,0 +1,5 @@
+{"step": "farming", "status": "complete", "error": null, "timestamp": "2026-08-14 11:28:21"}
+{"step": "farming_loop", "status": "on_progress", "error": null, "timestamp": "2026-08-14 11:26:02"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-14 11:25:46"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-14 11:25:41"}
+{"step": "farming", "status": "on_progress", "error": null, "timestamp": "2026-08-14 11:25:41"}

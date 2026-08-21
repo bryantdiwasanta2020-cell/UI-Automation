@@ -1,0 +1,27 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_login.py
+================================================================================
+ Nama Bot    : Bot Login Instagram
+ File Name   : bot_instagram_login.py
+ Deskripsi   : Melakukan proses login akun Instagram, membersihkan landing page, membatalkan Google Smart Lock, dan membersihkan pop-up beranda.
+ API Server  : /api/jalankan-bot-login
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_login.py <username> <password> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <username> (String) [WAJIB]
+     Deskripsi : Username Instagram untuk login
+
+   * Posisi 2 : <password> (String) [WAJIB]
+     Deskripsi : Password Instagram
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB (cth: R9RY801LRPW atau 'all')
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_login.py "lukyytris13" "Bryant12345678" "R9RY801LRPW"
+   $ python3 bot_instagram_login.py "user_saya" "pass123" "all"
+
+================================================================================

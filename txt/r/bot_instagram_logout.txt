@@ -1,0 +1,24 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_logout.py
+================================================================================
+ Nama Bot    : Bot Logout Instagram
+ File Name   : bot_instagram_logout.py
+ Deskripsi   : Melakukan logout akun Instagram dari perangkat.
+ API Server  : /api/jalankan-bot-logout
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_logout.py [device_id] [mode]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+   * Posisi 2 : <mode> (String) [OPSIONAL] | Default: 'single'
+     Deskripsi : Mode logout: 'single' (keluar 1 akun saja) atau 'all' (keluar seluruh akun)
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_logout.py R9RY801LRPW
+   $ python3 bot_instagram_logout.py R9RY801LRPW all
+   $ python3 bot_instagram_logout.py R9RY801LRPW single
+
+================================================================================

@@ -1,0 +1,30 @@
+{"step": "switch_account", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:09:19"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-03 10:09:19"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-03 10:09:19"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-08-03 10:09:20"}
+{"step": "open_profile_switcher", "status": "complete", "error": null, "timestamp": "2026-08-03 10:09:24"}
+{"step": "click_target_account", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:09:29"}
+{"step": "click_target_account", "status": "complete", "error": null, "timestamp": "2026-08-03 10:09:36"}
+{"step": "switch_account", "status": "complete", "error": null, "timestamp": "2026-08-03 10:09:36"}
+{"step": "switch_account", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:10:56"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-03 10:10:56"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-03 10:10:58"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-08-03 10:10:59"}
+{"step": "open_profile_switcher", "status": "complete", "error": null, "timestamp": "2026-08-03 10:11:03"}
+{"step": "click_target_account", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:11:08"}
+{"step": "switch_account", "status": "error", "error": "Akun @keysaputri12131 tidak terdaftar di perangkat ini!", "timestamp": "2026-08-03 10:11:10"}
+{"step": "switch_account", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:12:20"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-03 10:12:20"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-03 10:12:22"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-08-03 10:12:23"}
+{"step": "open_profile_switcher", "status": "complete", "error": null, "timestamp": "2026-08-03 10:12:27"}
+{"step": "click_target_account", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:12:31"}
+{"step": "switch_account", "status": "error", "error": "Akun @keysaputri1213 tidak terdaftar di perangkat ini!", "timestamp": "2026-08-03 10:12:33"}
+{"step": "switch_account", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:15:43"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-03 10:15:43"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-03 10:15:44"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-08-03 10:15:45"}
+{"step": "open_profile_switcher", "status": "complete", "error": null, "timestamp": "2026-08-03 10:15:50"}
+{"step": "click_target_account", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:15:54"}
+{"step": "click_target_account", "status": "complete", "error": null, "timestamp": "2026-08-03 10:16:02"}
+{"step": "switch_account", "status": "complete", "error": null, "timestamp": "2026-08-03 10:16:02"}

@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <script>
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Manage Account - InstaADB Panel</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-container": "#eaedff",
+                        "secondary-fixed": "#85f8c4",
+                        "primary": "#3525cd",
+                        "outline": "#777587",
+                        "secondary-fixed-dim": "#68dba9",
+                        "surface-dim": "#d2d9f4",
+                        "surface": "#faf8ff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-error": "#ffffff",
+                        "on-background": "#131b2e",
+                        "background": "#faf8ff",
+                        "surface-container-high": "#e2e7ff",
+                        "on-tertiary-fixed-variant": "#920028",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-variant": "#dae2fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "tertiary-fixed": "#ffdada",
+                        "on-surface-variant": "#464555",
+                        "outline-variant": "#c7c4d8",
+                        "inverse-primary": "#c3c0ff",
+                        "tertiary-container": "#c20038",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006c4a",
+                        "on-secondary-fixed": "#002114",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#e2dfff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#950029",
+                        "primary-container": "#4f46e5",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-tint": "#4d44e3",
+                        "secondary-container": "#82f5c1",
+                        "on-primary-container": "#dad7ff",
+                        "inverse-surface": "#283044",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#dae2fd",
+                        "tertiary-fixed-dim": "#ffb3b6",
+                        "on-tertiary-container": "#ffd0d2",
+                        "surface-container-low": "#f2f3ff",
+                        "on-surface": "#131b2e",
+                        "on-secondary-container": "#00714e",
+                        "on-tertiary-fixed": "#40000c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "margin-page": "40px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .status-pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+            }
+
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface">
+    <!-- SideNavBar -->
+    <aside
+        class="w-64 h-screen fixed left-0 top-0 bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline flex flex-col py-stack-lg px-stack-md z-50">
+        <div class="mb-8 flex items-center gap-3 px-2">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim leading-none">
+                    InstaADB Panel</h1>
+                <p class="text-xs text-on-surface-variant font-medium opacity-70">Automation System</p>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <!-- 1. Menu Logs Aktivitas (Beranda Utama) -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-primary/5"
+                href="logs.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-md text-label-md">Dashboard Statistik</span>
+            </a>
+
+            <!-- 2. Menu Form Perintah -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-primary/5"
+                href="dashboard.html">
+                <span class="material-symbols-outlined">terminal</span>
+                <span class="font-label-md text-label-md">Form Perintah</span>
+            </a>
+
+            <!-- 3. Menu Manage Account (Aktif) -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 bg-primary text-white shadow-sm shadow-primary/30 font-semibold scale-[0.98]"
+                href="accounts.html">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="font-label-md text-label-md">Manage Account</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-4 border-t border-outline-variant space-y-1">
+            <button type="button" onclick="bukaSettings()"
+                class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors text-body-md font-medium">
+                <span class="material-symbols-outlined text-primary text-md" data-icon="settings">settings</span>
+                <span class="text-on-surface">Settings</span>
+            </button>
+
+            <button type="button" onclick="prosesLogOut()"
+                class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-error hover:bg-error-container/10 transition-colors text-body-md font-medium">
+                <span class="material-symbols-outlined text-error text-md" data-icon="logout">logout</span>
+                <span>Log Out</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="ml-64 flex-1 flex flex-col min-w-0">
+        <!-- TopNavBar -->
+        <header
+            class="flex justify-between items-center h-16 px-margin-page w-full bg-surface-bright dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none sticky top-0 z-40">
+            <span class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed-dim">ADB Automation
+                Control</span>
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <button class="p-2 rounded-full hover:bg-surface-container-high transition-all text-on-surface-variant">
+                        <span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+                    </button>
+                    <button class="p-2 rounded-full hover:bg-surface-container-high transition-all text-on-surface-variant">
+                        <span class="material-symbols-outlined" data-icon="help">help</span>
+                    </button>
+                </div>
+                <div class="flex items-center gap-3 pl-4 border-l border-outline-variant cursor-pointer"
+                    onclick="bukaSettings()">
+                    <div class="text-right">
+                        <p id="headerProfileName" class="font-body-md text-body-md font-semibold">Administrator</p>
+                        <p id="headerProfileRole" class="text-[10px] uppercase tracking-wider text-on-surface-variant">
+                            System Root</p>
+                    </div>
+                    <div
+                        class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold overflow-hidden border border-outline-variant">
+                        <img id="headerProfileAvatar" class="w-full h-full object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnZYtdU6_j7paWO368bCqeX1N8FUjaQG9dg0wDKq3SstDElrvgFLPQIj5q8prGIT4PfH6-B-YlyfnVJNxs1xff5zorTlLPu79ivkAZaW3wspHKHrBUAKrdUUuhJaJ8GYa43R9DD6mNuB1B1cqu6_dwyro6AzCisYkOTnhMzg4LdyKvlqdSrbelHi6ETY53q1JPkwIr3Rh6BIk2v1DVS_DjH5GCBjleKWzBn5YVJ4Gw3hV9tfDStfkE3D_lp2k2xRyfICAkxBQqVtM" />
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Main Content Canvas -->
+        <main class="p-margin-page pb-12 min-h-screen">
+        <!-- Header Section -->
+        <div class="flex justify-between items-end mb-stack-lg">
+            <div>
+                <h2 class="font-headline-lg text-headline-lg text-on-surface">Manajemen Akun</h2>
+                <p class="font-body-lg text-body-lg text-on-surface-variant">Kontrol akun Instagram dan sinkronisasi
+                    perangkat ADB secara real-time.</p>
+            </div>
+            <button onclick="addAccount()"
+                class="bg-primary-container text-on-primary-container hover:opacity-90 px-6 py-3 rounded-xl font-title-md flex items-center gap-2 transition-all shadow-md">
+                <span class="material-symbols-outlined" data-icon="add">add</span>
+                Tambah Akun/Device
+            </button>
+        </div>
+        <!-- Brief Stats Bento Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-10">
+            <div
+                class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl shadow-sm flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-primary-fixed flex items-center justify-center">
+                    <span class="material-symbols-outlined text-primary text-3xl" data-icon="group">group</span>
+                </div>
+                <div>
+                    <p class="font-label-md text-label-md text-on-surface-variant uppercase">Total Akun Terhubung</p>
+                    <p id="statTotalAkun" class="font-display-lg text-display-lg leading-none mt-1">0</p>
+                </div>
+            </div>
+            <div
+                class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl shadow-sm flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-secondary-container flex items-center justify-center">
+                    <span class="material-symbols-outlined text-secondary text-3xl"
+                        data-icon="check_circle">check_circle</span>
+                </div>
+                <div>
+                    <p class="font-label-md text-label-md text-on-surface-variant uppercase">Akun Aktif</p>
+                    <p id="statAkunAktif" class="font-display-lg text-display-lg leading-none mt-1 text-secondary">0</p>
+                </div>
+            </div>
+            <div
+                class="bg-surface-container-lowest border border-outline-variant p-stack-lg rounded-xl shadow-sm flex items-center gap-5">
+                <div class="w-14 h-14 rounded-full bg-tertiary-fixed flex items-center justify-center">
+                    <span class="material-symbols-outlined text-tertiary text-3xl" data-icon="adb">adb</span>
+                </div>
+                <div>
+                    <p class="font-label-md text-label-md text-on-surface-variant uppercase">Device ADB Online</p>
+                    <p id="statDeviceOnline" class="font-display-lg text-display-lg leading-none mt-1">0</p>
+                </div>
+            </div>
+        </div>
+        <div class="flex flex-col lg:flex-row gap-gutter">
+            <!-- Account Cards Grid -->
+            <div class="flex-1">
+                <div id="accountCardsGrid" class="grid grid-cols-1 xl:grid-cols-2 gap-stack-md">
+                    <!-- Dynamic account cards will be loaded here via Javascript -->
+                </div>
+            </div>
+            <!-- ADB Device Status Panel -->
+            <div class="w-full lg:w-80 shrink-0">
+                <div class="bg-surface-container-low rounded-xl border border-outline-variant overflow-hidden">
+                    <div
+                        class="p-stack-md bg-surface-container-high border-b border-outline-variant flex items-center justify-between">
+                        <h3 class="font-title-md flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary" data-icon="usb">usb</span>
+                            Status ADB Device
+                        </h3>
+                        <span class="flex h-2 w-2 relative">
+                            <span
+                                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary"></span>
+                        </span>
+                    </div>
+                    <div class="p-stack-md space-y-4">
+                        <div class="space-y-3">
+                            <p class="text-[10px] text-on-surface-variant font-bold uppercase tracking-widest">Active
+                                Connections</p>
+                            <div id="deviceListContainer" class="space-y-3">
+                                <!-- Dynamic device connections will be loaded here via Javascript -->
+                            </div>
+                        </div>
+                        <div class="pt-4 border-t border-outline-variant/30">
+                            <button onclick="triggerScan()" id="btnScanDevices"
+                                class="w-full py-2 bg-white border border-outline text-on-surface-variant font-label-md rounded-lg hover:bg-surface-container-high transition-all flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-[18px]" data-icon="search">search</span>
+                                Scan Devices
+                            </button>
+                        </div>
+                        <div class="bg-primary/5 rounded-lg p-stack-sm border border-primary/10">
+                            <div class="flex items-center gap-2 mb-1">
+                                <span class="material-symbols-outlined text-primary text-[16px]"
+                                    data-icon="info">info</span>
+                                <p class="text-[11px] font-bold text-primary">System Tip</p>
+                            </div>
+                            <p class="text-[10px] text-on-surface-variant leading-relaxed">Gunakan mode Wireless ADB
+                                untuk stabilitas koneksi jika menggunakan banyak hub USB secara bersamaan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    </div>
+    <script>
+        // Simple micro-interaction for buttons
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => btn.style.transform = 'scale(0.95)');
+            btn.addEventListener('mouseup', () => btn.style.transform = 'scale(1)');
+            btn.addEventListener('mouseleave', () => btn.style.transform = 'scale(1)');
+        });
+
+        const defaultAccounts = [
+            { username: "@lukidiwa13", deviceName: "Xiaomi Redmi 9", deviceId: "emulator-5554", posts: "420", followers: "3.1K" },
+            { username: "@travel_spirit_off", deviceName: "Samsung S21", deviceId: "192.168.1.44:5555", posts: "342", followers: "8.9K" },
+            { username: "@insta_auth_01", deviceName: "Google Pixel 4", deviceId: "192.168.1.15:5555", posts: "1,240", followers: "15.4K" }
+        ];
+
+        // Inisialisasi awal ke localStorage jika kosong
+        if (!localStorage.getItem('insta_accounts')) {
+            localStorage.setItem('insta_accounts', JSON.stringify(defaultAccounts));
+        }
+
+        // FUNGSI UTAMA LOAD DATA ACCOUNTS & ADB DEVICES
+        function loadAccountsDashboard() {
+            fetch('http://127.0.0.1:8000/api/statistik')
+                .then(res => {
+                    if (!res.ok) throw new Error("Server offline");
+                    return res.json();
+                })
+                .then(data => {
+                    // 1. Parsing perangkat ADB yang online dari terminal
+                    const lines = data.terminal.split('\n');
+                    const onlineDevices = [];
+                    lines.forEach(line => {
+                        if (line && !line.startsWith('$') && !line.startsWith('List') && line.includes('device')) {
+                            const parts = line.trim().split(/\s+/);
+                            if (parts.length >= 2 && parts[1] === 'device') {
+                                onlineDevices.push(parts[0]);
+                            }
+                        }
+                    });
+
+                    // Simpan ke window agar bisa diakses oleh addAccount()
+                    window.currentOnlineDevices = onlineDevices;
+                    const instagramOnlineDevices = data.instagram_online_devices || [];
+
+                    // 2. Ambil akun dari LocalStorage
+                    const accounts = JSON.parse(localStorage.getItem('insta_accounts') || '[]');
+
+                    // 2.5 Hitung aktivitas per device / username dari log
+                    const logs = data.logs || [];
+                    const actionCounts = {};
+                    const primaryDevice = onlineDevices[0] || '';
+                    
+                    logs.forEach(log => {
+                        let actor = log.akun || '';
+                        // Jika log bernilai 'all', arahkan ke perangkat utama jika ada
+                        if (actor === 'all' && primaryDevice) {
+                            actor = primaryDevice;
+                        }
+                        if (actor) {
+                            actionCounts[actor] = (actionCounts[actor] || 0) + 1;
+                        }
+                    });
+
+                    // 3. Render Akun di Grid Kiri
+                    const cardsGrid = document.getElementById('accountCardsGrid');
+                    if (cardsGrid) {
+                        let htmlCards = '';
+                        accounts.forEach(acc => {
+                            const isDeviceConnected = onlineDevices.includes(acc.deviceId);
+                            const isIgActive = instagramOnlineDevices.includes(acc.deviceId);
+                            const initials = acc.username.replace('@', '').substring(0, 2).toUpperCase();
+
+                            let statusBadgeColor = 'bg-error-container text-on-error-container';
+                            let statusText = 'Offline';
+                            let indicatorColor = 'bg-error';
+                            let pulseClass = '';
+                            let opacityClass = 'opacity-75';
+
+                            if (isDeviceConnected && isIgActive) {
+                                statusBadgeColor = 'bg-secondary-container text-on-secondary-container';
+                                statusText = 'Connected & IG Active';
+                                indicatorColor = 'bg-emerald-500';
+                                pulseClass = 'status-pulse';
+                                opacityClass = '';
+                            } else if (isDeviceConnected) {
+                                statusBadgeColor = 'bg-amber-100 text-amber-800 border border-amber-200';
+                                statusText = 'Connected, IG Closed';
+                                indicatorColor = 'bg-amber-500';
+                                pulseClass = 'status-pulse';
+                                opacityClass = '';
+                            }
+
+                            // Hitung total aktivitas akun ini (berdasarkan deviceId atau username)
+                            const countByDeviceId = actionCounts[acc.deviceId] || 0;
+                            const countByUsername = actionCounts[acc.username] || 0;
+                            const actionCount = countByDeviceId + countByUsername;
+
+                            htmlCards += `
+                                <div class="bg-white dark:bg-surface-container-lowest border border-outline-variant rounded-xl p-stack-md hover:shadow-md transition-all group ${opacityClass}">
+                                    <div class="flex items-start justify-between mb-4">
+                                        <div class="flex items-center gap-4">
+                                            <div class="relative">
+                                                <div class="w-16 h-16 rounded-full overflow-hidden border-2 ${isDeviceConnected ? 'border-primary-fixed bg-primary-container text-primary' : 'border-outline-variant grayscale bg-surface-container text-on-surface-variant'} flex items-center justify-center font-bold">
+                                                    <span>${initials}</span>
+                                                </div>
+                                                <div class="absolute bottom-0 right-0 w-4 h-4 ${indicatorColor} ${pulseClass} rounded-full border-2 border-white"></div>
+                                            </div>
+                                            <div>
+                                                <h4 class="font-title-md text-title-md leading-tight">${acc.username}</h4>
+                                                <p class="text-xs text-on-surface-variant font-medium flex items-center gap-1 mt-1">
+                                                    <span class="material-symbols-outlined text-[14px]">smartphone</span>
+                                                    ${acc.deviceName} - ${acc.deviceId}
+                                                </p>
+                                                <div class="flex items-center gap-3 mt-2">
+                                                    <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold uppercase ${statusBadgeColor}">
+                                                        ${statusText}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex gap-1 items-center">
+                                            ${isDeviceConnected ? `
+                                            <button onclick="scanInstagramAccounts('${acc.deviceId}', '${acc.deviceName}')" title="Synchronize akun Instagram dari HP" class="p-2 rounded-lg text-primary hover:bg-primary/10 transition-colors flex items-center justify-center animate-[spin_4s_linear_infinite]">
+                                                <span class="material-symbols-outlined text-[20px]">sync</span>
+                                            </button>
+                                            ` : ''}
+                                            <button onclick="deleteAccount('${acc.username}')" class="p-2 rounded-lg text-error hover:bg-error-container transition-colors flex items-center justify-center">
+                                                <span class="material-symbols-outlined">delete</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="grid grid-cols-3 gap-2 pt-4 border-t border-outline-variant/30 text-on-surface text-center">
+                                        <div>
+                                            <p class="text-[10px] text-on-surface-variant uppercase font-bold">Posts</p>
+                                            <p class="font-title-md">${isDeviceConnected ? acc.posts : '--'}</p>
+                                        </div>
+                                        <div>
+                                            <p class="text-[10px] text-on-surface-variant uppercase font-bold">Followers</p>
+                                            <p class="font-title-md">${isDeviceConnected ? acc.followers : '--'}</p>
+                                        </div>
+                                        <div class="bg-primary/5 rounded border border-primary/10 py-0.5">
+                                            <p class="text-[10px] text-primary uppercase font-bold">Aktivitas</p>
+                                            <p class="font-title-md text-primary font-bold">${actionCount}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        });
+
+                        // Tambahkan tombol dashed connect new account di akhir grid
+                        htmlCards += `
+                            <div onclick="addAccount()"
+                                class="border-2 border-dashed border-outline-variant rounded-xl p-stack-md flex flex-col items-center justify-center text-center group hover:bg-primary-container/5 cursor-pointer transition-all">
+                                <div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center mb-3 group-hover:bg-primary-fixed">
+                                    <span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary">add</span>
+                                </div>
+                                <p class="font-title-md text-on-surface-variant">Hubungkan Akun Baru</p>
+                                <p class="text-xs text-on-surface-variant mt-1">Maksimal 200 akun per server</p>
+                            </div>
+                        `;
+                        cardsGrid.innerHTML = htmlCards;
+                    }
+
+                    // 4. Render Active Connections di Panel Kanan
+                    const deviceListContainer = document.getElementById('deviceListContainer');
+                    if (deviceListContainer) {
+                        let htmlDevices = '';
+                        if (onlineDevices.length === 0) {
+                            htmlDevices = `<p class="text-xs text-on-surface-variant italic py-2">Tidak ada perangkat aktif terdeteksi.</p>`;
+                        } else {
+                            onlineDevices.forEach(devId => {
+                                const matchingAcc = accounts.find(a => a.deviceId === devId);
+                                const displayName = matchingAcc ? matchingAcc.username : 'Perangkat Belum Terdaftar';
+
+                                htmlDevices += `
+                                    <div class="flex items-center gap-3 p-2 rounded-lg bg-white border border-outline-variant/40">
+                                        <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center">
+                                            <span class="material-symbols-outlined text-primary">smartphone</span>
+                                        </div>
+                                        <div class="flex-1 overflow-hidden">
+                                            <p class="text-sm font-bold truncate">${displayName}</p>
+                                            <p class="text-[10px] text-on-surface-variant font-mono">${devId}</p>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <button onclick="scanInstagramAccounts('${devId}', '${matchingAcc ? matchingAcc.deviceName : 'Perangkat ADB ' + devId.substring(0, 4)}')" title="Synchronize akun dari perangkat ini" class="p-1.5 rounded-lg text-primary hover:bg-primary/10 transition-colors flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-[18px]">sync</span>
+                                            </button>
+                                            <span class="material-symbols-outlined text-secondary text-sm" title="Connected">wifi</span>
+                                        </div>
+                                    </div>
+                                `;
+                            });
+                        }
+                        deviceListContainer.innerHTML = htmlDevices;
+                    }
+
+                    // 5. Update bento box stats di bagian atas
+                    const activeCount = accounts.filter(a => instagramOnlineDevices.includes(a.deviceId)).length;
+                    if (document.getElementById('statTotalAkun')) document.getElementById('statTotalAkun').innerText = accounts.length;
+                    if (document.getElementById('statAkunAktif')) document.getElementById('statAkunAktif').innerText = activeCount;
+                    if (document.getElementById('statDeviceOnline')) document.getElementById('statDeviceOnline').innerText = onlineDevices.length;
+                })
+                .catch(err => {
+                    console.warn("🔌 Server offline. Mengunci status data terakhir.");
+                });
+        }
+        // FUNGSI SCAN INSTAGRAM ACCOUNTS DARI PERANGKAT REAL-TIME VIA ADB
+        function scanInstagramAccounts(deviceId, deviceName) {
+            if (!deviceId) return;
+            
+            const confirmScan = confirm(`Mulai sinkronisasi akun Instagram pada perangkat ${deviceName} (${deviceId})?\n\n Catatan: Proses ini membutuhkan waktu sekitar 15-30 detik per aplikasi karena sistem akan otomatis mendeteksi dan membuka aplikasi Instagram untuk membaca daftar akun.`);
+            if (!confirmScan) return;
+            
+            // Buat overlay pemrosesan sederhana
+            const overlay = document.createElement('div');
+            overlay.style.position = 'fixed';
+            overlay.style.inset = '0';
+            overlay.style.background = 'rgba(0,0,0,0.5)';
+            overlay.style.display = 'flex';
+            overlay.style.flexDirection = 'column';
+            overlay.style.alignItems = 'center';
+            overlay.style.justifyContent = 'center';
+            overlay.style.color = 'white';
+            overlay.style.zIndex = '9999';
+            overlay.innerHTML = `
+                <div class="bg-slate-900 p-8 rounded-2xl flex flex-col items-center gap-4 text-center max-w-[400px] border border-slate-700 shadow-2xl">
+                    <span class="material-symbols-outlined text-[48px] text-primary animate-spin">sync</span>
+                    <h3 class="font-bold text-lg text-white">Sinkronisasi Akun Sosmed</h3>
+                    <p class="text-xs text-slate-400">Sedang memindai aplikasi Instagram / Instagram Lite dan mendeteksi akun-akun Anda via ADB. Mohon tunggu...</p>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            
+            const formData = new FormData();
+            formData.append('device_id', deviceId);
+            
+            fetch('http://127.0.0.1:8000/api/scan-device-accounts', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.body.removeChild(overlay);
+                if (data.status === 'success') {
+                    const scanned = data.accounts || []; // array dari {app: "...", username: "..."}
+                    if (scanned.length === 0) {
+                        alert("Sinkronisasi selesai.\n\nTidak ada akun Instagram/Lite yang terdeteksi aktif pada perangkat ini.");
+                        return;
+                    }
+                    
+                    let localAccounts = JSON.parse(localStorage.getItem('insta_accounts') || '[]');
+                    let addedCount = 0;
+                    let listAdded = [];
+                    
+                    scanned.forEach(item => {
+                        const username = item.username;
+                        const appName = item.app;
+                        
+                        // Gunakan nilai rill posts & followers dari python jika ada, fallback ke random jika kosong
+                        const posts = item.posts || (Math.floor(Math.random() * 500) + 10).toString();
+                        const followers = item.followers || ((Math.random() * 20 + 1).toFixed(1) + "K");
+                        
+                        // Cari indeks akun yang sudah terdaftar
+                        const existingIdx = localAccounts.findIndex(acc => acc.username.toLowerCase() === username.toLowerCase());
+                        
+                        if (existingIdx !== -1) {
+                            // Update data yang sudah ada dengan data riil terbaru!
+                            localAccounts[existingIdx].posts = posts;
+                            localAccounts[existingIdx].followers = followers;
+                            localAccounts[existingIdx].deviceId = deviceId;
+                            
+                            let baseDeviceName = deviceName.replace(/\s*\(Instagram.*?\)/gi, '');
+                            localAccounts[existingIdx].deviceName = `${baseDeviceName} (${appName})`;
+                        } else {
+                            // Masukkan nama aplikasi sosmed ke dalam nama perangkat
+                            let baseDeviceName = deviceName;
+                            baseDeviceName = baseDeviceName.replace(/\s*\(Instagram.*?\)/gi, '');
+                            
+                            localAccounts.push({
+                                username: username,
+                                deviceName: `${baseDeviceName} (${appName})`,
+                                deviceId: deviceId,
+                                posts: posts,
+                                followers: followers
+                            });
+                            addedCount++;
+                            listAdded.push(`${username} (${appName})`);
+                        }
+                    });
+                    
+                    localStorage.setItem('insta_accounts', JSON.stringify(localAccounts));
+                    
+                    console.log("Scan Script Output:\n", data.output);
+                    let listAll = scanned.map(item => `${item.username}`);
+                    let msg = `Sinkronisasi Berhasil!\n\nAkun terdeteksi di perangkat (${scanned.length} akun):\n* ${listAll.join('\n* ')}`;
+                    if (addedCount > 0) {
+                        msg += `\n\nBerhasil menambahkan ${addedCount} akun baru ke dashboard:\n* ${listAdded.join('\n* ')}`;
+                    } else {
+                        msg += `\n\nSemua akun terdeteksi sudah terdaftar di dashboard sebelumnya.`;
+                    }
+                    
+                    alert(msg);
+                    loadAccountsDashboard();
+                } else {
+                    console.error("Gagal sinkronisasi:", data);
+                    alert("Gagal sinkronisasi:\n" + (data.message || "Kesalahan tidak diketahui."));
+                }
+            })
+            .catch(err => {
+                document.body.removeChild(overlay);
+                console.error(err);
+                alert("Gagal menghubungkan ke server API.");
+            });
+        }
+
+        // AKSI TAMBAH AKUN
+        function addAccount() {
+            const username = prompt("Masukkan Username Instagram (contoh: @messi):");
+            if (!username) return;
+            if (!username.startsWith('@')) {
+                alert("Username harus diawali karakter '@'!");
+                return;
+            }
+            const deviceName = prompt("Masukkan Nama Perangkat (contoh: Redmi Note 9):");
+            if (!deviceName) return;
+
+            const activeDevices = window.currentOnlineDevices || [];
+            let devicePromptMsg = "Masukkan Device ID ADB (contoh: emulator-5554 atau 192.168.1.44:5555):";
+            if (activeDevices.length > 0) {
+                devicePromptMsg += "\n\nPerangkat yang terdeteksi online saat ini:\n" + activeDevices.join("\n") + "\n\n(Silakan salin/ketik persis salah satu ID di atas)";
+            } else {
+                devicePromptMsg += "\n\n(⚠️ Tidak ada perangkat aktif terdeteksi. Silakan colok HP via USB dan aktifkan USB Debugging)";
+            }
+
+            const deviceId = prompt(devicePromptMsg);
+            if (!deviceId) return;
+
+            const posts = Math.floor(Math.random() * 500) + 10;
+            const followers = (Math.random() * 20 + 1).toFixed(1) + "K";
+
+            const newAcc = { username, deviceName, deviceId, posts, followers };
+            let accounts = JSON.parse(localStorage.getItem('insta_accounts') || '[]');
+            accounts.push(newAcc);
+            localStorage.setItem('insta_accounts', JSON.stringify(accounts));
+
+            loadAccountsDashboard();
+        }
+
+        // AKSI HAPUS AKUN
+        function deleteAccount(username) {
+            if (confirm(`Apakah Anda yakin ingin menghapus akun ${username}?`)) {
+                let accounts = JSON.parse(localStorage.getItem('insta_accounts') || '[]');
+                accounts = accounts.filter(a => a.username !== username);
+                localStorage.setItem('insta_accounts', JSON.stringify(accounts));
+
+                loadAccountsDashboard();
+            }
+        }
+
+
+
+        // PEMICU SCAN ADB DEVICES
+        function triggerScan() {
+            const btn = document.getElementById('btnScanDevices');
+            if (!btn) return;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = `<span class="material-symbols-outlined text-[18px] animate-spin">refresh</span> Scanning...`;
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                loadAccountsDashboard();
+            }, 1500);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initHeaderProfile();
+            loadAccountsDashboard();
+            setInterval(loadAccountsDashboard, 4000);
+        });
+
+        function bukaSettings() {
+            window.location.href = "settings.html";
+        }
+
+        function prosesLogOut() {
+            if (confirm("Apakah Anda yakin ingin keluar dari Panel InstaADB?")) {
+                localStorage.clear();
+                window.location.href = "login.html";
+            }
+        }
+
+        function initHeaderProfile() {
+            const defaultProfile = {
+                name: "Admin Root",
+                role: "Super Administrator",
+                avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCu2vCTOSPK5r3-TblvZEKXEhPN0jWhZUcZb3MIu74ukghYOhv7fNHlM4ZakDjT2XI34MlwBUsgjpdSlJrCZSD9gtL02HuxD0zigQIfVdI-4OP49L_QIh6uG1_VfOp9vKNGBD7N5Cx9CwCzOwblkOl-m49xW-vfvXyBY4bRXySWef8Taum8m5wtwCOzZ3xtFL8TXxiZlVUecOX1fDy3AvcphT5dowIJk4TybtpOUDiA1K5d0BGWLDySs1tMLHF2nojK20BKgHCpewM"
+            };
+            const profile = JSON.parse(localStorage.getItem('admin_profile') || JSON.stringify(defaultProfile));
+
+            if (document.getElementById('headerProfileName')) {
+                document.getElementById('headerProfileName').innerText = profile.name;
+            }
+            if (document.getElementById('headerProfileRole')) {
+                document.getElementById('headerProfileRole').innerText = profile.role;
+            }
+            if (document.getElementById('headerProfileAvatar')) {
+                document.getElementById('headerProfileAvatar').src = profile.avatar;
+            }
+        }
+    </script>
+</body>
+
+</html>

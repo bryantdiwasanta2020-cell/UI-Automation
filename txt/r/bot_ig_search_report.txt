@@ -1,0 +1,17 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_search_report.py
+================================================================================
+ Nama Bot    : Bot Ig Search Report
+ File Name   : bot_ig_search_report.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_ig_search_report.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_search_report.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_search_report.py
+
+================================================================================

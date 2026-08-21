@@ -1,0 +1,5 @@
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-13 16:51:56"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-13 16:51:26"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-13 16:51:22"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-13 16:51:15"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-13 16:51:15"}

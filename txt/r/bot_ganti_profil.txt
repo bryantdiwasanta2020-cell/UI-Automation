@@ -1,0 +1,19 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ganti_profil.py
+================================================================================
+ Nama Bot    : Bot Ganti Profil Massal
+ File Name   : bot_ganti_profil.py
+ Deskripsi   : Mengganti profil akun Instagram dari file daftar akun.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ganti_profil.py [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ganti_profil.py R9RY801LRPW
+
+================================================================================

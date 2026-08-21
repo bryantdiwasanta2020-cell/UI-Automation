@@ -1,0 +1,3 @@
+{"step": "logout", "status": "complete", "error": null, "timestamp": "2026-08-14 13:34:47"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-14 13:34:41"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-14 13:34:00"}

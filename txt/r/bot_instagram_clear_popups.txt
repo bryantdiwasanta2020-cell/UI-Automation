@@ -1,0 +1,17 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_clear_popups.py
+================================================================================
+ Nama Bot    : Bot Instagram Clear Popups
+ File Name   : bot_instagram_clear_popups.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_instagram_clear_popups.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_clear_popups.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_clear_popups.py
+
+================================================================================

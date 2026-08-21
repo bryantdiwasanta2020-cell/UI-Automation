@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Settings - InstaADB Panel</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-[#faf8ff] text-[#131b2e] flex min-h-screen">
+
+    <!-- SideNavBar -->
+    <aside class="w-64 h-screen fixed left-0 top-0 bg-white border-r border-gray-200 flex flex-col py-6 px-4 z-50">
+        <div class="mb-8 flex items-center gap-3 px-2">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="text-2xl font-bold text-[#3525cd] leading-none">InstaADB Panel</h1>
+                <p class="text-xs text-gray-500 opacity-70 mt-1">Automation System</p>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                href="logs.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="text-sm font-medium">Dashboard Statistik</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                href="dashboard.html">
+                <span class="material-symbols-outlined">terminal</span>
+                <span class="text-sm font-medium">Form Perintah</span>
+            </a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                href="accounts.html">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="text-sm font-medium">Manage Account</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-4 border-t border-outline-variant space-y-1">
+
+            <button type="button" onclick="bukaSettings()"
+                class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl bg-primary text-white shadow-sm shadow-primary/30 font-semibold transition-all duration-200 text-body-md">
+                <span class="material-symbols-outlined text-white text-md">settings</span>
+                <span>Settings</span>
+            </button>
+
+            <button type="button" onclick="prosesLogOut()"
+                class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-error hover:bg-error-container/10 transition-colors text-body-md font-medium">
+                <span class="material-symbols-outlined text-error text-md">logout</span>
+                <span>Log Out</span>
+            </button>
+
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <div class="ml-64 flex-1 flex flex-col min-w-0">
+        <header
+            class="flex justify-between items-center h-16 px-10 w-full bg-white border-b border-gray-200 shadow-sm sticky top-0 z-40">
+            <span class="text-xl font-bold text-[#3525cd]">ADB Automation Control</span>
+            <div class="flex items-center gap-3 cursor-pointer" onclick="bukaSettings()">
+                <div class="text-right">
+                    <p id="headerProfileName" class="text-sm font-semibold text-gray-700">Administrator</p>
+                    <p id="headerProfileRole" class="text-[10px] text-gray-400 uppercase tracking-wider">System Root</p>
+                </div>
+                <img id="headerProfileAvatar" class="w-10 h-10 rounded-full object-cover border border-gray-200"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnZYtdU6_j7paWO368bCqeX1N8FUjaQG9dg0wDKq3SstDElrvgFLPQIj5q8prGIT4PfH6-B-YlyfnVJNxs1xff5zorTlLPu79ivkAZaW3wspHKHrBUAKrdUUuhJaJ8GYa43R9DD6mNuB1B1cqu6_dwyro6AzCisYkOTnhMzg4LdyKvlqdSrbelHi6ETY53q1JPkwIr3Rh6BIk2v1DVS_DjH5GCBjleKWzBn5YVJ4Gw3hV9tfDStfkE3D_lp2k2xRyfICAkxBQqVtM" />
+            </div>
+        </header>
+
+        <main class="p-10">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-gray-900">Pengaturan Sistem</h2>
+                <p class="text-sm text-gray-500">Konfigurasi parameter global untuk koneksi ADB dan performa bot.</p>
+            </div>
+
+            <!-- Settings Form Card -->
+            <div class="bg-white border border-gray-200 rounded-xl p-6 shadow-sm max-w-3xl">
+                <form id="settingsForm" class="space-y-6">
+
+                    <!-- Section 1: ADB Config -->
+                    <div>
+                        <h3
+                            class="text-base font-semibold text-gray-900 border-b border-gray-100 pb-2 mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#3525cd]">adb</span> Konfigurasi ADB Perangkat
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Default
+                                    Connection Type</label>
+                                <select
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]">
+                                    <option>Kabel USB (Default)</option>
+                                    <option>Wireless ADB (Wi-Fi)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Default Wireless
+                                    Port</label>
+                                <input type="text"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    value="5555" placeholder="Contoh: 5555">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Bot Performance Delay -->
+                    <div>
+                        <h3
+                            class="text-base font-semibold text-gray-900 border-b border-gray-100 pb-2 mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#3525cd]">timer</span> Jeda Waktu & Proteksi
+                            Akun
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Jeda Antar Aksi
+                                    (Detik)</label>
+                                <input type="number"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    value="5" min="2">
+                                <span class="text-[11px] text-gray-400 mt-1 block">Rekomendasi: minimal 4-5 detik agar
+                                    aman dari deteksi spam.</span>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Batas Maksimal
+                                    Aksi / Jam</label>
+                                <input type="number"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    value="60">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Profile Config -->
+                    <div class="pt-6 border-t border-gray-100">
+                        <h3
+                            class="text-base font-semibold text-gray-900 border-b border-gray-100 pb-2 mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#3525cd]">person</span> Profil Administrator
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Nama
+                                    Administrator</label>
+                                <input id="inputProfileName" type="text"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    placeholder="Contoh: Admin Root">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Role /
+                                    Jabatan</label>
+                                <input id="inputProfileRole" type="text"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    placeholder="Contoh: Super Administrator">
+                            </div>
+                            <div class="md:col-span-2">
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">URL Foto Profil
+                                    (Avatar)</label>
+                                <input id="inputProfileAvatar" type="text"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    placeholder="Masukkan URL foto profil...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Security Config (Change Password) -->
+                    <div class="pt-6 border-t border-gray-100">
+                        <h3
+                            class="text-base font-semibold text-gray-900 border-b border-gray-100 pb-2 mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-[#3525cd]">lock</span> Ubah Kata Sandi Admin
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Kata Sandi
+                                    Lama</label>
+                                <input id="inputOldPassword" type="password"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    placeholder="••••••••">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Kata Sandi
+                                    Baru</label>
+                                <input id="inputNewPassword" type="password"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    placeholder="••••••••">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 uppercase mb-1">Konfirmasi Sandi
+                                    Baru</label>
+                                <input id="inputConfirmPassword" type="password"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-lg text-sm focus:ring-[#3525cd] focus:border-[#3525cd]"
+                                    placeholder="••••••••">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="pt-4 border-t border-gray-200 flex justify-end gap-3">
+                        <button type="button"
+                            class="px-4 py-2 bg-gray-100 text-gray-700 font-semibold text-sm rounded-lg hover:bg-gray-200 transition-colors">
+                            Reset Default
+                        </button>
+                        <button type="button" onclick="simpanSettings()"
+                            class="px-5 py-2 bg-[#3525cd] text-on-primary text-white font-semibold text-sm rounded-lg hover:opacity-90 transition-all shadow-md">
+                            Simpan Perubahan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Inisialisasi awal profile ke localStorage jika kosong
+        const defaultProfile = {
+            name: "Admin Root",
+            role: "Super Administrator",
+            avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCu2vCTOSPK5r3-TblvZEKXEhPN0jWhZUcZb3MIu74ukghYOhv7fNHlM4ZakDjT2XI34MlwBUsgjpdSlJrCZSD9gtL02HuxD0zigQIfVdI-4OP49L_QIh6uG1_VfOp9vKNGBD7N5Cx9CwCzOwblkOl-m49xW-vfvXyBY4bRXySWef8Taum8m5wtwCOzZ3xtFL8TXxiZlVUecOX1fDy3AvcphT5dowIJk4TybtpOUDiA1K5d0BGWLDySs1tMLHF2nojK20BKgHCpewM"
+        };
+
+        function initHeaderProfile() {
+            const profile = JSON.parse(localStorage.getItem('admin_profile') || JSON.stringify(defaultProfile));
+
+            if (document.getElementById('headerProfileName')) {
+                document.getElementById('headerProfileName').innerText = profile.name;
+            }
+            if (document.getElementById('headerProfileRole')) {
+                document.getElementById('headerProfileRole').innerText = profile.role;
+            }
+            if (document.getElementById('headerProfileAvatar')) {
+                document.getElementById('headerProfileAvatar').src = profile.avatar;
+            }
+
+            // Isi nilai form input jika ada di halaman settings
+            if (document.getElementById('inputProfileName')) {
+                document.getElementById('inputProfileName').value = profile.name;
+            }
+            if (document.getElementById('inputProfileRole')) {
+                document.getElementById('inputProfileRole').value = profile.role;
+            }
+            if (document.getElementById('inputProfileAvatar')) {
+                document.getElementById('inputProfileAvatar').value = profile.avatar;
+            }
+        }
+
+        function simpanSettings() {
+            const name = document.getElementById('inputProfileName').value.trim() || defaultProfile.name;
+            const role = document.getElementById('inputProfileRole').value.trim() || defaultProfile.role;
+            const avatar = document.getElementById('inputProfileAvatar').value.trim() || defaultProfile.avatar;
+
+            const profile = { name, role, avatar };
+
+            // Ambil field password
+            const oldPassword = document.getElementById('inputOldPassword').value;
+            const newPassword = document.getElementById('inputNewPassword').value;
+            const confirmPassword = document.getElementById('inputConfirmPassword').value;
+
+            // Jika ada field kata sandi yang diisi, proses update password
+            if (oldPassword || newPassword || confirmPassword) {
+                if (!oldPassword || !newPassword || !confirmPassword) {
+                    alert('Harap isi semua kolom kata sandi untuk memperbarui kata sandi Anda!');
+                    return;
+                }
+                if (newPassword !== confirmPassword) {
+                    alert('Konfirmasi kata sandi baru tidak cocok!');
+                    return;
+                }
+                if (newPassword.length < 5) {
+                    alert('Kata sandi baru minimal harus 5 karakter!');
+                    return;
+                }
+
+                const localProfile = JSON.parse(localStorage.getItem('admin_profile') || '{}');
+                const username = localProfile.username || 'admin';
+
+                const formData = new FormData();
+                formData.append('username', username);
+                formData.append('old_password', oldPassword);
+                formData.append('new_password', newPassword);
+
+                fetch('http://127.0.0.1:8000/api/change-password', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // Kosongkan form input
+                            document.getElementById('inputOldPassword').value = '';
+                            document.getElementById('inputNewPassword').value = '';
+                            document.getElementById('inputConfirmPassword').value = '';
+
+                            localStorage.setItem('admin_profile', JSON.stringify({ ...profile, username }));
+                            initHeaderProfile();
+                            alert('Profil dan Kata Sandi berhasil diperbarui!');
+                        } else {
+                            alert('Gagal mengubah kata sandi: ' + data.message);
+                        }
+                    })
+                    .catch(err => {
+                        console.error(err);
+                        alert('Gagal menghubungkan ke server untuk memperbarui kata sandi.');
+                    });
+            } else {
+                const localProfile = JSON.parse(localStorage.getItem('admin_profile') || '{}');
+                const username = localProfile.username || 'admin';
+
+                localStorage.setItem('admin_profile', JSON.stringify({ ...profile, username }));
+                initHeaderProfile();
+                alert('Profil berhasil disimpan!');
+            }
+        }
+
+        function bukaSettings() {
+            window.location.href = "settings.html";
+        }
+
+        function prosesLogOut() {
+            if (confirm("Apakah Anda yakin ingin keluar dari Panel InstaADB?")) {
+                localStorage.clear();
+                window.location.href = "login.html";
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initHeaderProfile();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_post.py
+================================================================================
+ Nama Bot    : Bot Instagram Post (Unified)
+ File Name   : bot_ig_post.py
+ Deskripsi   : Mengunggah gambar/video ke Feed (post), Reels, atau Story (mendukung force mode via parameter awal).
+ API Server  : /api/jalankan-bot-post
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   1. Mode Eksplisit (Sangat Direkomendasikan):
+      - Post Feed (Biasa):
+        python3 bot_ig_post.py post "<file_path>" "[caption]" [device_id] [my_account]
+      - Post Reels (Video):
+        python3 bot_ig_post.py reels "<file_path>" "[caption]" [device_id] [my_account]
+      - Post Story (Gambar/Video):
+        python3 bot_ig_post.py story "<file_path>" [device_id] [my_account]
+   
+   2. Mode Deteksi Otomatis (Kompatibilitas Mundur):
+      - Post Story:
+        python3 bot_ig_post.py "<file_path>" [device_id] [my_account]
+      - Post Feed/Reels:
+        python3 bot_ig_post.py "<file_path>" "<caption_text>" [device_id] [my_account]
+
+ [DAFTAR PARAMETER COMMAND (Eksplisit)]
+   * Posisi 1 : <mode_post> (String) [WAJIB]
+     Deskripsi : Jenis postingan, pilih salah satu: 'post' (untuk Feed), 'reels' (untuk Reels), atau 'story' (untuk Story).
+
+   * Posisi 2 : <file_path> (String) [WAJIB]
+     Deskripsi : Path lengkap file gambar atau video yang akan diunggah.
+
+   * Posisi 3 : <caption_text_atau_device_id> (String) [OPSIONAL]
+     Deskripsi : Teks caption postingan (untuk post/reels), atau ID Perangkat Android ADB (untuk story).
+
+   * Posisi 4 : <device_id_atau_my_account> (String) [OPSIONAL]
+     Deskripsi : ID Perangkat Android ADB (untuk post/reels), atau nama akun Anda untuk swap di awal (untuk story).
+
+   * Posisi 5 : <my_account> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (khusus untuk post/reels).
+
+ [CONTOH PERINTAH RUNNING]
+   # Mengunggah gambar ke Feed (post) dengan ganti akun
+   $ python3 bot_ig_post.py post "/path/to/gambar.png" "Caption feed!" R9RY801LRPW "akun_saya"
+   
+   # Mengunggah video ke Reels
+   $ python3 bot_ig_post.py reels "/path/to/video.mp4" "Ini caption Reels!" R9RY801LRPW
+   
+   # Mengunggah media ke Story
+   $ python3 bot_ig_post.py story "/path/to/gambar.png" R9RY801LRPW
+
+================================================================================

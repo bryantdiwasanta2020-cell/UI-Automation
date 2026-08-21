@@ -1,0 +1,32 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_register.py
+================================================================================
+ Nama Bot    : Bot Register Instagram
+ File Name   : bot_instagram_register.py
+ Deskripsi   : Melakukan pendaftaran/registrasi akun baru Instagram.
+ API Server  : /api/jalankan-bot-register
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_register.py <email_or_phone> <nama_lengkap> <username> <password> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <email_or_phone> (String) [WAJIB]
+     Deskripsi : Email atau nomor telepon registrasi
+
+   * Posisi 2 : <nama_lengkap> (String) [WAJIB]
+     Deskripsi : Nama lengkap akun
+
+   * Posisi 3 : <username> (String) [WAJIB]
+     Deskripsi : Username akun
+
+   * Posisi 4 : <password> (String) [WAJIB]
+     Deskripsi : Password akun
+
+   * Posisi 5 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_register.py "email@gmail.com" "Nama User" "user_baru" "Pass1234" R9RY801LRPW
+
+================================================================================

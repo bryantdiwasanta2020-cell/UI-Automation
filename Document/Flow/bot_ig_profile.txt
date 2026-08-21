@@ -1,0 +1,48 @@
+{
+  "EDIT_PROFILE": {
+    "steps": [
+      {
+        "step": "1",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "3",
+        "name": "Open Profile Page",
+        "module": "bot_ig_profile.py",
+        "description": "Mengeklik tab profil di pojok kanan bawah layar untuk membuka profil sendiri."
+      },
+      {
+        "step": "4",
+        "name": "Open Edit Profile Menu",
+        "module": "bot_ig_profile.py",
+        "description": "Mengeklik tombol Edit Profile pada halaman profil."
+      },
+      {
+        "step": "5",
+        "name": "Modify Profile Information",
+        "module": "bot_ig_profile.py",
+        "description": "Mengisi field Nama, Username, Bio, atau memperbarui foto profil dari galeri HP sesuai parameter input."
+      },
+      {
+        "step": "6",
+        "name": "Save Changes",
+        "module": "bot_ig_profile.py",
+        "description": "Mengeklik tombol centang/simpan di pojok kanan atas untuk menerapkan semua perubahan secara global."
+      },
+      {
+        "step": "CLEANUP",
+        "name": "Clean Exit",
+        "module": "bot_ig_profile.py",
+        "description": "Melakukan force stop Instagram, membuka kembali aplikasi secara segar di Beranda, dan me-refresh feed."
+      }
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "REPOST": {
+    "steps": [
+      {
+        "step": "1/5",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2/5",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "PRE-RUN",
+        "name": "Switch Account",
+        "module": "switch_akun_ig.py",
+        "description": "Beralih ke akun yang ditentukan pada parameter my_account."
+      },
+      {
+        "step": "3/5",
+        "name": "Search & Navigate Target",
+        "module": "bot_ig_repost.py",
+        "description": "Membuka postingan via URL, membuka profil user target, atau mengetik keyword pencarian dan menggulir ke bawah."
+      },
+      {
+        "step": "4/5",
+        "name": "Open First Post",
+        "module": "bot_ig_repost.py",
+        "description": "Mengeklik postingan teratas di kolom kiri grid hasil pencarian dan memverifikasi halaman detail terbuka."
+      },
+      {
+        "step": "5/5",
+        "name": "Repost Post",
+        "module": "bot_ig_repost.py",
+        "description": "Mengambil screenshot, mengunduh media, dan mengeklik tombol Repost. Melakukan swipe up ke post berikutnya jika limit > 1."
+      },
+      {
+        "step": "CLEANUP",
+        "name": "Clean Exit",
+        "module": "bot_ig_repost.py",
+        "description": "Melakukan force stop Instagram, membuka kembali aplikasi secara segar di Beranda, me-refresh feed, dan mencatat status complete."
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+{"step": "switch_account", "status": "on_progress", "error": null, "timestamp": "2026-07-29 13:39:54"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-07-29 13:39:54"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-07-29 13:39:56"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-07-29 13:39:57"}
+{"step": "open_profile_switcher", "status": "complete", "error": null, "timestamp": "2026-07-29 13:40:01"}
+{"step": "switch_account", "status": "error", "error": "'_Touch' object has no attribute 'long_click'", "timestamp": "2026-07-29 13:40:01"}

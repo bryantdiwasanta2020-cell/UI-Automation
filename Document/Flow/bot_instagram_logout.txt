@@ -1,0 +1,30 @@
+{
+  "LOGOUT": {
+    "steps": [
+      {
+        "step": "1",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "3",
+        "name": "Navigate Settings",
+        "module": "bot_instagram_logout.py",
+        "description": "Membuka tab profil, mengeklik menu burger (Settings), lalu menggulir ke bawah ke bagian Logout."
+      },
+      {
+        "step": "4",
+        "name": "Confirm Logout",
+        "module": "bot_instagram_logout.py",
+        "description": "Mengeklik tombol Logout dan mengonfirmasi pada dialog pop-up keluar."
+      }
+    ]
+  }
+}

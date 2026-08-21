@@ -1,0 +1,15 @@
+{"step": "farming", "status": "complete", "error": null, "timestamp": "2026-08-20 15:20:18"}
+{"step": "farming_loop", "status": "on_progress", "error": null, "timestamp": "2026-08-20 15:18:26"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-20 15:18:07"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-20 15:18:03"}
+{"step": "farming", "status": "on_progress", "error": null, "timestamp": "2026-08-20 15:18:03"}
+{"step": "farming", "status": "failed", "error": "{'code': -32002, 'data': 'Selector [focused=True]', 'method': 'wait'}", "timestamp": "2026-08-20 15:15:34"}
+{"step": "farming_loop", "status": "on_progress", "error": null, "timestamp": "2026-08-20 15:15:02"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-20 15:14:43"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-20 15:14:39"}
+{"step": "farming", "status": "on_progress", "error": null, "timestamp": "2026-08-20 15:14:39"}
+{"step": "farming", "status": "complete", "error": null, "timestamp": "2026-08-20 15:11:17"}
+{"step": "farming_loop", "status": "on_progress", "error": null, "timestamp": "2026-08-20 15:11:07"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-20 15:10:22"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-20 15:10:16"}
+{"step": "farming", "status": "on_progress", "error": null, "timestamp": "2026-08-20 15:10:16"}

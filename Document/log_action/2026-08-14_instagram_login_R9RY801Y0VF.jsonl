@@ -1,0 +1,15 @@
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-14 10:54:47"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-14 10:54:06"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-14 10:54:02"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-14 10:53:56"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-14 10:53:56"}
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-14 10:44:01"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-14 10:42:45"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-14 10:42:41"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-14 10:42:35"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-14 10:42:35"}
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-14 09:15:42"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-14 09:14:57"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-14 09:14:53"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-14 09:14:46"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-14 09:14:46"}

@@ -1,0 +1,24 @@
+{"step": "login", "status": "failed", "error": "Batas waktu otentikasi login terlampaui", "timestamp": "2026-08-07 17:39:42"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:37:38"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-07 17:37:34"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-07 17:37:30"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:37:30"}
+{"step": "login", "status": "failed", "error": "Batas waktu otentikasi login terlampaui", "timestamp": "2026-08-07 17:37:09"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:35:06"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-07 17:35:02"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-07 17:34:57"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:34:57"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:33:13"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-07 17:33:09"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-07 17:33:03"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:33:03"}
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-07 17:32:15"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:31:08"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-07 17:31:04"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-07 17:30:58"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:30:58"}
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-07 17:07:14"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:06:25"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-07 17:06:21"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-07 17:06:14"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-07 17:06:14"}

@@ -1,0 +1,26 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_post_reels.py
+================================================================================
+ Nama Bot    : Bot Post Reels Instagram
+ File Name   : bot_ig_post_reels.py
+ Deskripsi   : Mengunggah video ke tab Reels Instagram.
+ API Server  : /api/jalankan-bot-post-reels
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_post_reels.py <file_path_video> [caption_text] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <file_path_video> (String) [WAJIB]
+     Deskripsi : Path file video .mp4 di server/lokal
+
+   * Posisi 2 : <caption_text> (String) [OPSIONAL]
+     Deskripsi : Teks deskripsi / caption Reels
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_post_reels.py "/path/to/video.mp4" "Ini Reels seru!" R9RY801LRPW
+
+================================================================================

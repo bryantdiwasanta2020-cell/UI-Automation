@@ -1,0 +1,32 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_profile.py
+================================================================================
+ Nama Bot    : Bot Edit Profile Instagram
+ File Name   : bot_ig_profile.py
+ Deskripsi   : Mengubah data profil Instagram (Nama, Username, Bio, Foto Avatar).
+ API Server  : /api/jalankan-bot-profile
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_profile.py [nama] [username] [bio] [avatar_path] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <nama> (String) [OPSIONAL] | Default: '-'
+     Deskripsi : Nama tampilan baru (gunakan '-' jika tidak diubah)
+
+   * Posisi 2 : <username> (String) [OPSIONAL] | Default: '-'
+     Deskripsi : Username baru (gunakan '-' jika tidak diubah)
+
+   * Posisi 3 : <bio> (String) [OPSIONAL] | Default: '-'
+     Deskripsi : Bio profil baru (gunakan '-' jika tidak diubah)
+
+   * Posisi 4 : <avatar_path> (String) [OPSIONAL] | Default: '-'
+     Deskripsi : Path gambar avatar baru (gunakan '-' jika tidak diubah)
+
+   * Posisi 5 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_profile.py "Budi Tech" "-" "Official Account" "-" R9RY801LRPW
+
+================================================================================

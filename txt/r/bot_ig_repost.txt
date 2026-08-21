@@ -1,0 +1,48 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_repost.py (UNIFIED)
+================================================================================
+ Nama Bot    : Bot Repost Instagram Unified (By Username, URL, & Keyword)
+ File Name   : bot_ig_repost.py
+ Deskripsi   : Melakukan repost postingan Instagram berdasarkan Username, URL Direct, maupun Keyword/Hashtag.
+ API Server  : /api/jalankan-bot-repost
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+    1. Mode Username : python3 bot_ig_repost.py <target_username> [caption_type] [custom_caption] [device_id] [my_account]
+    2. Mode URL      : python3 bot_ig_repost.py <post_url> [caption_type] [custom_caption] [device_id] [my_account] [target_url]
+    3. Mode Keyword  : python3 bot_ig_repost.py <keyword> [limit] [device_id] [my_account] [normal]
+    4. Mode Named    : python3 bot_ig_repost.py --mode <username|url|keyword> --target <target> [--limit N] [--device ID]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Mode Username:
+     - Target (Username target) [WAJIB]
+     - Caption Type ('credit', 'custom', 'blank')
+     - Custom Caption Text
+     - Device ID
+     - My Account (pindah akun di awal)
+
+   * Mode URL:
+     - Target (Direct Link URL postingan) [WAJIB]
+     - Caption Type ('credit', 'custom', 'blank')
+     - Custom Caption Text
+     - Device ID
+     - My Account
+     - Mode Pembeda (isi 'target_url') [OPSIONAL - Terdeteksi Otomatis]
+
+   * Mode Keyword:
+     - Target (Kata kunci pencarian / Hashtag)
+     - Limit (Jumlah postingan yang di-repost, default: 5)
+     - Device ID
+     - My Account
+     - Mode Pembeda (isi 'normal') [OPSIONAL - Terdeteksi Otomatis jika limit disertakan]
+
+ [CONTOH PERINTAH RUNNING]
+   # Repost via Username dengan credit (tanpa mode tambahan di akhir)
+   
+   # Repost via URL dengan custom caption dan device
+   $ python3 bot_ig_repost.py "https://www.instagram.com/p/DbGhqbKE-Bn/" custom "Hasil repost" R9RY801LRPW "akun_saya" target_url
+   
+   # Repost via Keyword massal
+   $ python3 bot_ig_repost.py "kucing" 5 R9RY801LRPW "akun_saya" normal
+
+================================================================================

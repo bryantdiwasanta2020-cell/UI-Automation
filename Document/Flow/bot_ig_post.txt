@@ -1,0 +1,36 @@
+{
+  "POST": {
+    "steps": [
+      {
+        "step": "1",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "Upload Media",
+        "name": "Push Media File",
+        "module": "bot_ig_post.py",
+        "description": "Mengirim file gambar/video dari server lokal PC ke penyimpanan HP (/sdcard/DCIM/Camera atau /sdcard/Pictures)."
+      },
+      {
+        "step": "2",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "PRE-RUN",
+        "name": "Switch Account",
+        "module": "switch_akun_ig.py",
+        "description": "Beralih ke akun yang ditentukan pada parameter my_account."
+      },
+      {
+        "step": "3",
+        "name": "Publish Post",
+        "module": "bot_ig_post.py",
+        "description": "Membuat postingan baru (Feed/Reels/Story) dengan menyeleksi media hasil unggahan dan menulis caption kustom."
+      }
+    ]
+  }
+}

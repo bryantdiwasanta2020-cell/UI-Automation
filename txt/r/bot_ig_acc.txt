@@ -1,0 +1,19 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_acc.py
+================================================================================
+ Nama Bot    : Bot Konfirmasi Permintaan Follow
+ File Name   : bot_ig_acc.py
+ Deskripsi   : Secara otomatis menyetujui (konfirmasi) permintaan follow yang masuk di notifikasi.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_acc.py [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_acc.py
+
+================================================================================

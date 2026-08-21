@@ -1,0 +1,42 @@
+{
+  "SCRAPER": {
+    "steps": [
+      {
+        "step": "1",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "3",
+        "name": "Search Competitor Profile",
+        "module": "bot_ig_scraper.py",
+        "description": "Membuka halaman pencarian, mencari username kompetitor, dan membuka profil kompetitor tersebut."
+      },
+      {
+        "step": "4",
+        "name": "Open Followers List",
+        "module": "bot_ig_scraper.py",
+        "description": "Mengeklik bagian pengikut (followers) di profil kompetitor untuk memuat daftar pengikut."
+      },
+      {
+        "step": "5",
+        "name": "Extract Data",
+        "module": "bot_ig_scraper.py",
+        "description": "Melakukan scroll layar ke bawah secara berulang, membaca elemen teks nama pengikut, menyaring duplikat, dan menyimpannya ke scraped_targets.txt."
+      },
+      {
+        "step": "CLEANUP",
+        "name": "Clean Exit",
+        "module": "bot_ig_scraper.py",
+        "description": "Melakukan force stop Instagram, membuka kembali aplikasi secara segar di Beranda, dan me-refresh feed."
+      }
+    ]
+  }
+}

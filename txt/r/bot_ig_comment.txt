@@ -1,0 +1,43 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_comment.py
+================================================================================
+ Nama Bot    : Bot Komentar Instagram (Unified)
+ File Name   : bot_ig_comment.py
+ Deskripsi   : Mengirimkan komentar pada postingan target spesifik, atau massal berdasarkan hashtag/keyword.
+ API Server  : /api/jalankan-bot-comment
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   1. Mode Target (URL Direct):
+      python3 bot_ig_comment.py "<target_post_url>" "<isi_komentar>" [device_id] [my_account] target_url
+   
+   2. Mode Keyword (Pencarian Massal):
+      python3 bot_ig_comment.py "<keyword_atau_hashtag>" [limit_angka] "<isi_komentar>" [device_id] [my_account] normal
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_atau_keyword> (String) [WAJIB]
+     Deskripsi : URL postingan langsung (untuk Mode Target), atau Kata kunci/Hashtag pencarian (untuk Mode Keyword).
+
+   * Posisi 2 : <komentar_atau_limit> (String/Integer) [WAJIB]
+     Deskripsi : Teks komentar manual/path file txt (untuk Mode Target), atau Jumlah limit postingan (untuk Mode Keyword).
+
+   * Posisi 3 : <device_id_atau_komentar> (String) [OPSIONAL]
+     Deskripsi : ID Perangkat Android ADB (untuk Mode Target), atau Teks komentar manual/path file (untuk Mode Keyword).
+
+   * Posisi 4 : <my_account_atau_device_id> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (untuk Mode Target), atau ID Perangkat Android ADB (untuk Mode Keyword).
+
+   * Posisi 5 : <my_account> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (khusus untuk Mode Keyword).
+
+   * Posisi Terakhir : <mode> (String) [WAJIB]
+     Deskripsi : Nama mode pembeda, isi 'target_url' untuk URL, atau 'normal' untuk pencarian keyword.
+
+ [CONTOH PERINTAH RUNNING]
+   # Komentar postingan target via URL
+   $ python3 bot_ig_comment.py "https://www.instagram.com/p/DbGhqbKE-Bn/" "Keren fotonya!" R9RY801LRPW "akun_saya" target_url
+   
+   # Komentar berdasarkan hashtag massal dengan swap akun
+   $ python3 bot_ig_comment.py "#kuliner" 5 "Sangat menggiurkan!" R9RY801LRPW "akun_saya" normal
+
+================================================================================

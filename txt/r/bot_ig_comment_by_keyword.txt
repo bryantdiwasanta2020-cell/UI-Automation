@@ -1,0 +1,29 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_comment_by_keyword.py
+================================================================================
+ Nama Bot    : Bot Comment By Keyword Instagram
+ File Name   : bot_ig_comment_by_keyword.py
+ Deskripsi   : Mencari keyword/hashtag di Instagram dan mengomentari postingan secara masal.
+ API Server  : /api/jalankan-bot-comment-by-keyword
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_comment_by_keyword.py <keyword> [limit] [komentar_custom] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <keyword> (String) [WAJIB]
+     Deskripsi : Kata kunci pencarian / hashtag
+
+   * Posisi 2 : <limit> (Integer) [OPSIONAL] | Default: '5'
+     Deskripsi : Jumlah postingan yang dikomentari
+
+   * Posisi 3 : <komentar_custom> (String) [OPSIONAL]
+     Deskripsi : Teks komentar kustom
+
+   * Posisi 4 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_comment_by_keyword.py "jokowi" 10 "mantap" R9RY801LRPW
+
+================================================================================

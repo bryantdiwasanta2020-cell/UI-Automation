@@ -1,0 +1,42 @@
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:56:49"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 14:56:45"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 14:56:38"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:56:38"}
+{"step": "login", "status": "failed", "error": "Sandi salah: Kata sandi yang dimasukkan salah untuk akun 'luk'.", "timestamp": "2026-08-08 14:12:27"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:11:40"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 14:11:36"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 14:11:31"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:11:31"}
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-08 14:06:02"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:05:47"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 14:05:43"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 14:05:38"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:05:38"}
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-08 14:05:23"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:05:09"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 14:05:05"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 14:05:00"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:05:00"}
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-08 14:03:40"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:03:30"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 14:03:26"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 14:03:20"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 14:03:20"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 13:45:32"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 13:45:28"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 13:45:23"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 13:45:23"}
+{"step": "login", "status": "failed", "error": "Sandi salah: Kata sandi yang dimasukkan salah untuk akun 'keysaputri12131'.", "timestamp": "2026-08-08 13:09:56"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 13:09:06"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 13:09:02"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 13:08:56"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 13:08:56"}
+{"step": "login", "status": "failed", "error": "Batas waktu otentikasi login terlampaui", "timestamp": "2026-08-08 13:08:14"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 13:06:14"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 13:06:10"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 13:06:04"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 13:06:04"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-08 13:04:29"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-08 13:04:24"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-08 13:04:16"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-08 13:04:16"}

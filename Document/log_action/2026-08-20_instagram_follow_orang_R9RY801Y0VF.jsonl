@@ -1,0 +1,5 @@
+{"step": "follow_orang", "status": "complete", "error": null, "timestamp": "2026-08-20 16:17:37"}
+{"step": "find_follow_button", "status": "complete", "error": null, "timestamp": "2026-08-20 16:17:18"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-20 16:17:00"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-20 16:16:55"}
+{"step": "follow_orang", "status": "on_progress", "error": null, "timestamp": "2026-08-20 16:16:55"}

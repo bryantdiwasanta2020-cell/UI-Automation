@@ -1,0 +1,40 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_like.py
+================================================================================
+ Nama Bot    : Bot Like Postingan Instagram (Unified)
+ File Name   : bot_ig_like.py
+ Deskripsi   : Memberikan Like pada postingan target spesifik, atau massal berdasarkan hashtag/keyword.
+ API Server  : /api/jalankan-bot-like & /api/jalankan-bot-like-by-keyword
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   1. Mode Target (URL Direct):
+      python3 bot_ig_like.py "<target_post_url>" [device_id] [my_account] target_url
+   
+   2. Mode Keyword (Pencarian Massal):
+      python3 bot_ig_like.py "<keyword_atau_hashtag>" [limit_angka] [device_id] [my_account] normal
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_atau_keyword> (String) [WAJIB]
+     Deskripsi : URL postingan langsung (untuk Mode Target), atau Kata kunci/Hashtag pencarian (untuk Mode Keyword).
+
+   * Posisi 2 : <device_id_atau_limit> (String/Integer) [OPSIONAL]
+     Deskripsi : ID Perangkat Android ADB (untuk Mode Target, default: 'all'), atau Jumlah limit postingan (untuk Mode Keyword).
+
+   * Posisi 3 : <my_account_atau_device_id> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (untuk Mode Target), atau ID Perangkat Android ADB (untuk Mode Keyword).
+
+   * Posisi 4 : <my_account> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (khusus untuk Mode Keyword).
+
+   * Posisi Terakhir : <mode> (String) [WAJIB]
+     Deskripsi : Nama mode pembeda, isi 'target_url' untuk URL, atau 'normal' untuk pencarian keyword.
+
+ [CONTOH PERINTAH RUNNING]
+   # Like postingan target via URL
+   $ python3 bot_ig_like.py "https://www.instagram.com/p/DbGhqbKE-Bn/" R9RY801LRPW "akun_saya" target_url
+   
+   # Like berdasarkan hashtag massal dengan swap akun
+   $ python3 bot_ig_like.py "#kucing" 10 R9RY801LRPW "akun_saya" normal
+
+================================================================================

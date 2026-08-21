@@ -1,0 +1,6 @@
+{"step": "repost", "status": "on_progress", "error": null, "timestamp": "2026-07-31 10:31:16"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-07-31 10:31:16"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-07-31 10:31:18"}
+{"step": "open_url", "status": "complete", "error": null, "timestamp": "2026-07-31 10:31:41"}
+{"step": "repost_media", "status": "complete", "error": null, "timestamp": "2026-07-31 10:31:47"}
+{"step": "repost", "status": "complete", "error": null, "timestamp": "2026-07-31 10:32:04"}

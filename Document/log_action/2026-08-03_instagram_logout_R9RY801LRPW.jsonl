@@ -1,0 +1,24 @@
+{"step": "logout", "status": "complete", "error": null, "timestamp": "2026-08-03 14:45:54"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-03 14:45:48"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 14:45:06"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:40:52"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 10:46:39"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 11:02:30"}
+{"step": "logout", "status": "error", "error": "Batas waktu Log Out terlampaui (Timeout)", "timestamp": "2026-08-03 11:04:13"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 11:16:09"}
+{"step": "logout", "status": "error", "error": "Batas waktu Log Out terlampaui (Timeout)", "timestamp": "2026-08-03 11:17:51"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 11:21:46"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:22:28"}
+{"step": "logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:22:33"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 11:26:35"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:27:17"}
+{"step": "logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:27:22"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 11:32:51"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 11:37:57"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:38:39"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:39:18"}
+{"step": "logout", "status": "error", "error": "Batas waktu Log Out terlampaui (Timeout)", "timestamp": "2026-08-03 11:39:36"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-03 11:54:23"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:55:05"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:55:44"}
+{"step": "logout", "status": "complete", "error": null, "timestamp": "2026-08-03 11:55:50"}

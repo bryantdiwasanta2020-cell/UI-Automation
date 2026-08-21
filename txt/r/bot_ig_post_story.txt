@@ -1,0 +1,23 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_post_story.py
+================================================================================
+ Nama Bot    : Bot Post Story Instagram
+ File Name   : bot_ig_post_story.py
+ Deskripsi   : Mengunggah gambar atau video ke Instagram Story.
+ API Server  : /api/jalankan-bot-post-story
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_post_story.py <file_path> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <file_path> (String) [WAJIB]
+     Deskripsi : Path file media gambar/video
+
+   * Posisi 2 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_post_story.py "/path/to/gambar.png" R9RY801LRPW
+
+================================================================================

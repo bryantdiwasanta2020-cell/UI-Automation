@@ -1,0 +1,34 @@
+{
+  "CHAT": {
+    "steps": [
+      {
+        "step": "1",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "3",
+        "name": "Navigate to DM",
+        "module": "bot_ig_chat.py",
+        "description": "Membuka halaman Direct Message (Inbox) target username secara langsung menggunakan intent URL atau pencarian nama."
+      },
+      {
+        "step": "4",
+        "name": "Send Message",
+        "module": "bot_ig_chat.py",
+        "description": "Mengeklik input chat, mengetik pesan DM kustom, dan menekan tombol Kirim."
+      }
+    ]
+  }
+}
+      }
+    ]
+  }
+}

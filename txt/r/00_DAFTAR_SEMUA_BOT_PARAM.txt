@@ -1,0 +1,953 @@
+================================================================================
+
+      MASTER DAFTAR PARAMETER BOT AUTOMATION INSTAGRAM (CLI & API)
+
+================================================================================
+
+ Total Bot IG Scanned : 32
+
+ Direktori Output     : /home/me/TEAM/automation_2026/instagram/txt/r
+
+================================================================================
+
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ganti_profil.py
+================================================================================
+ Nama Bot    : Bot Ganti Profil Massal
+ File Name   : bot_ganti_profil.py
+ Deskripsi   : Mengganti profil akun Instagram dari file daftar akun.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ganti_profil.py [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ganti_profil.py R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_acc.py
+================================================================================
+ Nama Bot    : Bot Konfirmasi Permintaan Follow
+ File Name   : bot_ig_acc.py
+ Deskripsi   : Secara otomatis menyetujui (konfirmasi) permintaan follow yang masuk di notifikasi.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_acc.py [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_acc.py
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_chat.py
+================================================================================
+ Nama Bot    : Bot Direct Message / Chat Instagram
+ File Name   : bot_ig_chat.py
+ Deskripsi   : Mengirimkan pesan singkat (DM) ke akun Instagram target.
+ API Server  : /api/jalankan-bot-chat
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_chat.py <target_user> <pesan> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_user> (String) [WAJIB]
+     Deskripsi : Username Instagram penerima pesan
+
+   * Posisi 2 : <pesan> (String) [WAJIB]
+     Deskripsi : Teks pesan yang ingin dikirim
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_chat.py "halo_target" "Halo, salam kenal!" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_comment.py
+================================================================================
+ Nama Bot    : Bot Komentar Instagram (Unified)
+ File Name   : bot_ig_comment.py
+ Deskripsi   : Mengirimkan komentar pada postingan target spesifik, atau massal berdasarkan hashtag/keyword.
+ API Server  : /api/jalankan-bot-comment
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   1. Mode Target (URL Direct):
+      python3 bot_ig_comment.py "<target_post_url>" "<isi_komentar>" [device_id] [my_account] target_url
+   
+   2. Mode Keyword (Pencarian Massal):
+      python3 bot_ig_comment.py "<keyword_atau_hashtag>" [limit_angka] "<isi_komentar>" [device_id] [my_account] normal
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_atau_keyword> (String) [WAJIB]
+     Deskripsi : URL postingan langsung (untuk Mode Target), atau Kata kunci/Hashtag pencarian (untuk Mode Keyword).
+
+   * Posisi 2 : <komentar_atau_limit> (String/Integer) [WAJIB]
+     Deskripsi : Teks komentar manual/path file txt (untuk Mode Target), atau Jumlah limit postingan (untuk Mode Keyword).
+
+   * Posisi 3 : <device_id_atau_komentar> (String) [OPSIONAL]
+     Deskripsi : ID Perangkat Android ADB (untuk Mode Target), atau Teks komentar manual/path file (untuk Mode Keyword).
+
+   * Posisi 4 : <my_account_atau_device_id> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (untuk Mode Target), atau ID Perangkat Android ADB (untuk Mode Keyword).
+
+   * Posisi 5 : <my_account> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (khusus untuk Mode Keyword).
+
+   * Posisi Terakhir : <mode> (String) [WAJIB]
+     Deskripsi : Nama mode pembeda, isi 'target_url' untuk URL, atau 'normal' untuk pencarian keyword.
+
+ [CONTOH PERINTAH RUNNING]
+   # Komentar postingan target via URL
+   $ python3 bot_ig_comment.py "https://www.instagram.com/p/DbGhqbKE-Bn/" "Keren fotonya!" R9RY801LRPW "akun_saya" target_url
+   
+   # Komentar berdasarkan hashtag massal dengan swap akun
+   $ python3 bot_ig_comment.py "#kuliner" 5 "Sangat menggiurkan!" R9RY801LRPW "akun_saya" normal
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_comment_by_keyword.py
+================================================================================
+ Nama Bot    : Bot Comment By Keyword Instagram
+ File Name   : bot_ig_comment_by_keyword.py
+ Deskripsi   : Mencari keyword/hashtag di Instagram dan mengomentari postingan secara masal.
+ API Server  : /api/jalankan-bot-comment-by-keyword
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_comment_by_keyword.py <keyword> [limit] [komentar_custom] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <keyword> (String) [WAJIB]
+     Deskripsi : Kata kunci pencarian / hashtag
+
+   * Posisi 2 : <limit> (Integer) [OPSIONAL] | Default: '5'
+     Deskripsi : Jumlah postingan yang dikomentari
+
+   * Posisi 3 : <komentar_custom> (String) [OPSIONAL]
+     Deskripsi : Teks komentar kustom
+
+   * Posisi 4 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_comment_by_keyword.py "jokowi" 10 "mantap" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_farming.py
+================================================================================
+ Nama Bot    : Bot Farming / Warmup Instagram
+ File Name   : bot_ig_farming.py
+ Deskripsi   : Melakukan penjelajahan beranda secara otomatis (scrolling, menyukai postingan random, berinteraksi) agar aktivitas terlihat organik.
+ API Server  : /api/jalankan-bot-farming
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_farming.py [device_id] [jumlah_post_farm]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+   * Posisi 2 : <jumlah_post_farm> (Integer) [OPSIONAL] | Default: '10'
+     Deskripsi : Jumlah postingan yang akan dijelajahi
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_farming.py R9RY801LRPW 20
+   $ python3 bot_ig_farming.py all 10
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_follow_orang.py
+================================================================================
+ Nama Bot    : Bot Follow Orang Instagram
+ File Name   : bot_ig_follow_orang.py
+ Deskripsi   : Mengikuti (follow) akun target secara spesifik via username/URL, atau mem-follow orang-orang dari daftar Notifikasi secara otomatis.
+ API Server  : /api/jalankan-bot-follow-orang
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_follow_orang.py [target_url] [device_id] [my_account]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_url> (String) [OPSIONAL]
+     Deskripsi : Username target atau URL profil langsung (kosongkan untuk follow dari Notifikasi)
+
+   * Posisi 2 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+   * Posisi 3 : <my_account> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap/ganti akun di awal (opsional)
+
+ [CONTOH PERINTAH RUNNING]
+   # Follow target spesifik
+   $ python3 bot_ig_follow_orang.py "cristiano" R9RY801LRPW
+   
+   # Follow target spesifik dengan swap akun
+   $ python3 bot_ig_follow_orang.py "https://www.instagram.com/cristiano/" R9RY801LRPW "akun_saya_123"
+   
+   # Follow dari Notifikasi
+   $ python3 bot_ig_follow_orang.py "" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_g4f.py
+================================================================================
+ Nama Bot    : Bot Ig G4F
+ File Name   : bot_ig_g4f.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_ig_g4f.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_g4f.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_g4f.py
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_gemini.py
+================================================================================
+ Nama Bot    : Bot Ig Gemini
+ File Name   : bot_ig_gemini.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_ig_gemini.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_gemini.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_gemini.py
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_like.py
+================================================================================
+ Nama Bot    : Bot Like Postingan Instagram (Unified)
+ File Name   : bot_ig_like.py
+ Deskripsi   : Memberikan Like pada postingan target spesifik, atau massal berdasarkan hashtag/keyword.
+ API Server  : /api/jalankan-bot-like & /api/jalankan-bot-like-by-keyword
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   1. Mode Target (URL Direct):
+      python3 bot_ig_like.py "<target_post_url>" [device_id] [my_account] target_url
+   
+   2. Mode Keyword (Pencarian Massal):
+      python3 bot_ig_like.py "<keyword_atau_hashtag>" [limit_angka] [device_id] [my_account] normal
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_atau_keyword> (String) [WAJIB]
+     Deskripsi : URL postingan langsung (untuk Mode Target), atau Kata kunci/Hashtag pencarian (untuk Mode Keyword).
+
+   * Posisi 2 : <device_id_atau_limit> (String/Integer) [OPSIONAL]
+     Deskripsi : ID Perangkat Android ADB (untuk Mode Target, default: 'all'), atau Jumlah limit postingan (untuk Mode Keyword).
+
+   * Posisi 3 : <my_account_atau_device_id> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (untuk Mode Target), atau ID Perangkat Android ADB (untuk Mode Keyword).
+
+   * Posisi 4 : <my_account> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (khusus untuk Mode Keyword).
+
+   * Posisi Terakhir : <mode> (String) [WAJIB]
+     Deskripsi : Nama mode pembeda, isi 'target_url' untuk URL, atau 'normal' untuk pencarian keyword.
+
+ [CONTOH PERINTAH RUNNING]
+   # Like postingan target via URL
+   $ python3 bot_ig_like.py "https://www.instagram.com/p/DbGhqbKE-Bn/" R9RY801LRPW "akun_saya" target_url
+   
+   # Like berdasarkan hashtag massal dengan swap akun
+   $ python3 bot_ig_like.py "#kucing" 10 R9RY801LRPW "akun_saya" normal
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_like_by_keyword.py
+================================================================================
+ Nama Bot    : Bot Like By Keyword / Hashtag Instagram
+ File Name   : bot_ig_like_by_keyword.py
+ Deskripsi   : Mencari keyword/hashtag di Instagram dan menyukai sejumlah postingan hasil pencarian.
+ API Server  : /api/jalankan-bot-like-by-keyword
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_like_by_keyword.py <keyword> [limit] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <keyword> (String) [WAJIB]
+     Deskripsi : Kata kunci pencarian / hashtag (cth: 'kucing')
+
+   * Posisi 2 : <limit> (Integer) [OPSIONAL] | Default: '10'
+     Deskripsi : Jumlah postingan yang disukai
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_like_by_keyword.py "kucing" 50 R9RY801LRPW
+   $ python3 bot_ig_like_by_keyword.py "kuliner" 10 all
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_manage.py
+================================================================================
+ Nama Bot    : Bot Manage Instagram (Follow/Unfollow)
+ File Name   : bot_ig_manage.py
+ Deskripsi   : Mengelola hubungan akun seperti Follow atau Unfollow target.
+ API Server  : /api/jalankan-bot-manage
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_manage.py <target> [aksi] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target> (String) [WAJIB]
+     Deskripsi : Username target Instagram
+
+   * Posisi 2 : <aksi> (String) [OPSIONAL] | Default: 'follow'
+     Deskripsi : Aksi yang dilakukan: 'follow' atau 'unfollow'
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_manage.py "target_user" follow R9RY801LRPW
+   $ python3 bot_ig_manage.py "target_user" unfollow R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_post.py
+================================================================================
+ Nama Bot    : Bot Instagram Post (Unified)
+ File Name   : bot_ig_post.py
+ Deskripsi   : Mengunggah gambar/video ke Feed (post), Reels, atau Story (mendukung force mode via parameter awal).
+ API Server  : /api/jalankan-bot-post
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   1. Mode Eksplisit (Sangat Direkomendasikan):
+      - Post Feed (Biasa):
+        python3 bot_ig_post.py post "<file_path>" "[caption]" [device_id] [my_account]
+      - Post Reels (Video):
+        python3 bot_ig_post.py reels "<file_path>" "[caption]" [device_id] [my_account]
+      - Post Story (Gambar/Video):
+        python3 bot_ig_post.py story "<file_path>" [device_id] [my_account]
+   
+   2. Mode Deteksi Otomatis (Kompatibilitas Mundur):
+      - Post Story:
+        python3 bot_ig_post.py "<file_path>" [device_id] [my_account]
+      - Post Feed/Reels:
+        python3 bot_ig_post.py "<file_path>" "<caption_text>" [device_id] [my_account]
+
+ [DAFTAR PARAMETER COMMAND (Eksplisit)]
+   * Posisi 1 : <mode_post> (String) [WAJIB]
+     Deskripsi : Jenis postingan, pilih salah satu: 'post' (untuk Feed), 'reels' (untuk Reels), atau 'story' (untuk Story).
+
+   * Posisi 2 : <file_path> (String) [WAJIB]
+     Deskripsi : Path lengkap file gambar atau video yang akan diunggah.
+
+   * Posisi 3 : <caption_text_atau_device_id> (String) [OPSIONAL]
+     Deskripsi : Teks caption postingan (untuk post/reels), atau ID Perangkat Android ADB (untuk story).
+
+   * Posisi 4 : <device_id_atau_my_account> (String) [OPSIONAL]
+     Deskripsi : ID Perangkat Android ADB (untuk post/reels), atau nama akun Anda untuk swap di awal (untuk story).
+
+   * Posisi 5 : <my_account> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap di awal (khusus untuk post/reels).
+
+ [CONTOH PERINTAH RUNNING]
+   # Mengunggah gambar ke Feed (post) dengan ganti akun
+   $ python3 bot_ig_post.py post "/path/to/gambar.png" "Caption feed!" R9RY801LRPW "akun_saya"
+   
+   # Mengunggah video ke Reels
+   $ python3 bot_ig_post.py reels "/path/to/video.mp4" "Ini caption Reels!" R9RY801LRPW
+   
+   # Mengunggah media ke Story
+   $ python3 bot_ig_post.py story "/path/to/gambar.png" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_post_reels.py
+================================================================================
+ Nama Bot    : Bot Post Reels Instagram
+ File Name   : bot_ig_post_reels.py
+ Deskripsi   : Mengunggah video ke tab Reels Instagram.
+ API Server  : /api/jalankan-bot-post-reels
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_post_reels.py <file_path_video> [caption_text] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <file_path_video> (String) [WAJIB]
+     Deskripsi : Path file video .mp4 di server/lokal
+
+   * Posisi 2 : <caption_text> (String) [OPSIONAL]
+     Deskripsi : Teks deskripsi / caption Reels
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_post_reels.py "/path/to/video.mp4" "Ini Reels seru!" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_post_story.py
+================================================================================
+ Nama Bot    : Bot Post Story Instagram
+ File Name   : bot_ig_post_story.py
+ Deskripsi   : Mengunggah gambar atau video ke Instagram Story.
+ API Server  : /api/jalankan-bot-post-story
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_post_story.py <file_path> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <file_path> (String) [WAJIB]
+     Deskripsi : Path file media gambar/video
+
+   * Posisi 2 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_post_story.py "/path/to/gambar.png" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_profile.py
+================================================================================
+ Nama Bot    : Bot Edit Profile Instagram
+ File Name   : bot_ig_profile.py
+ Deskripsi   : Mengubah data profil Instagram (Nama, Username, Bio, Foto Avatar).
+ API Server  : /api/jalankan-bot-profile
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_profile.py [nama] [username] [bio] [avatar_path] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <nama> (String) [OPSIONAL] | Default: '-'
+     Deskripsi : Nama tampilan baru (gunakan '-' jika tidak diubah)
+
+   * Posisi 2 : <username> (String) [OPSIONAL] | Default: '-'
+     Deskripsi : Username baru (gunakan '-' jika tidak diubah)
+
+   * Posisi 3 : <bio> (String) [OPSIONAL] | Default: '-'
+     Deskripsi : Bio profil baru (gunakan '-' jika tidak diubah)
+
+   * Posisi 4 : <avatar_path> (String) [OPSIONAL] | Default: '-'
+     Deskripsi : Path gambar avatar baru (gunakan '-' jika tidak diubah)
+
+   * Posisi 5 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_profile.py "Budi Tech" "-" "Official Account" "-" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_report.py
+================================================================================
+ Nama Bot    : Bot Report Instagram
+ File Name   : bot_ig_report.py
+ Deskripsi   : Melapor (report) akun target secara otomatis.
+ API Server  : /api/jalankan-bot-report
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_report.py <target> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target> (String) [WAJIB]
+     Deskripsi : Username target report
+
+   * Posisi 2 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_report.py "spam_account" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_repost.py
+================================================================================
+ Nama Bot    : Bot Repost Instagram Unified (By Username, URL, & Keyword)
+ File Name   : bot_ig_repost.py
+ Deskripsi   : Melakukan repost postingan Instagram berdasarkan Username, URL Direct, maupun Keyword/Hashtag.
+ API Server  : /api/jalankan-bot-repost
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   1. Mode Username : python3 bot_ig_repost.py <target_username> [caption_type] [custom_caption] [device_id] [my_account]
+   2. Mode URL      : python3 bot_ig_repost.py <post_url> [caption_type] [custom_caption] [device_id] [my_account] [target_url]
+   3. Mode Keyword  : python3 bot_ig_repost.py <keyword> [limit] [device_id] [my_account] [normal]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Mode Username:
+     - Target (Username target) [WAJIB]
+     - Caption Type ('credit', 'custom', 'blank')
+     - Custom Caption Text
+     - Device ID
+     - My Account (pindah akun di awal)
+
+   * Mode URL:
+     - Target (Direct Link URL postingan) [WAJIB]
+     - Caption Type ('credit', 'custom', 'blank')
+     - Custom Caption Text
+     - Device ID
+     - My Account
+     - Mode Pembeda (isi 'target_url') [OPSIONAL - Terdeteksi Otomatis]
+
+   * Mode Keyword:
+     - Target (Kata kunci pencarian / Hashtag)
+     - Limit (Jumlah postingan yang di-repost, default: 5)
+     - Device ID
+     - My Account
+     - Mode Pembeda (isi 'normal') [OPSIONAL - Terdeteksi Otomatis jika limit disertakan]
+
+ [CONTOH PERINTAH RUNNING]
+   # Repost via Username dengan credit (tanpa mode tambahan di akhir)
+   $ python3 bot_ig_repost.py "cristiano" credit "" R9RY801LRPW "akun_saya"
+   
+   # Repost via URL dengan custom caption
+   $ python3 bot_ig_repost.py "https://www.instagram.com/p/DbGhqbKE-Bn/" custom "Hasil repost" R9RY801LRPW "akun_saya" target_url
+   
+   # Repost via Keyword massal
+   $ python3 bot_ig_repost.py "kucing" 5 R9RY801LRPW "akun_saya" normal
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_repost_by_keyword.py
+================================================================================
+ Nama Bot    : Bot Repost By Keyword Instagram
+ File Name   : bot_ig_repost_by_keyword.py
+ Deskripsi   : Mencari keyword/hashtag dan memposting ulang media postingan tersebut secara beruntun.
+ API Server  : /api/jalankan-bot-repost-by-keyword
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_repost_by_keyword.py <keyword> [limit] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <keyword> (String) [WAJIB]
+     Deskripsi : Kata kunci pencarian / hashtag
+
+   * Posisi 2 : <limit> (Integer) [OPSIONAL] | Default: '5'
+     Deskripsi : Jumlah postingan yang akan direpost
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_repost_by_keyword.py "kucing" 5 R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_scan_accounts.py
+================================================================================
+ Nama Bot    : Bot Scan Akun Instagram
+ File Name   : bot_ig_scan_accounts.py
+ Deskripsi   : Memindai seluruh akun Instagram yang terhubung pada perangkat.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_scan_accounts.py [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_scan_accounts.py R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_scraper.py
+================================================================================
+ Nama Bot    : Bot Scraper Instagram Target
+ File Name   : bot_ig_scraper.py
+ Deskripsi   : Mengambil data pengikut (followers), yang diikuti (following), atau postingan target.
+ API Server  : /api/jalankan-bot-scraper
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_scraper.py <target> [tipe] [limit] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target> (String) [WAJIB]
+     Deskripsi : Username target yang akan di-scrape
+
+   * Posisi 2 : <tipe> (String) [OPSIONAL] | Default: 'followers'
+     Deskripsi : Tipe scraping: 'followers', 'following', atau 'posts'
+
+   * Posisi 3 : <limit> (Integer) [OPSIONAL] | Default: '50'
+     Deskripsi : Jumlah item data yang ingin di-scrape
+
+   * Posisi 4 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_scraper.py "cristiano" followers 100 R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_search_report.py
+================================================================================
+ Nama Bot    : Bot Ig Search Report
+ File Name   : bot_ig_search_report.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_ig_search_report.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_search_report.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_search_report.py
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_share.py
+================================================================================
+ Nama Bot    : Bot Share Instagram
+ File Name   : bot_ig_share.py
+ Deskripsi   : Membagikan (share) postingan terbaru dari profil target ke Direct Message penerima.
+ API Server  : /api/jalankan-bot-share
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_share.py <target_user> <recipient> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_user> (String) [WAJIB]
+     Deskripsi : Username target yang postingannya ingin dibagikan
+
+   * Posisi 2 : <recipient> (String) [WAJIB]
+     Deskripsi : Username penerima DM
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_share.py "cristiano" "teman_ig" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_iglite_salingkomunikasi2.py
+================================================================================
+ Nama Bot    : Bot Iglite Salingkomunikasi2
+ File Name   : bot_iglite_salingkomunikasi2.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_iglite_salingkomunikasi2.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_iglite_salingkomunikasi2.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_iglite_salingkomunikasi2.py
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_chat.py
+================================================================================
+ Nama Bot    : Bot Instagram Chat
+ File Name   : bot_instagram_chat.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_instagram_chat.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_chat.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_chat.py
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_clear_popups.py
+================================================================================
+ Nama Bot    : Bot Instagram Clear Popups
+ File Name   : bot_instagram_clear_popups.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_instagram_clear_popups.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_clear_popups.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_clear_popups.py
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_login.py
+================================================================================
+ Nama Bot    : Bot Login Instagram
+ File Name   : bot_instagram_login.py
+ Deskripsi   : Melakukan proses login akun Instagram, membersihkan landing page, membatalkan Google Smart Lock, dan membersihkan pop-up beranda.
+ API Server  : /api/jalankan-bot-login
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_login.py <username> <password> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <username> (String) [WAJIB]
+     Deskripsi : Username Instagram untuk login
+
+   * Posisi 2 : <password> (String) [WAJIB]
+     Deskripsi : Password Instagram
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB (cth: R9RY801LRPW atau 'all')
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_login.py "lukyytris13" "Bryant12345678" "R9RY801LRPW"
+   $ python3 bot_instagram_login.py "user_saya" "pass123" "all"
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_login_another.py
+================================================================================
+ Nama Bot    : Bot Login Instagram Another
+ File Name   : bot_instagram_login_another.py
+ Deskripsi   : Melakukan login akun Instagram tambahan ke perangkat.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_login_another.py [username] [password] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <username> (String) [OPSIONAL] | Default: 'lukyytris13'
+     Deskripsi : Username Instagram untuk login
+
+   * Posisi 2 : <password> (String) [OPSIONAL] | Default: 'Bryant12345678'
+     Deskripsi : Password Instagram
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_login_another.py "user_saya" "pass123" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_login_master.py
+================================================================================
+ Nama Bot    : Bot Login Instagram Master
+ File Name   : bot_instagram_login_master.py
+ Deskripsi   : Melakukan login master akun Instagram ke perangkat.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_login_master.py [username] [password] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <username> (String) [OPSIONAL] | Default: 'lukyytris13'
+     Deskripsi : Username Instagram untuk login
+
+   * Posisi 2 : <password> (String) [OPSIONAL] | Default: 'Bryant12345678'
+     Deskripsi : Password Instagram
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_login_master.py "user_saya" "pass123" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_login_reentry.py
+================================================================================
+ Nama Bot    : Bot Login Instagram Reentry
+ File Name   : bot_instagram_login_reentry.py
+ Deskripsi   : Melakukan login ulang akun Instagram ke perangkat.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_login_reentry.py [username] [password] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <username> (String) [OPSIONAL] | Default: 'lukyytris13'
+     Deskripsi : Username Instagram untuk login
+
+   * Posisi 2 : <password> (String) [OPSIONAL] | Default: 'Bryant12345678'
+     Deskripsi : Password Instagram
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_login_reentry.py "user_saya" "pass123" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_logout.py
+================================================================================
+ Nama Bot    : Bot Logout Instagram
+ File Name   : bot_instagram_logout.py
+ Deskripsi   : Melakukan logout akun Instagram dari perangkat.
+ API Server  : /api/jalankan-bot-logout
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_logout.py [device_id] [mode]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+   * Posisi 2 : <mode> (String) [OPSIONAL] | Default: 'single'
+     Deskripsi : Mode logout: 'single' (keluar 1 akun saja) atau 'all' (keluar seluruh akun)
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_logout.py R9RY801LRPW
+   $ python3 bot_instagram_logout.py R9RY801LRPW all
+   $ python3 bot_instagram_logout.py R9RY801LRPW single
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_register.py
+================================================================================
+ Nama Bot    : Bot Register Instagram
+ File Name   : bot_instagram_register.py
+ Deskripsi   : Melakukan pendaftaran/registrasi akun baru Instagram.
+ API Server  : /api/jalankan-bot-register
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_register.py <email_or_phone> <nama_lengkap> <username> <password> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <email_or_phone> (String) [WAJIB]
+     Deskripsi : Email atau nomor telepon registrasi
+
+   * Posisi 2 : <nama_lengkap> (String) [WAJIB]
+     Deskripsi : Nama lengkap akun
+
+   * Posisi 3 : <username> (String) [WAJIB]
+     Deskripsi : Username akun
+
+   * Posisi 4 : <password> (String) [WAJIB]
+     Deskripsi : Password akun
+
+   * Posisi 5 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_register.py "email@gmail.com" "Nama User" "user_baru" "Pass1234" R9RY801LRPW
+
+================================================================================
+
+
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : switch_akun_ig.py
+================================================================================
+ Nama Bot    : Bot Switch Account Instagram
+ File Name   : switch_akun_ig.py
+ Deskripsi   : Beralih (switch) akun aktif Instagram pada perangkat tertentu secara otomatis.
+ API Server  : -
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 switch_akun_ig.py <target_username> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_username> (String) [WAJIB]
+     Deskripsi : Username akun target untuk beralih
+
+   * Posisi 2 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 switch_akun_ig.py "lukyytris13" R9RY801LRPW
+
+================================================================================

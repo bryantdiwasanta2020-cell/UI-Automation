@@ -1,0 +1,17 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_iglite_salingkomunikasi2.py
+================================================================================
+ Nama Bot    : Bot Iglite Salingkomunikasi2
+ File Name   : bot_iglite_salingkomunikasi2.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_iglite_salingkomunikasi2.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_iglite_salingkomunikasi2.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_iglite_salingkomunikasi2.py
+
+================================================================================

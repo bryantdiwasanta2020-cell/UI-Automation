@@ -1,0 +1,48 @@
+{
+  "LIKE": {
+    "steps": [
+      {
+        "step": "1/5",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2/5",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "PRE-RUN",
+        "name": "Switch Account",
+        "module": "switch_akun_ig.py",
+        "description": "Beralih ke akun yang ditentukan pada parameter my_account."
+      },
+      {
+        "step": "3/5",
+        "name": "Search & Navigate Target",
+        "module": "bot_ig_like.py",
+        "description": "Membuka target postingan via URL intent, atau mengetik kata kunci di halaman pencarian lalu menggulir layar ke bawah."
+      },
+      {
+        "step": "4/5",
+        "name": "Open First Post",
+        "module": "bot_ig_like.py",
+        "description": "Mengeklik postingan teratas di kolom kiri grid hasil pencarian dan memverifikasi halaman detail terbuka."
+      },
+      {
+        "step": "5/5",
+        "name": "Like Post",
+        "module": "bot_ig_like.py",
+        "description": "Mengeklik tombol Like (ikon hati). Jika mode keyword, melakukan swipe up untuk menyukai postingan berikutnya hingga target limit."
+      },
+      {
+        "step": "CLEANUP",
+        "name": "Clean Exit",
+        "module": "bot_ig_like.py",
+        "description": "Melakukan force stop Instagram, membuka kembali aplikasi secara segar di Beranda, me-refresh feed, dan mencatat status complete."
+      }
+    ]
+  }
+}

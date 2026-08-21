@@ -1,0 +1,16 @@
+{"step": "switch_account", "status": "complete", "error": null, "timestamp": "2026-08-06 13:25:07"}
+{"step": "click_target_account", "status": "complete", "error": null, "timestamp": "2026-08-06 13:25:07"}
+{"step": "click_target_account", "status": "on_progress", "error": null, "timestamp": "2026-08-06 13:25:00"}
+{"step": "open_profile_switcher", "status": "complete", "error": null, "timestamp": "2026-08-06 13:24:56"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-08-06 13:24:51"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-06 13:24:51"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-06 13:24:49"}
+{"step": "switch_account", "status": "on_progress", "error": null, "timestamp": "2026-08-06 13:24:49"}
+{"step": "switch_account", "status": "complete", "error": null, "timestamp": "2026-08-06 13:23:07"}
+{"step": "click_target_account", "status": "complete", "error": null, "timestamp": "2026-08-06 13:23:07"}
+{"step": "click_target_account", "status": "on_progress", "error": null, "timestamp": "2026-08-06 13:23:00"}
+{"step": "open_profile_switcher", "status": "complete", "error": null, "timestamp": "2026-08-06 13:22:55"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-08-06 13:22:51"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-06 13:22:43"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-06 13:22:40"}
+{"step": "switch_account", "status": "on_progress", "error": null, "timestamp": "2026-08-06 13:22:40"}

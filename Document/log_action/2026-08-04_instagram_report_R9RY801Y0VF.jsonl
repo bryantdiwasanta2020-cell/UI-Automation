@@ -1,0 +1,45 @@
+{"step": "report", "status": "failed", "error": "Laporan terputus - limit/gagal", "timestamp": "2026-08-04 09:43:28"}
+{"step": "report_wizard", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:43:10"}
+{"step": "click_report", "status": "complete", "error": null, "timestamp": "2026-08-04 09:43:06"}
+{"step": "open_options", "status": "complete", "error": null, "timestamp": "2026-08-04 09:43:01"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:42:10"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:42:08"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:42:08"}
+{"step": "report", "status": "failed", "error": "Laporan terputus - limit/gagal", "timestamp": "2026-08-04 09:39:56"}
+{"step": "report_wizard", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:39:38"}
+{"step": "click_report", "status": "complete", "error": null, "timestamp": "2026-08-04 09:39:34"}
+{"step": "open_options", "status": "complete", "error": null, "timestamp": "2026-08-04 09:39:29"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:38:38"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:38:38"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:38:38"}
+{"step": "report", "status": "failed", "error": "Akun kustom tidak ditemukan", "timestamp": "2026-08-04 09:38:19"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:37:52"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:37:51"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:37:51"}
+{"step": "report", "status": "failed", "error": "Akun kustom tidak ditemukan", "timestamp": "2026-08-04 09:35:37"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:35:10"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:35:08"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:35:08"}
+{"step": "report", "status": "failed", "error": "Laporan terputus - limit/gagal", "timestamp": "2026-08-04 09:33:36"}
+{"step": "report_wizard", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:33:18"}
+{"step": "click_report", "status": "complete", "error": null, "timestamp": "2026-08-04 09:33:14"}
+{"step": "open_options", "status": "complete", "error": null, "timestamp": "2026-08-04 09:33:09"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:32:22"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:32:20"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:32:20"}
+{"step": "report", "status": "failed", "error": "Akun kustom tidak ditemukan", "timestamp": "2026-08-04 09:29:37"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:29:20"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:29:19"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:29:19"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:26:33"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:26:31"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:26:31"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:19:55"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:19:54"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:19:54"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:18:50"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:18:49"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:18:49"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-04 09:17:25"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-04 09:17:23"}
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-08-04 09:17:23"}

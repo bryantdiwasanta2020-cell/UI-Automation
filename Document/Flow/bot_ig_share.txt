@@ -1,0 +1,36 @@
+{
+  "SHARE": {
+    "steps": [
+      {
+        "step": "1",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "3",
+        "name": "Search Target Profile",
+        "module": "bot_ig_share.py",
+        "description": "Mencari profil target username dan membukanya."
+      },
+      {
+        "step": "4",
+        "name": "Select Post",
+        "module": "bot_ig_share.py",
+        "description": "Membuka postingan terbaru target dari halaman profilnya."
+      },
+      {
+        "step": "5",
+        "name": "Share Post",
+        "module": "bot_ig_share.py",
+        "description": "Mengeklik tombol Share, mencari username tujuan_share di panel pengiriman, dan mengirim postingan tersebut."
+      }
+    ]
+  }
+}

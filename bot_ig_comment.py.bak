@@ -1,0 +1,474 @@
+import sys
+import uiautomator2 as u2
+import time
+import random
+import re
+import os
+
+# Import popup cleaner if available
+try:
+    from bot_instagram_clear_popups import clear_any_popup_fast
+except Exception as e:
+    # Fallback if the module is missing or cannot be imported
+    def clear_any_popup_fast(d):
+        return False
+
+# ========================================================
+# KAMUS KATA & KOLEKSI KOMENTAR (Kecerdasan Buatan Bryant)
+# ========================================================
+KATA_BAGUS = ['bagus', 'cantik', 'indah', 'sukses', 'keren', 'mantap', 'hebat', 'menarik', 'cakep', 'gokil', 'top', 'wow', 'estetik', 'seru', 'terbaik', 'bahagia', 'semangat']
+KATA_BURUK = ['jelek', 'buruk', 'sedih', 'payah', 'gagal', 'sampah', 'parah', 'capek', 'lelah', 'pusing', 'susah', 'sulit', 'hancur', 'kacau', 'benci', 'kecewa', 'kesal']
+
+KOMENTAR_BAGUS = ["Keren banget postingannya! 🔥", "Mantap jiwa, sukses terus! 🙌", "Top markotop! ", "Gokil abis ini mah! 🔥", "Cakep pol! 👏"]
+KOMENTAR_BURUK = ["Semangat kak, pasti ada hikmahnya 💪", "Gapapa bang, besok lebih baik lagi", "Cobaan pasti berlalu, stay strong 🙏", "Semoga lekas membaik"]
+KOMENTAR_NETRAL = ["Nice posting! 👍", "Menarik nih!", "Gas terus! 🔥", "Salam kenal kak!", "Kereen!"]
+
+def klasifikasi_deskripsi(teks):
+    teks_lower = teks.lower()
+    skor = 0
+    for kata in KATA_BAGUS:
+        if kata in teks_lower: skor += 1
+    for kata in KATA_BURUK:
+        if kata in teks_lower: skor -= 1
+    return skor
+
+def generate_komentar_otomatis(teks_deskripsi, komentar_custom=""):
+    if komentar_custom and komentar_custom.strip() != "":
+        # Jika komentar_custom adalah path file txt yang ada, baca seluruh isi file tersebut
+        if komentar_custom.endswith('.txt') and os.path.exists(komentar_custom):
+            try:
+                with open(komentar_custom, 'r', encoding='utf-8') as f:
+                    content = f.read().strip()
+                if content:
+                    print(f"Menggunakan seluruh isi komentar dari file txt '{komentar_custom}'")
+                    return content
+                else:
+                    print(f"File txt '{komentar_custom}' kosong. Menggunakan komentar otomatis/netral.")
+            except Exception as e:
+                print(f"Gagal membaca file komentar txt '{komentar_custom}': {e}")
+        else:
+            print(f"Menggunakan komentar manual dari web: '{komentar_custom}'")
+            return komentar_custom
+    
+    if not teks_deskripsi:
+        return random.choice(KOMENTAR_NETRAL)
+
+    skor = klasifikasi_deskripsi(teks_deskripsi)
+    if skor > 0:
+        return random.choice(KOMENTAR_BAGUS)
+    elif skor < 0:
+        return random.choice(KOMENTAR_BURUK)
+    else:
+        return random.choice(KOMENTAR_NETRAL)
+
+# ========================================================
+# LOGIKA UTAMA: NAVIGASI TARGET & EKSEKUSI
+# ========================================================
+def mulai_bot_comment(target_user, komentar_custom="", device_pilihan="all", my_account=""):
+    try:
+        print("=========================================")
+        print(f" JALANKAN BOT COMMENT TARGET: @{target_user}")
+        if my_account:
+            print(f" Menggunakan Akun Saya: {my_account}")
+        print("=========================================")
+        
+        print("[1] Menghubungkan ke perangkat Android...")
+        if device_pilihan == "all" or device_pilihan == "Semua Akun Aktif (18 Device)":
+            d = u2.connect()
+        else:
+            d = u2.connect(device_pilihan)
+        width, height = d.window_size()
+
+        print("[2] Membuka aplikasi Instagram...")
+        d.app_start("com.instagram.android")
+        time.sleep(6)
+        clear_any_popup_fast(d)
+
+        # === PROSES SWAP AKUN DI AWAL (JIKA PARAMETER DIBERIKAN) ===
+        if my_account and my_account.strip() != "":
+            print(f"[PRE-RUN] Mengganti akun ke: '{my_account}'...")
+            
+            # 1. Mengklik tombol Profil kanan bawah
+            x_profile = int(width * 0.904)
+            y_profile = int(height * 0.914)
+            d.click(x_profile, y_profile)
+            time.sleep(3.0)
+            clear_any_popup_fast(d)
+            
+            # 2. Mengklik Nama Pengguna di pojok atas (tengah/kiri) untuk membuka menu ganti akun
+            print("      -> Mengklik nama akun di bagian atas untuk membuka menu ganti akun...")
+            action_bar_title = d(resourceId="com.instagram.android:id/action_bar_title")
+            title_badge = d(resourceId="com.instagram.android:id/title_with_badge_container")
+            if action_bar_title.exists:
+                action_bar_title.click()
+            elif title_badge.exists:
+                title_badge.click()
+            else:
+                # Fallback koordinat atas (Bryant Kalibrasi: 0.25, 0.06)
+                d.click(int(width * 0.25), int(height * 0.06))
+            time.sleep(3.5)
+            
+            # 3. Cari nama akun dalam daftar pop-up bawah
+            clean_acc = my_account.replace("@", "").strip()
+            btn_acc = d(text=clean_acc)
+            if not btn_acc.exists:
+                btn_acc = d(textContains=clean_acc)
+                
+            if btn_acc.exists:
+                print(f"      -> Akun '{clean_acc}' ditemukan di daftar. Mengklik untuk beralih...")
+                btn_acc.click()
+                time.sleep(6.0)
+                clear_any_popup_fast(d)
+                print(f"[PRE-RUN] Sukses beralih ke akun '{clean_acc}'. Melanjutkan perintah...")
+            else:
+                print(f"[PRE-RUN] Akun '{clean_acc}' tidak ditemukan di menu ganti akun!")
+                print("      -> Menutup menu ganti akun (mengirim BACK)...")
+                d.press("back")
+                time.sleep(1.5)
+                print("akun tidak ditemukan")
+                print("=========================================\n")
+                return
+
+        is_direct_url = target_user.startswith("http://") or target_user.startswith("https://") or "instagram.com" in target_user
+
+        if is_direct_url:
+            print(f"[3] Membuka URL postingan secara langsung menggunakan Intent...")
+            d.shell(f'am start -a android.intent.action.VIEW -d "{target_user}" com.instagram.android')
+            time.sleep(6)
+            clear_any_popup_fast(d)
+        else:
+            print(f"[3] Mencari profil target: @{target_user}...")
+            
+            # UTAMAKAN MENGGUNAKAN RESOURCE ID ASLI DARI HP BRYANT (ANTI-NGASAL)
+            icon_search_bawah = d(resourceId="com.instagram.android:id/search_tab")
+            
+            if icon_search_bawah.exists:
+                print("      -> Mengeklik ikon Search bawah via Resource ID resmi...")
+                icon_search_bawah.click()
+            else:
+                # Pilihan lain jika menggunakan deskripsi
+                if d(descriptionContains="Cari").exists:
+                    d(descriptionContains="Cari").click()
+                elif d(descriptionContains="Search").exists:
+                    d(descriptionContains="Search").click()
+                else:
+                    # Jika crash/tidak terbaca, tembak koordinat presisi hasil inspeksi elemen kamu (0.69, 0.918)
+                    X_search = int(width * 0.69)
+                    Y_search = int(height * 0.918)
+                    print(f"      -> Resource ID tidak merespon, fallback koordinat presisi: X={X_search}, Y={Y_search}")
+                    d.click(X_search, Y_search)
+                
+            time.sleep(4)
+
+            # Klik kotak input atas untuk mengetik nama target
+            print("      Mengklik kotak input pencarian...")
+            input_box = d(className="android.widget.EditText")
+            if d(resourceId="com.instagram.android:id/action_bar_search_edit_text").exists:
+                d(resourceId="com.instagram.android:id/action_bar_search_edit_text").click()
+            elif d(resourceId="com.instagram.android:id/search_bar").exists:
+                d(resourceId="com.instagram.android:id/search_bar").click()
+            elif input_box.exists:
+                input_box.click()
+            else:
+                d.click(int(width * 0.5), int(height * 0.06)) # Fallback atas
+            time.sleep(2)
+
+            # Hapus teks lama jika ada, lalu ketik nama target dari web
+            print(f"      Mengetik nama akun: {target_user}")
+            try:
+                if d(resourceId="com.instagram.android:id/action_bar_search_edit_text").exists:
+                    d(resourceId="com.instagram.android:id/action_bar_search_edit_text").clear_text()
+                elif input_box.exists:
+                    input_box.clear_text()
+            except Exception as e:
+                print(f"      -> Gagal membersihkan teks lama: {e}")
+            
+            d.send_keys(target_user)
+            time.sleep(3) 
+
+            # [4] ENTER (Tekan enter biar hasil pencarian muncul)
+            print(" [4] Menekan tombol Enter pada keyboard...")
+            d.press("enter")
+            time.sleep(4)
+
+            # [5] CARI PROFIL TERATAS TRUS KLIK
+            print(" [5] Membuka profil teratas dari hasil pencarian...")
+            akun_target_text = d(text=target_user, className="android.widget.TextView")
+            akun_target_contains = d(textContains=target_user, className="android.widget.TextView")
+            user_container_1 = d(resourceId="com.instagram.android:id/row_search_user_info_container")
+            user_container_2 = d(resourceId="com.instagram.android:id/row_search_user_container")
+            
+            if akun_target_text.exists:
+                akun_target_text.click()
+                print("      -> Berhasil mengklik profil teratas via TextView exact match")
+            elif akun_target_contains.exists:
+                akun_target_contains.click()
+                print("      -> Berhasil mengklik profil teratas via TextView contains match")
+            elif user_container_1.exists:
+                user_container_1.click()
+                print("      -> Berhasil mengklik profil teratas via row_search_user_info_container")
+            elif user_container_2.exists:
+                user_container_2.click()
+                print("      -> Berhasil mengklik profil teratas via row_search_user_container")
+            else:
+                # Menggunakan koordinat baris pertama hasil pencarian agar anti-gagal
+                print("      -> Elemen profil teratas tidak terdeteksi, mencoba fallback koordinat...")
+                d.click(int(width * 0.4), int(height * 0.24))
+            time.sleep(5)
+
+            # [6] KLIK POSTINGAN YANG TERATAS
+            print(" [6] Membuka postingan teratas milik target...")
+            post_clicked = False
+            
+            # JALANKAN PROSES SEARCH DALAM SATU RPC CALL VIA XPATH (Sangat Cepat!)
+            print("      -> Mendapatkan daftar postingan via XPath...")
+            try:
+                image_views = d.xpath('//android.widget.ImageView').all()
+                candidate_posts = []
+                
+                # 1. Coba cari berdasarkan deskripsi konten terlebih dahulu
+                for el in image_views:
+                    desc = el.attrib.get('content-desc', '') or ''
+                    # Ambil bounds koordinat
+                    bounds = getattr(el, 'rect', None)
+                    if not bounds and 'bounds' in el.attrib:
+                        m = re.match(r'\[(\d+),(\d+)\]\[(\d+),(\d+)\]', el.attrib['bounds'])
+                        if m:
+                            bounds = {
+                                'left': int(m.group(1)),
+                                'top': int(m.group(2)),
+                                'right': int(m.group(3)),
+                                'bottom': int(m.group(4))
+                            }
+                            
+                    if bounds:
+                        x_center = (bounds['left'] + bounds['right']) // 2
+                        y_center = (bounds['top'] + bounds['bottom']) // 2
+                        el_width = bounds['right'] - bounds['left']
+                        
+                        # Validasi deskripsi postingan (bahasa Indonesia / Inggris)
+                        is_post_desc = any(p in desc for p in ["Foto oleh", "Photo by", "Video oleh", "Video by", "Postingan oleh", "Post oleh", "Media oleh"])
+                        
+                        if is_post_desc and int(height * 0.35) < y_center < int(height * 0.90) and el_width > int(width * 0.28):
+                            print(f"      -> Menemukan postingan terbaru via deskripsi: '{desc}' pada koordinat ({x_center}, {y_center})")
+                            el.click()
+                            post_clicked = True
+                            break
+                            
+                        # Simpan sebagai kandidat kolom pertama jika deskripsi kosong/tidak cocok
+                        if 0 < x_center < int(width * 0.35) and int(height * 0.35) < y_center < int(height * 0.90) and el_width > int(width * 0.28):
+                            candidate_posts.append((y_center, el, x_center, y_center))
+                
+                # 2. Jika tidak ada yang cocok via deskripsi, klik kandidat gambar teratas di kolom pertama
+                if not post_clicked and candidate_posts:
+                    candidate_posts.sort(key=lambda x: x[0])
+                    target_el = candidate_posts[0][1]
+                    target_x = candidate_posts[0][2]
+                    target_y = candidate_posts[0][3]
+                    print(f"      -> Deskripsi tidak cocok, mengklik ImageView teratas di kolom pertama pada ({target_x}, {target_y})")
+                    target_el.click()
+                    post_clicked = True
+                    
+            except Exception as e:
+                print(f"      -> Gagal memproses XPath: {e}")
+                
+            # 3. STRATEGI CADANGAN 2: Klik via layout list grid item (Hanya jika koordinat berada di bawah header)
+            if not post_clicked:
+                print("      -> Mencari via susunan layout list (android:id/list)...")
+                try:
+                    grid_item = d(resourceId="android:id/list").child(className="android.widget.LinearLayout").child(className="android.widget.FrameLayout")
+                    if grid_item.exists:
+                        bounds = grid_item.info.get('bounds')
+                        if bounds:
+                            y_center = (bounds['top'] + bounds['bottom']) // 2
+                            el_width = bounds['right'] - bounds['left']
+                            if y_center > int(height * 0.35) and el_width > int(width * 0.28):
+                                print("      -> Menemukan postingan terbaru via layout list grid item")
+                                grid_item.click()
+                                post_clicked = True
+                except Exception as e:
+                    print(f"      -> Gagal mencari via layout list grid: {e}")
+                    
+            # 4. STRATEGI CADANGAN 3: Fallback ke koordinat presisi
+            if not post_clicked:
+                # Kita coba klik 2 titik koordinat yang paling umum untuk postingan pertama
+                print("      -> Menggunakan koordinat presisi fallback pertama (tanpa sorotan)...")
+                d.click(int(width * 0.168), int(height * 0.55))
+                time.sleep(2)
+                print("      -> Menggunakan koordinat presisi fallback kedua (dengan sorotan)...")
+                d.click(int(width * 0.168), int(height * 0.741))
+                post_clicked = True
+                
+            time.sleep(4)
+
+        # --- FITUR SMART: MEMBACA CAPTION ---
+        caption_terdeteksi = ""
+        selector_caption = d(resourceId="com.instagram.android:id/row_feed_textview")
+        if selector_caption.exists:
+            caption_terdeteksi = selector_caption.get_text()
+            print(f" Caption terdeteksi: '{caption_terdeteksi[:50]}...'")
+
+        isi_komentar = generate_komentar_otomatis(caption_terdeteksi, komentar_custom)
+
+        # [7] KLIK IKON KOMENTAR
+        print("[7] Mengeklik ikon komentar...")
+        btn_comment = d(descriptionMatches="(?i)(Komentar|Comment|Comment Icon)")
+        if btn_comment.exists:
+            btn_comment.click()
+        else:
+            d.click(int(width * 0.25), int(height * 0.65))
+        time.sleep(3)
+
+        # [8] MASUKAN / INPUT KOMENTAR
+        print(f" [8] Memasukkan teks komentar...")
+        kolom_teks = d(className="android.widget.EditText")
+        if kolom_teks.exists:
+            kolom_teks.click()
+            time.sleep(1)
+            try:
+                kolom_teks.clear_text()
+                time.sleep(0.5)
+            except Exception as e:
+                print(f"      -> Gagal membersihkan kolom komentar: {e}")
+            kolom_teks.set_text(isi_komentar)
+        else:
+            d.click(width // 2, int(height * 0.92))
+            time.sleep(1)
+            d.send_keys(isi_komentar)
+        time.sleep(2)
+
+        # [9] ENTER / KIRIM KOMENTAR
+        print(" [9] Mengirimkan komentar...")
+        
+        # Cari tombol kirim berdasarkan beberapa ID
+        btn_kirim = None
+        for rid in [
+            "com.instagram.android:id/layout_comment_thread_post_button_icon",
+            "com.instagram.android:id/layout_comment_thread_post_button_click_area",
+            "com.instagram.android:id/layout_comment_thread_post_button",
+            "com.instagram.android:id/comment_post_button"
+        ]:
+            if d(resourceId=rid).exists:
+                btn_kirim = d(resourceId=rid)
+                break
+                
+        if not btn_kirim:
+            for match_sel in [d(descriptionMatches="(?i)(Kirim|Post|Send)"), d(textMatches="(?i)(Kirim|Post|Send)")]:
+                if match_sel.exists:
+                    btn_kirim = match_sel
+                    break
+                    
+        if btn_kirim:
+            print("      -> Tombol Kirim ditemukan via Resource ID/Text/Description.")
+            btn_kirim.click()
+        else:
+            clicked_dynamic = False
+            # Posisikan ulang kolom_teks aktif untuk penentuan koordinat kirim
+            kolom_teks_aktif = d(className="android.widget.EditText")
+            if not kolom_teks_aktif.exists:
+                kolom_teks_aktif = kolom_teks
+            if kolom_teks_aktif.exists:
+                bounds = kolom_teks_aktif.info.get('bounds')
+                if bounds:
+                    x_send = int(bounds['right'] + (width - bounds['right']) / 2)
+                    y_send = int((bounds['top'] + bounds['bottom']) / 2)
+                    
+                    # Batasi Y koordinat agar tidak mengklik keyboard Samsung atau IME Switch bar
+                    if y_send > height * 0.8:
+                        print(f"      -> Koordinat Y dinamis ({y_send}) terlalu rendah (daerah keyboard). Mengoreksi Y ke 58% layar...")
+                        y_send = int(height * 0.58)
+                        
+                    print(f"      -> Mengklik tombol kirim dinamis di samping kanan EditText: X={x_send}, Y={y_send}")
+                    d.click(x_send, y_send)
+                    clicked_dynamic = True
+            
+            if not clicked_dynamic:
+                y_fallback = int(height * 0.58)
+                print(f"      -> Mengklik tombol kirim via fallback koordinat statis aman: X={int(width * 0.89)}, Y={y_fallback}")
+                d.click(int(width * 0.89), y_fallback)
+        time.sleep(4)
+        
+        # [10] FIX KODE: BACK -> KEMBALI -> KEMBALI KE BERANDA UTAMA & REFRESH (ROBUST)
+        # ========================================================
+        print(" [10] Menjalankan runtutan kembali ke Beranda & Refresh...")
+        
+        # Runtutan kembali ke Beranda secara iteratif sampai tab Home terdeteksi
+        home_clicked = False
+        for i in range(4):
+            btn_home = None
+            for rid in ["com.instagram.android:id/feed_tab", "com.instagram.android:id/home_tab"]:
+                if d(resourceId=rid).exists:
+                    btn_home = d(resourceId=rid)
+                    break
+            
+            if not btn_home:
+                for desc in ["Beranda", "Home", "Feed"]:
+                    if d(descriptionContains=desc).exists:
+                        btn_home = d(descriptionContains=desc)
+                        break
+            
+            if btn_home:
+                print("      -> Tab Beranda terdeteksi. Mengklik...")
+                try:
+                    btn_home.click()
+                    home_clicked = True
+                    break
+                except Exception as e:
+                    print(f"      -> Gagal mengklik tab Beranda: {e}")
+            
+            print(f"      -> Tab Beranda belum terlihat, menekan BACK ke-{i+1}...")
+            d.press("back")
+            time.sleep(2.0)
+
+        if not home_clicked:
+            print("      -> Mengklik tab Beranda via koordinat fallback...")
+            d.click(int(width * 0.095), int(height * 0.918))
+
+        time.sleep(2.0)
+        # Melakukan swipe down untuk menyegarkan Beranda
+        print("      -> Melakukan swipe down untuk me-refresh Beranda...")
+        d.swipe(0.5, 0.35, 0.5, 0.75, duration=0.20)
+        time.sleep(2.5)
+        
+        clear_any_popup_fast(d)
+        time.sleep(3)
+
+        print(" [SUCCESS] Seluruh rangkaian alur Bryant berhasil dieksekusi sempurna!\n")
+
+    except Exception as e:
+        print(f" Terjadi kesalahan pada bot comment: {e}")
+
+if __name__ == "__main__":
+    username_input = sys.argv[1] if len(sys.argv) > 1 else ""
+    custom_comment_input = sys.argv[2] if len(sys.argv) > 2 else ""
+    device_pilihan = sys.argv[3] if len(sys.argv) > 3 else "all"
+    my_account = sys.argv[4] if len(sys.argv) > 4 else ""
+    
+    if not username_input:
+        if not sys.stdin.isatty():
+            username_input = "cristiano"
+        else:
+            try:
+                print("\n--- MENJALANKAN BOT COMMENT SECARA INTERAKTIF ---")
+                username_input = input("Masukkan username target (default 'cristiano'): ").strip()
+                if not username_input:
+                    username_input = "cristiano"
+            except (EOFError, KeyboardInterrupt):
+                username_input = "cristiano"
+
+    if not custom_comment_input:
+        if sys.stdin.isatty():
+            try:
+                custom_comment_input = input("Masukkan teks komentar (kosongkan untuk default/acak): ").strip()
+            except (EOFError, KeyboardInterrupt):
+                custom_comment_input = ""
+
+    if len(sys.argv) <= 3 and sys.stdin.isatty():
+        try:
+            ans_dev = input("Masukkan device ID (kosongkan/tekan Enter untuk 'all'): ").strip()
+            if ans_dev:
+                device_pilihan = ans_dev
+        except (EOFError, KeyboardInterrupt):
+            pass
+
+    mulai_bot_comment(username_input, custom_comment_input, device_pilihan, my_account)

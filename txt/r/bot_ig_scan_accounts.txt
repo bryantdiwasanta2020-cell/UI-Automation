@@ -1,0 +1,19 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_scan_accounts.py
+================================================================================
+ Nama Bot    : Bot Scan Akun Instagram
+ File Name   : bot_ig_scan_accounts.py
+ Deskripsi   : Memindai seluruh akun Instagram yang terhubung pada perangkat.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_scan_accounts.py [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_scan_accounts.py R9RY801LRPW
+
+================================================================================

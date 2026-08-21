@@ -1,0 +1,23 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_report.py
+================================================================================
+ Nama Bot    : Bot Report Instagram
+ File Name   : bot_ig_report.py
+ Deskripsi   : Melapor (report) akun target secara otomatis.
+ API Server  : /api/jalankan-bot-report
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_report.py <target> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target> (String) [WAJIB]
+     Deskripsi : Username target report
+
+   * Posisi 2 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_report.py "spam_account" R9RY801LRPW
+
+================================================================================

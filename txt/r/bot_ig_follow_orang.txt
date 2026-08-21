@@ -1,0 +1,33 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_follow_orang.py
+================================================================================
+ Nama Bot    : Bot Follow Orang Instagram
+ File Name   : bot_ig_follow_orang.py
+ Deskripsi   : Mengikuti (follow) akun target secara spesifik via username/URL, atau mem-follow orang-orang dari daftar Notifikasi secara otomatis.
+ API Server  : /api/jalankan-bot-follow-orang
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_follow_orang.py [target_url] [device_id] [my_account]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_url> (String) [OPSIONAL]
+     Deskripsi : Username target atau URL profil langsung (kosongkan untuk follow dari Notifikasi)
+
+   * Posisi 2 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+   * Posisi 3 : <my_account> (String) [OPSIONAL]
+     Deskripsi : Nama akun Anda untuk swap/ganti akun di awal (opsional)
+
+ [CONTOH PERINTAH RUNNING]
+   # Follow target spesifik
+   $ python3 bot_ig_follow_orang.py "cristiano" R9RY801LRPW
+   
+   # Follow target spesifik dengan swap akun
+   $ python3 bot_ig_follow_orang.py "https://www.instagram.com/cristiano/" R9RY801LRPW "akun_saya_123"
+   
+   # Follow dari Notifikasi
+   $ python3 bot_ig_follow_orang.py "" R9RY801LRPW
+
+================================================================================

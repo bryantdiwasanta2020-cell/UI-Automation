@@ -1,0 +1,5 @@
+{"step": "logout", "status": "failed", "error": "Batas waktu Log Out terlampaui (Timeout)", "timestamp": "2026-08-14 09:18:44"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-14 09:18:39"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-14 09:18:07"}
+{"step": "confirm_logout", "status": "complete", "error": null, "timestamp": "2026-08-14 09:17:36"}
+{"step": "logout", "status": "on_progress", "error": null, "timestamp": "2026-08-14 09:16:58"}

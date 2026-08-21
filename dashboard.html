@@ -1,0 +1,1647 @@
+<!DOCTYPE html>
+<html class="light" lang="id">
+
+<head>
+    <script>
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>InstaADB Panel - Automation System</title>
+    <!-- Google Fonts: Inter & Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#dae2fd",
+                        "secondary-fixed-dim": "#68dba9",
+                        "on-tertiary-fixed-variant": "#920028",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "tertiary": "#950029",
+                        "surface-bright": "#faf8ff",
+                        "on-primary-container": "#dad7ff",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-container": "#00714e",
+                        "on-primary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb3b6",
+                        "on-secondary-fixed-variant": "#005137",
+                        "outline": "#777587",
+                        "inverse-surface": "#283044",
+                        "on-surface-variant": "#464555",
+                        "on-tertiary-container": "#ffd0d2",
+                        "background": "#faf8ff",
+                        "error": "#ba1a1a",
+                        "surface-container-high": "#e2e7ff",
+                        "tertiary-container": "#c20038",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#4f46e5",
+                        "surface-container-highest": "#dae2fd",
+                        "surface-container": "#eaedff",
+                        "on-secondary-fixed": "#002114",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#82f5c1",
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-container-lowest": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "primary-fixed": "#e2dfff",
+                        "tertiary-fixed": "#ffdada",
+                        "on-tertiary-fixed": "#40000c",
+                        "on-error": "#ffffff",
+                        "surface-tint": "#4d44e3",
+                        "surface-dim": "#d2d9f4",
+                        "on-primary-fixed": "#0f0069",
+                        "secondary-fixed": "#85f8c4",
+                        "outline-variant": "#c7c4d8",
+                        "primary": "#3525cd",
+                        "surface-container-low": "#f2f3ff",
+                        "surface": "#faf8ff",
+                        "on-background": "#131b2e",
+                        "secondary": "#006c4a",
+                        "on-surface": "#131b2e",
+                        "inverse-primary": "#c3c0ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-page": "40px",
+                        "gutter": "24px",
+                        "stack-md": "16px",
+                        "stack-lg": "24px",
+                        "container-max": "1440px",
+                        "stack-sm": "8px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "title-md": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e2e8f0;
+        }
+    </style>
+</head>
+
+<body class="bg-surface text-on-surface">
+    <!-- SideNavBar (Authority: JSON + Design System) -->
+    <aside
+        class="w-64 h-screen fixed left-0 top-0 bg-surface dark:bg-surface-dim border-r border-outline-variant dark:border-outline flex flex-col py-stack-lg px-stack-md z-50">
+        <div class="mb-8 flex items-center gap-3 px-2">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim leading-none">
+                    InstaADB Panel</h1>
+                <p class="text-xs text-on-surface-variant font-medium">Automation System</p>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <!-- 1. Dashboard Statistik -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-primary/5"
+                href="logs.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-md text-label-md">Dashboard Statistik</span>
+            </a>
+
+            <!-- 2. Form Perintah (Aktif) -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 bg-primary text-white shadow-sm shadow-primary/30 font-semibold scale-[0.98]"
+                href="dashboard.html">
+                <span class="material-symbols-outlined">terminal</span>
+                <span class="font-label-md text-label-md">Form Perintah</span>
+            </a>
+
+            <!-- 3. Manage Account -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-primary/5"
+                href="accounts.html">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="font-label-md text-label-md">Manage Account</span>
+            </a>
+        </nav>
+
+        <!-- Bagian Bawah Sidebar Utilitas yang Bersih Tanpa Tombol Biru -->
+        <div class="mt-auto pt-4 border-t border-outline-variant space-y-1">
+            <button type="button" onclick="bukaSettings()"
+                class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors text-body-md font-medium">
+                <span class="material-symbols-outlined text-primary text-md">settings</span>
+                <span class="text-on-surface">Settings</span>
+            </button>
+            <button type="button" onclick="prosesLogOut()"
+                class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-error hover:bg-error-container/10 transition-colors text-body-md font-medium">
+                <span class="material-symbols-outlined text-error text-md">logout</span>
+                <span>Log Out</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="ml-64 min-h-screen">
+        <!-- TopNavBar -->
+        <header
+            class="flex justify-between items-center h-16 px-margin-page bg-surface-bright dark:bg-surface-dim border-b border-outline-variant dark:border-outline sticky top-0 z-40 shadow-sm dark:shadow-none">
+            <h2 class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed-dim">ADB Automation
+                Control</h2>
+            <div class="flex items-center gap-6">
+                <div class="relative flex items-center">
+                    <input
+                        class="bg-surface-container-low border-none rounded-full px-10 py-1.5 text-body-md focus:ring-2 focus:ring-primary/20 w-64"
+                        placeholder="Search activities..." type="text" />
+                    <span
+                        class="material-symbols-outlined absolute left-3 text-on-surface-variant text-lg">search</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="text-on-surface-variant hover:text-primary relative">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span
+                            class="absolute top-0 right-0 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+                    </button>
+                    <button class="text-on-surface-variant hover:text-primary">
+                        <span class="material-symbols-outlined">help</span>
+                    </button>
+                    <div class="h-8 w-px bg-outline-variant mx-2"></div>
+                    <div class="flex items-center gap-3 cursor-pointer" onclick="bukaSettings()">
+                        <div class="text-right hidden sm:block">
+                            <p id="headerProfileName" class="text-body-md font-bold leading-none">Admin Root</p>
+                            <p id="headerProfileRole"
+                                class="text-[10px] text-on-surface-variant uppercase tracking-wider">Super Administrator
+                            </p>
+                        </div>
+                        <img id="headerProfileAvatar"
+                            class="w-10 h-10 rounded-full border-2 border-primary-container object-cover"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCu2vCTOSPK5r3-TblvZEKXEhPN0jWhZUcZb3MIu74ukghYOhv7fNHlM4ZakDjT2XI34MlwBUsgjpdSlJrCZSD9gtL02HuxD0zigQIfVdI-4OP49L_QIh6uG1_VfOp9vKNGBD7N5Cx9CwCzOwblkOl-m49xW-vfvXyBY4bRXySWef8Taum8m5wtwCOzZ3xtFL8TXxiZlVUecOX1fDy3AvcphT5dowIJk4TybtpOUDiA1K5d0BGWLDySs1tMLHF2nojK20BKgHCpewM" />
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Content Canvas -->
+        <div class="p-margin-page space-y-gutter max-w-container-max mx-auto">
+            <!-- Section 1: Dashboard Statistik Dinamis dengan ID -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+                <!-- Sukses -->
+                <div class="glass-card p-6 rounded-xl hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-emerald-100 rounded-lg">
+                            <span class="material-symbols-outlined text-emerald-600">check_circle</span>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant font-label-md text-label-md mb-1">Total Aktivitas Sukses</p>
+                    <h3 id="statSukses" class="text-display-lg font-display-lg leading-tight">0</h3>
+                </div>
+                <!-- Gagal -->
+                <div class="glass-card p-6 rounded-xl hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-rose-100 rounded-lg">
+                            <span class="material-symbols-outlined text-rose-600">error</span>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant font-label-md text-label-md mb-1">Total Aktivitas Gagal</p>
+                    <h3 id="statGagal" class="text-display-lg font-display-lg leading-tight">0</h3>
+                </div>
+                <!-- Active Devices -->
+                <div class="glass-card p-6 rounded-xl hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-primary-container rounded-lg">
+                            <span class="material-symbols-outlined text-on-primary-container">devices</span>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant font-label-md text-label-md mb-1">ADB Device Aktif</p>
+                    <h3 id="statDevice" class="text-display-lg font-display-lg leading-tight">0</h3>
+                </div>
+                <!-- Pending Queue -->
+                <div class="glass-card p-6 rounded-xl hover:shadow-md transition-shadow">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="p-3 bg-surface-container-highest rounded-lg">
+                            <span class="material-symbols-outlined text-primary">schedule</span>
+                        </div>
+                    </div>
+                    <p class="text-on-surface-variant font-label-md text-label-md mb-1">Antrean Perintah</p>
+                    <h3 id="statAntrean" class="text-display-lg font-display-lg leading-tight">0</h3>
+                </div>
+            </div>
+
+            <!-- ======================================================== -->
+            <!-- GRID UTAMA LAYOUT DASHBOARD (GABUNGAN KIRI & KANAN) -->
+            <!-- ======================================================== -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+
+                <!-- ========================================== -->
+                <!-- SISI KIRI (KARTU FORM CONFIG)              -->
+                <!-- ========================================== -->
+                <div class="lg:col-span-7 space-y-gutter">
+
+                    <!-- KARTU FORM PERINTAH BOT -->
+                    <div class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 shadow-sm">
+                        <div class="flex items-center gap-3 mb-8">
+                            <span class="material-symbols-outlined text-primary text-3xl">precision_manufacturing</span>
+                            <h3 class="font-headline-md text-headline-md">Konfigurasi Perintah Bot</h3>
+                        </div>
+
+                        <div class="mb-4">
+  <span class="font-label-md text-label-md text-on-surface-variant mr-2">Pilih Platform:</span>
+  <label class="mr-3"><input type="radio" name="platform" value="instagram" checked onchange="switchPlatform(this.value)">Instagram</label>
+  <label><input type="radio" name="platform" value="facebook" onchange="switchPlatform(this.value)">Facebook</label>
+</div>
+<input type="hidden" name="platform" id="platformInput" value="instagram">
+<form class="space-y-6" id="automationForm">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div class="space-y-2">
+                                    <label class="font-label-md text-label-md text-on-surface-variant">Nama
+                                        Operator</label>
+                                    <input name="operator"
+                                        class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md"
+                                        type="text" value="Admin Utama" required />
+                                </div>
+                                <div class="space-y-2">
+                                    <label class="font-label-md text-label-md text-on-surface-variant">Waktu
+                                        Eksekusi</label>
+                                    <input name="waktu_eksekusi"
+                                        class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md"
+                                        type="datetime-local" />
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="font-label-md text-label-md text-on-surface-variant">Pilih Akun Instagram
+                                    / Device</label>
+                                <select name="device_id" id="deviceSelect"
+                                    class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md">
+                                    <option value="all">Semua Akun Aktif</option>
+                                </select>
+                            </div>
+                            <div class="space-y-4">
+                                <label class="font-label-md text-label-md text-on-surface-variant">Jenis Perintah
+                                    Otomatisasi</label>
+                                <!-- Container Perintah Instagram -->
+                                <div id="instagramCommands" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('post')"
+                                            type="radio" value="post" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">add_box</span>
+                                            <span class="text-xs font-bold">Instagram Post</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('post-story')"
+                                            type="radio" value="post-story" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">history_toggle_off</span>
+                                            <span class="text-xs font-bold">Instagram Story</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('post-reels')"
+                                            type="radio" value="post-reels" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">video_library</span>
+                                            <span class="text-xs font-bold">Instagram Reels</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('like')"
+                                            type="radio" value="like" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">favorite</span>
+                                            <span class="text-xs font-bold">Like</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('comment')"
+                                            type="radio" value="comment" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">chat_bubble</span>
+                                            <span class="text-xs font-bold">Comment</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('report')"
+                                            type="radio" value="report" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">report</span>
+                                            <span class="text-xs font-bold">Report</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('chat')"
+                                            type="radio" value="chat" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span class="material-symbols-outlined text-primary mb-2 block">send</span>
+                                            <span class="text-xs font-bold">Chat/DM</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('manage')"
+                                            type="radio" value="manage" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">manage_accounts</span>
+                                            <span class="text-xs font-bold">Manage Acc</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('profile')"
+                                            type="radio" value="profile" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">person_edit</span>
+                                            <span class="text-xs font-bold">Edit Profil</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('repost')"
+                                            type="radio" value="repost" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">repeat</span>
+                                            <span class="text-xs font-bold">Repost Post</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('login')"
+                                            type="radio" value="login" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">login</span>
+                                            <span class="text-xs font-bold">Login Akun</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('farming')"
+                                            type="radio" value="farming" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">agriculture</span>
+                                            <span class="text-xs font-bold">Farming Bot</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('scraper')"
+                                            type="radio" value="scraper" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">database</span>
+                                            <span class="text-xs font-bold">Scraper Bot</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <!-- Container Perintah Facebook (Tersembunyi secara default) -->
+                                <div id="facebookCommands" class="hidden grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('fb-like')"
+                                            type="radio" value="fb-like" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">thumb_up</span>
+                                            <span class="text-xs font-bold">Facebook Like</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('fb-comment')"
+                                            type="radio" value="fb-comment" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">comment_bank</span>
+                                            <span class="text-xs font-bold">Facebook Comment</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('fb-post')"
+                                            type="radio" value="fb-post" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">post_add</span>
+                                            <span class="text-xs font-bold">Facebook Post</span>
+                                        </div>
+                                    </label>
+                                    <label class="cursor-pointer">
+                                        <input class="peer hidden" name="perintah" onchange="updateInputs('fb-login')"
+                                            type="radio" value="fb-login" />
+                                        <div
+                                            class="peer-checked:border-primary peer-checked:bg-primary-container/10 border border-outline-variant rounded-xl p-4 text-center transition-all hover:border-primary">
+                                            <span
+                                                class="material-symbols-outlined text-primary mb-2 block">login</span>
+                                            <span class="text-xs font-bold">Facebook Login</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="p-6 bg-surface-container-low rounded-xl border border-dashed border-outline-variant space-y-4"
+                                id="dynamicInputs">
+                                <div class="flex items-center gap-2 text-on-surface-variant italic text-sm">
+                                    <span class="material-symbols-outlined text-lg">info</span>
+                                    <span>Pilih jenis perintah untuk melihat opsi input tambahan.</span>
+                                </div>
+                            </div>
+                            <button
+                                class="w-full bg-secondary hover:bg-secondary/90 text-on-secondary py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all transform active:scale-[0.98]"
+                                type="submit">
+                                <span class="material-symbols-outlined">bolt</span>
+                                Jalankan Bot Otomatisasi
+                            </button>
+                        </form>
+                    </div>
+                </div> <!-- /Penutup Sisi Kiri lg:col-span-7 -->
+
+                <!-- ========================================== -->
+                <!-- SISI KANAN (GRAFIK PERFORMA & TERMINAL ADB) -->
+                <!-- ========================================== -->
+                <div class="lg:col-span-5 space-y-gutter">
+                    <!-- KOTAK 1: PERFORMA REAL-TIME (GRAFIK BATANG UNGU) -->
+                    <div
+                        class="bg-surface-container-lowest border border-outline-variant rounded-xl p-6 overflow-hidden">
+                        <div class="flex justify-between items-center mb-6">
+                            <h4 class="font-title-md text-title-md">Performa Real-time</h4>
+                            <button onclick="loadStatistikDashboard()"
+                                class="text-primary font-label-md text-label-md">Update Live</button>
+                        </div>
+                        <div class="h-64 flex items-end gap-2 px-2">
+                            <div id="bar00"
+                                class="flex-1 bg-primary-container rounded-t-lg transition-all hover:bg-primary"
+                                style="height: 10%"></div>
+                            <div id="bar06"
+                                class="flex-1 bg-primary-container rounded-t-lg transition-all hover:bg-primary"
+                                style="height: 10%"></div>
+                            <div id="bar12"
+                                class="flex-1 bg-primary-container rounded-t-lg transition-all hover:bg-primary"
+                                style="height: 10%"></div>
+                            <div id="bar18"
+                                class="flex-1 bg-primary-container rounded-t-lg transition-all hover:bg-primary"
+                                style="height: 10%"></div>
+                            <div id="barSkrg"
+                                class="flex-1 bg-primary-container rounded-t-lg transition-all hover:bg-primary"
+                                style="height: 10%"></div>
+                        </div>
+                        <div class="flex justify-between mt-4 text-[10px] text-on-surface-variant font-medium px-2">
+                            <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>SKRG</span>
+                        </div>
+                    </div>
+
+                    <!-- KOTAK 2: ADB TERMINAL STATUS (SUDAH DISUBLIMASI BERSIH) -->
+                    <div class="bg-indigo-900 text-white rounded-xl p-6 relative overflow-hidden mb-4">
+                        <div class="relative z-10">
+                            <h4 class="font-title-md text-title-md mb-2">ADB Terminal Status</h4>
+                            <div class="flex items-center gap-2 mb-4">
+                                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                                <span class="text-xs text-indigo-100">Daemon Running - v2.4.1</span>
+                            </div>
+                            <code id="statTerminal"
+                                class="text-[11px] block bg-black/30 p-3 rounded font-mono text-emerald-400 overflow-x-auto whitespace-pre-wrap">
+                                    $ adb devices
+                                    List of devices attached
+                                    Mencari perangkat...
+                                </code>
+                        </div>
+                        <span
+                            class="material-symbols-outlined absolute -bottom-4 -right-4 text-9xl opacity-10">terminal</span>
+                    </div>
+
+                    <!-- KOTAK 3: BOT & PERANGKAT ONLINE -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-6 shadow-sm">
+                        <h4 class="font-title-md text-title-md mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">circle_notifications</span>
+                            Status Bot &amp; Device Aktif
+                        </h4>
+                        <div id="dashboardActiveList" class="space-y-3">
+                            <p class="text-xs text-on-surface-variant italic py-2">Memeriksa koneksi perangkat...</p>
+                        </div>
+                    </div>
+                    <!-- KOTAK 4: SCRAPED TARGET DATABASE -->
+                    <div class="bg-white border border-outline-variant rounded-xl p-6 shadow-sm mt-4">
+                        <h4 class="font-title-md text-title-md mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">database</span>
+                            Database Hasil Scraping
+                        </h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center bg-surface-container-low p-3 rounded-lg border border-outline-variant">
+                                <div>
+                                    <p class="text-xs font-semibold text-on-surface-variant">Total Username Terkumpul</p>
+                                    <p id="scrapedTargetsCount" class="text-xl font-bold text-primary mt-1">0</p>
+                                </div>
+                                <button type="button" onclick="bukaModalTargets()" class="bg-primary text-on-primary hover:bg-primary/95 text-xs font-semibold px-3 py-2 rounded-lg transition-colors">
+                                    Lihat Semua
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- /Penutup Sisi Kanan lg:col-span-5 -->
+
+            </div> <!-- /Penutup Grid Besar Layout Dashboard Atas -->
+
+            <!-- ======================================================== -->
+            <!-- TABEL RIWAYAT DI BAWAH (MELEBAR FULL PANJANG BARIS)       -->
+            <!-- ======================================================== -->
+            <div class="mt-gutter w-full">
+                <div
+                    class="bg-surface-container-lowest border border-outline-variant rounded-xl overflow-hidden shadow-sm">
+                    <div
+                        class="p-6 flex justify-between items-center bg-surface-container-low border-b border-outline-variant">
+                        <div class="flex items-center gap-3">
+                            <span class="material-symbols-outlined text-primary">history</span>
+                            <h3 class="font-headline-md text-headline-md">Riwayat Aktivitas Bot</h3>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="toggleFilterPanel()"
+                                class="bg-surface-container-highest px-4 py-2 rounded-lg text-label-md font-label-md flex items-center gap-2 hover:bg-primary-container/20 transition-colors">
+                                <span class="material-symbols-outlined text-sm">filter_list</span> Filter
+                            </button>
+                            <button onclick="exportCSV()"
+                                class="bg-surface-container-highest px-4 py-2 rounded-lg text-label-md font-label-md flex items-center gap-2 hover:bg-primary-container/20 transition-colors">
+                                <span class="material-symbols-outlined text-sm">download</span> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Collapsible Filter Panel -->
+                    <div id="filterPanel" class="hidden p-6 bg-surface-container-low border-b border-outline-variant grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="space-y-1">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant">Status</label>
+                            <select id="filterStatus" onchange="filterAndRenderLogs()"
+                                class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg text-body-md focus:ring-primary focus:border-primary">
+                                <option value="all">Semua Status</option>
+                                <option value="sukses">Sukses</option>
+                                <option value="gagal">Gagal</option>
+                                <option value="running">Sedang Berjalan</option>
+                                <option value="pending">Tertunda (Pending)</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant">Jenis Perintah</label>
+                            <select id="filterJenis" onchange="filterAndRenderLogs()"
+                                class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg text-body-md focus:ring-primary focus:border-primary">
+                                <option value="all">Semua Aktivitas</option>
+                                <option value="like">Like</option>
+                                <option value="post">Post</option>
+                                <option value="post_story">Post Story</option>
+                                <option value="post_reels">Post Reels</option>
+                                <option value="comment">Comment</option>
+                                <option value="chat">Direct Message (Chat)</option>
+                                <option value="report">Report</option>
+                                <option value="share">Share</option>
+                                <option value="manage">Manage</option>
+                                <option value="profile">Edit Profile</option>
+                                <option value="repost">Repost</option>
+                                <option value="login">Login</option>
+                            </select>
+                        </div>
+                        <div class="space-y-1">
+                            <label class="font-label-sm text-label-sm text-on-surface-variant">Cari Akun / Target</label>
+                            <input id="filterAkun" oninput="filterAndRenderLogs()"
+                                class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg text-body-md focus:ring-primary focus:border-primary"
+                                placeholder="Contoh: @travel_spirit_off atau messi" type="text" />
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto max-h-[400px] overflow-y-auto">
+                        <table class="w-full text-left relative border-collapse">
+                            <thead class="sticky top-0 bg-surface-container-low z-10 shadow-sm">
+                                <tr class="bg-surface-container-low border-b border-outline-variant">
+                                    <th
+                                        class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                        Waktu</th>
+                                    <th
+                                        class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                        User Account</th>
+                                    <th
+                                        class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                        Aktivitas</th>
+                                    <th
+                                        class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                        Target / URL</th>
+                                    <th
+                                        class="px-6 py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                        Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="logTableBody" class="divide-y divide-outline-variant">
+                                <tr class="hover:bg-surface-container transition-colors">
+                                    <td class="px-6 py-4 text-body-md font-medium">10:45:22</td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2">
+                                            <div
+                                                class="w-6 h-6 rounded bg-primary-container text-[10px] flex items-center justify-center font-bold">
+                                                P4</div>
+                                            <span class="text-body-md">IG_Runner_01</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-sm text-primary">favorite</span>
+                                            <span class="text-body-md">Auto Like</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-body-md text-on-surface-variant font-mono text-xs">
+                                        instagram.com/p/C3m2Xyz...</td>
+                                    <td class="px-6 py-4">
+                                        <span
+                                            class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase">Sukses</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div> <!-- /Penutup Tabel Full Width -->
+
+        </div> <!-- /Penutup Content Canvas -->
+    </main> <!-- /Penutup Main Content Area -->
+    </div> <!-- /Penutup Wrapper Utama Body -->
+
+    <script>
+        // 1. Dynamic Form Input Handler
+        function switchPlatform(value) {
+            document.getElementById('platformInput').value = value;
+            // Reset perintah selection
+            document.querySelectorAll('input[name="perintah"]').forEach(e => e.checked = false);
+            
+            // Tampilkan/Sembunyikan container perintah yang sesuai dan auto-select fitur pertama
+            if (value === 'facebook') {
+                document.getElementById('instagramCommands').classList.add('hidden');
+                document.getElementById('facebookCommands').classList.remove('hidden');
+                
+                // Auto select Facebook Like
+                const fbLikeRadio = document.querySelector('input[value="fb-like"]');
+                if (fbLikeRadio) {
+                    fbLikeRadio.checked = true;
+                    updateInputs('fb-like');
+                }
+            } else {
+                document.getElementById('instagramCommands').classList.remove('hidden');
+                document.getElementById('facebookCommands').classList.add('hidden');
+                
+                // Auto select Instagram Like
+                const igLikeRadio = document.querySelector('input[value="like"]');
+                if (igLikeRadio) {
+                    igLikeRadio.checked = true;
+                    updateInputs('like');
+                }
+            }
+        }
+
+        function updateInputs(type) {
+            const container = document.getElementById('dynamicInputs');
+            const platform = document.getElementById('platformInput').value;
+            let html = '';
+
+            switch (type) {
+                case 'post':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Upload File (Image/Video)</label>
+                                <input type="file" name="file_media" class="w-full mt-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-on-primary-container hover:file:opacity-80" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Caption / Konten Teks</label>
+                                <textarea rows="3" name="caption" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="Tulis caption menarik di sini..." required></textarea>
+                            </div>
+                        </div>`;
+                    break;
+                case 'post-story':
+                    html = `
+                         <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                             <div>
+                                 <label class="font-label-md text-label-md text-on-surface-variant">Upload File Story (Image/Video)</label>
+                                 <input type="file" name="file_media" class="w-full mt-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-on-primary-container hover:file:opacity-80" required>
+                             </div>
+                         </div>`;
+                    break;
+                case 'post-reels':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Upload File Video Reels (.mp4)</label>
+                                <input type="file" name="file_media" accept="video/*" class="w-full mt-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-on-primary-container hover:file:opacity-80" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Caption / Konten Teks</label>
+                                <textarea rows="3" name="caption" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="Tulis caption reels menarik di sini..." required></textarea>
+                            </div>
+                        </div>`;
+                    break;
+                case 'like':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">URL Konten / Username Target</label>
+                                <input type="text" name="target" placeholder="Contoh: cristiano atau URL postingan" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                        </div>`;
+                    break;
+                case 'fb-like':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Page ID (optional)</label>
+                                <input type="text" name="fb_page_id" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="e.g., 1234567890">
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Target URL / Post ID</label>
+                                <input type="text" name="fb_target" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="https://facebook.com/... or 1234567890" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Access Token</label>
+                                <input type="password" name="fb_token" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="User or Page Access Token" required>
+                            </div>
+                        </div>`;
+                    break;
+                case 'fb-comment':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Target URL / Post ID</label>
+                                <input type="text" name="fb_target" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="https://facebook.com/... or 1234567890" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Comment Text</label>
+                                <textarea rows="3" name="fb_comment_text" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="Tulis komentar Facebook Anda di sini..." required></textarea>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Access Token</label>
+                                <input type="password" name="fb_token" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="User or Page Access Token" required>
+                            </div>
+                        </div>`;
+                    break;
+                case 'fb-post':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Page / Profile ID</label>
+                                <input type="text" name="fb_page_id" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="me atau ID Halaman Facebook" value="me" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Tipe Postingan</label>
+                                <select name="fb_post_type" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md">
+                                    <option value="status">Status (Hanya Teks)</option>
+                                    <option value="link">Link URL</option>
+                                    <option value="photo">Foto URL</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Message / Caption</label>
+                                <textarea rows="3" name="fb_message" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="Tulis pesan postingan di sini..." required></textarea>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">URL Tautan / Media (Opsional)</label>
+                                <input type="text" name="fb_link_url" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="Masukkan URL link atau URL foto">
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Access Token</label>
+                                <input type="password" name="fb_token" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="User or Page Access Token" required>
+                            </div>
+                        </div>`;
+                    break;
+                case 'fb-login':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Username Akun Facebook / Instagram Tertaut</label>
+                                <input type="text" name="username" value="uyug" placeholder="Contoh: uyug atau nama akun Anda" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                        </div>`;
+                    break;
+                case 'report':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">URL Konten / Username Target</label>
+                                <input type="text" name="target" placeholder="Contoh: cristiano atau URL postingan" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Alasan Laporkan (Report Reason)</label>
+                                <select name="alasan" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md">
+                                    <option value="Sesuatu tentang akun ini">Sesuatu tentang akun ini</option>
+                                    <option value="Postingan tertentu">Postingan tertentu</option>
+                                    <option value="Dia berpura-pura menjadi orang lain">Dia berpura-pura menjadi orang lain</option>
+                                    <option value="Dia mungkin berusia di bawah usia minimal">Dia mungkin berusia di bawah usia minimal</option>
+                                    <option value="Akun mungkin diretas">Akun mungkin diretas</option>
+                                    <option value="Hal lain">Hal lain</option>
+                                </select>
+                            </div>
+                        </div>`;
+                    break;
+                case 'comment':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Username / URL Konten Target</label>
+                                <input type="text" name="target" placeholder="Contoh: cristiano" class="w-full mt-1 rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                            <div class="space-y-3">
+                                <label class="font-label-md text-label-md text-on-surface-variant block">Metode Pengisian Komentar</label>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="border border-outline-variant rounded-xl p-4 bg-surface-container-low hover:bg-surface-container-high transition-colors duration-200">
+                                        <label class="text-xs font-semibold text-primary block mb-1">Opsi A: Ketik Komentar Manual</label>
+                                        <textarea id="commentTextarea" rows="3" name="komentar" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md placeholder-on-surface-variant" placeholder="Keren kak! 🔥"></textarea>
+                                    </div>
+                                    <div class="border border-outline-variant rounded-xl p-4 bg-surface-container-low hover:bg-surface-container-high transition-colors duration-200 flex flex-col justify-between">
+                                        <div>
+                                            <label class="text-xs font-semibold text-secondary block mb-1">Opsi B: Upload File Txt</label>
+                                            <p class="text-[10px] text-on-surface-variant mb-2">Seluruh isi file txt akan dikirim langsung sebagai satu komentar.</p>
+                                        </div>
+                                        <input id="commentFileInput" type="file" name="file_komentar" accept=".txt" class="w-full block text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-semibold file:bg-secondary-container file:text-on-secondary-container hover:file:opacity-80 transition-opacity">
+                                    </div>
+                                </div>
+                                <p id="commentError" class="text-xs text-error hidden flex items-center gap-1"><span class="material-symbols-outlined text-sm">warning</span> Silakan isi komentar manual ATAU unggah file txt!</p>
+                            </div>
+                        </div>`;
+                    break;
+                case 'chat':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Username Target DM</label>
+                                <input type="text" name="target" placeholder="Username Instagram" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Isi Pesan DM</label>
+                                <textarea rows="2" name="pesan" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="Halo, apa kabar?" required></textarea>
+                            </div>
+                        </div>`;
+                    break;
+                case 'manage':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Aksi</label>
+                                <select id="manageAksiSelect" name="aksi" onchange="toggleManageTargetField()" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md">
+                                    <option value="follow">Follow</option>
+                                    <option value="unfollow">Unfollow</option>
+                                    <option value="accept_request">Accept Follow Request (Konfirmasi)</option>
+                                    <option value="switch_account">Switch Account (Ganti Akun)</option>
+                                    <option value="logout">Log Out (Keluar Akun)</option>
+                                </select>
+                            </div>
+                            <div id="manageTargetContainer">
+                                <label id="manageTargetLabel" class="font-label-md text-label-md text-on-surface-variant">Username Target</label>
+                                <input id="manageTargetInput" type="text" name="target" placeholder="Username Instagram" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                        </div>`;
+                    break;
+                case 'profile':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Nama Tampilan Baru (Display Name)</label>
+                                <input type="text" name="nama" placeholder="Contoh: Bryant Magang (Kosongkan jika tidak diubah)" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md">
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Username Baru (Handle)</label>
+                                <input type="text" name="username" placeholder="Contoh: bryant_diwa (Kosongkan jika tidak diubah)" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md">
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Bio Baru</label>
+                                <textarea rows="2" name="bio" placeholder="Tulis bio profil menarik di sini... (Kosongkan jika tidak diubah)" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md"></textarea>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Upload Foto Profil Baru</label>
+                                <input type="file" name="file_avatar" accept="image/*" class="w-full mt-1 block text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary-container file:text-on-primary-container hover:file:opacity-80 transition-opacity">
+                            </div>
+                        </div>`;
+                    break;
+                case 'repost':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Username Target atau URL Postingan</label>
+                                <input type="text" name="target" placeholder="Contoh: @cristiano atau URL postingan" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Tipe Caption</label>
+                                <select name="caption_type" id="repostCaptionType" onchange="toggleRepostCustomCaption()" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md">
+                                    <option value="credit">Gunakan Caption Asli + Kredit Sumber</option>
+                                    <option value="original">Gunakan Caption Asli Saja</option>
+                                    <option value="custom">Gunakan Caption Kustom</option>
+                                </select>
+                            <div id="repostCustomCaptionContainer" class="hidden">
+                                <label class="font-label-md text-label-md text-on-surface-variant">Caption Kustom</label>
+                                <textarea id="repostCustomCaptionInput" rows="3" name="custom_caption" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" placeholder="Tulis caption kustom Anda di sini..."></textarea>
+                            </div>
+                        </div>`;
+                    break;
+                case 'login':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Username / Email Instagram</label>
+                                <input type="text" name="username" placeholder="Contoh: lukyytris13 atau email" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Password Instagram</label>
+                                <input type="password" name="password" placeholder="Masukkan password akun" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                            </div>
+                        </div>`;
+                    break;
+                case 'farming':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Jumlah Postingan untuk Farming</label>
+                                <input type="number" name="jumlah_post" value="10" min="1" max="100" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                                <p class="text-xs text-on-surface-variant mt-1">Bot akan menyusuri beranda dan melakukan interaksi acak (like, comment, save, share) pada jumlah postingan tersebut.</p>
+                            </div>
+                        </div>`;
+                    break;
+                case 'scraper':
+                    html = `
+                        <div class="space-y-4 animate-in fade-in slide-in-from-top-2 duration-300">
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Username Target/Kompetitor</label>
+                                <input type="text" name="target_competitor" placeholder="Contoh: nike atau cristiano" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                                <p class="text-xs text-on-surface-variant mt-1">Akun publik kompetitor yang ingin Anda salin datanya.</p>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Tipe Scraping</label>
+                                <select name="scrape_type" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md">
+                                    <option value="followers">Followers (Semua Pengikut Akun)</option>
+                                    <option value="comments">Comments (Semua Komentator Post Terbaru)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="font-label-md text-label-md text-on-surface-variant">Batas Maksimal Username (Limit)</label>
+                                <input type="number" name="limit" value="50" min="1" max="1000" class="w-full rounded-lg border-outline-variant focus:border-primary focus:ring-primary text-body-md" required>
+                                <p class="text-xs text-on-surface-variant mt-1">Batas maksimal jumlah data username target yang ingin dikumpulkan.</p>
+                            </div>
+                        </div>`;
+                    break;
+            }
+            container.innerHTML = html;
+        }
+
+        // Toggle visibility & requirement of target input inside Manage Acc
+        function toggleManageTargetField() {
+            const selectEl = document.getElementById('manageAksiSelect');
+            const targetContainer = document.getElementById('manageTargetContainer');
+            const targetInput = document.getElementById('manageTargetInput');
+            const targetLabel = document.getElementById('manageTargetLabel');
+            
+            if (!selectEl || !targetContainer || !targetInput) return;
+            
+            if (selectEl.value === 'accept_request' || selectEl.value === 'logout') {
+                targetContainer.classList.add('hidden');
+                targetInput.value = '-';
+                targetInput.removeAttribute('required');
+            } else {
+                targetContainer.classList.remove('hidden');
+                if (targetInput.value === '-') {
+                    targetInput.value = '';
+                }
+                targetInput.setAttribute('required', 'required');
+                
+                if (selectEl.value === 'switch_account') {
+                    targetLabel.innerText = "Username Akun Tujuan (yg sudah login di HP)";
+                    targetInput.placeholder = "Contoh: lukidiwa13";
+                } else {
+                    targetLabel.innerText = "Username Target";
+                    targetInput.placeholder = "Username Instagram";
+                }
+            }
+        }
+
+        function toggleRepostCustomCaption() {
+            const selectEl = document.getElementById('repostCaptionType');
+            const container = document.getElementById('repostCustomCaptionContainer');
+            const input = document.getElementById('repostCustomCaptionInput');
+            if (!selectEl || !container || !input) return;
+            
+            if (selectEl.value === 'custom') {
+                container.classList.remove('hidden');
+                input.setAttribute('required', 'required');
+            } else {
+                container.classList.add('hidden');
+                input.removeAttribute('required');
+                input.value = '';
+            }
+        }
+
+        window.allLogs = [];
+
+        function toggleFilterPanel() {
+            const panel = document.getElementById('filterPanel');
+            if (panel) {
+                panel.classList.toggle('hidden');
+            }
+        }
+
+        function filterAndRenderLogs() {
+            const tableBody = document.getElementById('logTableBody');
+            if (!tableBody) return;
+
+            let filtered = [...window.allLogs];
+
+            // 1. Filter Status
+            const statusFilter = document.getElementById('filterStatus') ? document.getElementById('filterStatus').value : 'all';
+            if (statusFilter !== 'all') {
+                filtered = filtered.filter(log => (log.status || '').toLowerCase() === statusFilter);
+            }
+
+            // 2. Filter Jenis Perintah
+            const jenisFilter = document.getElementById('filterJenis') ? document.getElementById('filterJenis').value : 'all';
+            if (jenisFilter !== 'all') {
+                filtered = filtered.filter(log => (log.aktivitas || '').toLowerCase() === jenisFilter);
+            }
+
+            // 3. Filter Akun / Target
+            const query = document.getElementById('filterAkun') ? document.getElementById('filterAkun').value.trim().toLowerCase() : '';
+            if (query) {
+                filtered = filtered.filter(log => {
+                    const acc = (log.akun || log.account || log.device_id || '').toLowerCase();
+                    const tgt = (log.target || log.target_url || '').toLowerCase();
+                    return acc.includes(query) || tgt.includes(query);
+                });
+            }
+
+            let htmlRows = '';
+            const sortedLogs = [...filtered].reverse();
+
+            sortedLogs.forEach(log => {
+                const statusLower = (log.status || "").toLowerCase();
+                let badgeClass = '';
+                if (statusLower === 'sukses') {
+                    badgeClass = 'bg-emerald-100 text-emerald-700';
+                } else if (statusLower === 'gagal') {
+                    badgeClass = 'bg-rose-100 text-rose-700';
+                } else if (statusLower === 'running') {
+                    badgeClass = 'bg-sky-100 text-sky-700';
+                } else {
+                    badgeClass = 'bg-surface-container-highest text-on-surface-variant';
+                }
+
+                htmlRows += `
+                    <tr class="hover:bg-surface-container transition-colors">
+                        <td class="px-6 py-4 text-body-md font-medium">${log.waktu || '-'}</td>
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded bg-primary-container text-[10px] text-on-primary flex items-center justify-center font-bold">ADB</div>
+                                <span class="text-body-md">${log.akun || log.account || log.device_id || 'Unknown'}</span>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4"><span class="text-body-md">${log.aktivitas || '-'}</span></td>
+                        <td class="px-6 py-4 text-body-md text-on-surface-variant font-mono text-xs max-w-[200px] truncate" title="${log.target || log.target_url || '-'}">${log.target || log.target_url || '-'}</td>
+                        <td class="px-6 py-4"><span class="${badgeClass} px-3 py-1 rounded-full text-[10px] font-bold uppercase">${log.status || 'PENDING'}</span></td>
+                    </tr>
+                `;
+            });
+
+            if (filtered.length === 0) {
+                htmlRows = `<tr><td colspan="5" class="text-center py-8 text-on-surface-variant italic">Tidak ada riwayat aktivitas bot yang sesuai filter.</td></tr>`;
+            }
+            angkaIngatanDashboard.htmlTabel = htmlRows;
+            tableBody.innerHTML = htmlRows;
+        }
+
+        function exportCSV() {
+            let csv = 'Waktu,User Account,Aktivitas,Target/URL,Status\n';
+            let filtered = [...window.allLogs];
+
+            // Apply same filters for CSV export
+            const statusFilter = document.getElementById('filterStatus') ? document.getElementById('filterStatus').value : 'all';
+            if (statusFilter !== 'all') {
+                filtered = filtered.filter(log => (log.status || '').toLowerCase() === statusFilter);
+            }
+            const jenisFilter = document.getElementById('filterJenis') ? document.getElementById('filterJenis').value : 'all';
+            if (jenisFilter !== 'all') {
+                filtered = filtered.filter(log => (log.aktivitas || '').toLowerCase() === jenisFilter);
+            }
+            const query = document.getElementById('filterAkun') ? document.getElementById('filterAkun').value.trim().toLowerCase() : '';
+            if (query) {
+                filtered = filtered.filter(log => {
+                    const acc = (log.akun || log.account || log.device_id || '').toLowerCase();
+                    const tgt = (log.target || log.target_url || '').toLowerCase();
+                    return acc.includes(query) || tgt.includes(query);
+                });
+            }
+
+            const sortedLogs = [...filtered].reverse();
+            sortedLogs.forEach(log => {
+                const row = [
+                    log.waktu || '-',
+                    log.akun || log.account || log.device_id || 'Unknown',
+                    log.aktivitas || '-',
+                    log.target || log.target_url || '-',
+                    log.status || 'PENDING'
+                ].map(val => `"${val.replace(/"/g, '""')}"`).join(',');
+                csv += row + '\n';
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+            link.setAttribute("href", url);
+            link.setAttribute("download", `instaadb_activity_log_${new Date().toISOString().slice(0,10)}.csv`);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // BARIS AMAN: Menyimpan data terakhir di luar fungsi agar tidak ter-reset interval saat server mati
+        let angkaIngatanDashboard = {
+            sukses: "0",
+            gagal: "0",
+            device: "0",
+            antrean: "0",
+            htmlTabel: ""
+        };
+
+        // 2. FUNGSI LOAD STATISTIK DINAMIS (VERSI GLOBAL LOCK STATE - ANTI HILANG)
+        function loadStatistikDashboard() {
+            fetch('http://127.0.0.1:8000/api/statistik')
+                .then(res => {
+                    if (!res.ok) throw new Error("Koneksi gagal");
+                    return res.json();
+                })
+                .then(data => {
+                    // --- BILA SERVER AKTIF: Simpan angka terbaru ke ingatan global ---
+                    angkaIngatanDashboard.sukses = data.sukses.toLocaleString();
+                    angkaIngatanDashboard.gagal = data.gagal.toLocaleString();
+                    angkaIngatanDashboard.device = data.device_aktif.toString();
+                    angkaIngatanDashboard.antrean = data.antrean.toString();
+
+                    // Tulis ke komponen HTML panel atas
+                    if (document.getElementById('statSukses')) document.getElementById('statSukses').innerText = angkaIngatanDashboard.sukses;
+                    if (document.getElementById('statGagal')) document.getElementById('statGagal').innerText = Bird = angkaIngatanDashboard.gagal;
+                    if (document.getElementById('statDevice')) document.getElementById('statDevice').innerText = angkaIngatanDashboard.device;
+                    if (document.getElementById('statAntrean')) document.getElementById('statAntrean').innerText = angkaIngatanDashboard.antrean;
+
+                    // Update Teks Box Terminal ADB
+                    if (document.getElementById('statTerminal')) {
+                        document.getElementById('statTerminal').innerText = data.terminal;
+                    }
+
+                    // Parse online devices from terminal
+                    const lines = data.terminal.split('\n');
+                    const onlineDevices = [];
+                    lines.forEach(line => {
+                        if (line && !line.startsWith('$') && !line.startsWith('List') && line.includes('device')) {
+                            const parts = line.trim().split(/\s+/);
+                            if (parts.length >= 2 && parts[1] === 'device') {
+                                onlineDevices.push(parts[0]);
+                            }
+                        }
+                    });
+
+                    // Get accounts from localstorage
+                    const accounts = JSON.parse(localStorage.getItem('insta_accounts') || '[]');
+                    const instagramOnlineDevices = data.instagram_online_devices || [];
+
+                    // Update dropdown select
+                    const deviceSelect = document.getElementById('deviceSelect');
+                    if (deviceSelect) {
+                        const currentSelected = deviceSelect.value;
+                        let optionsHtml = '<option value="all">Semua Akun Aktif</option>';
+                        accounts.forEach(acc => {
+                            const isDeviceConnected = onlineDevices.includes(acc.deviceId);
+                            const isIgActive = instagramOnlineDevices.includes(acc.deviceId);
+
+                            let statusLabel = '🔴 Offline';
+                            if (isDeviceConnected && isIgActive) {
+                                statusLabel = '🟢 Connected & IG Active';
+                            } else if (isDeviceConnected) {
+                                statusLabel = '🟡 Connected (IG Closed)';
+                            }
+                            optionsHtml += `<option value="${acc.deviceId}">${acc.username} (${acc.deviceName}) - ${statusLabel}</option>`;
+                        });
+                        deviceSelect.innerHTML = optionsHtml;
+                        if (Array.from(deviceSelect.options).some(opt => opt.value === currentSelected)) {
+                            deviceSelect.value = currentSelected;
+                        }
+                    }
+
+                    // Update dynamic dashboard active bot status list widget
+                    const activeListContainer = document.getElementById('dashboardActiveList');
+                    if (activeListContainer) {
+                        let activeListHtml = '';
+                        let hasActive = false;
+                        const displayedDeviceIds = new Set();
+
+                        accounts.forEach(acc => {
+                            const isDeviceConnected = onlineDevices.includes(acc.deviceId);
+                            const isIgActive = instagramOnlineDevices.includes(acc.deviceId);
+
+                            if (isDeviceConnected) {
+                                hasActive = true;
+                                displayedDeviceIds.add(acc.deviceId);
+                                const initials = acc.username.replace('@', '').substring(0, 2).toUpperCase();
+
+                                let cardBg = 'bg-amber-50/70 border border-amber-200';
+                                let textStatus = 'IG Closed';
+                                let indicatorColor = 'bg-amber-500';
+                                let pulseClass = '';
+
+                                if (isIgActive) {
+                                    cardBg = 'bg-emerald-50/80 border border-emerald-200';
+                                    textStatus = 'IG Active';
+                                    indicatorColor = 'bg-emerald-500';
+                                    pulseClass = 'status-pulse';
+                                }
+
+                                activeListHtml += `
+                                    <div class="flex items-center gap-3 p-3 rounded-xl ${cardBg}">
+                                        <div class="w-10 h-10 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center font-bold text-sm">
+                                            ${initials}
+                                        </div>
+                                        <div class="flex-1 overflow-hidden">
+                                            <p class="text-sm font-bold text-slate-800 leading-tight">${acc.username}</p>
+                                            <p class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                                                <span class="material-symbols-outlined text-[13px]">smartphone</span>
+                                                ${acc.deviceName} (${acc.deviceId})
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 shrink-0">
+                                            <span class="text-[10px] font-bold text-slate-500">${textStatus}</span>
+                                            <span class="flex h-2 w-2 relative">
+                                                <span class="${pulseClass} absolute inline-flex h-full w-full rounded-full ${indicatorColor} opacity-75"></span>
+                                                <span class="relative inline-flex rounded-full h-2 w-2 ${indicatorColor}"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        });
+
+                        // Tampilkan perangkat adb yang online tetapi belum dipetakan ke akun Instagram mana pun
+                        onlineDevices.forEach(deviceId => {
+                            if (!displayedDeviceIds.has(deviceId)) {
+                                hasActive = true;
+                                const isIgActive = instagramOnlineDevices.includes(deviceId);
+
+                                let cardBg = 'bg-blue-50/70 border border-blue-200';
+                                let textStatus = isIgActive ? 'IG Active' : 'IG Closed';
+                                let indicatorColor = isIgActive ? 'bg-emerald-500' : 'bg-amber-500';
+                                let pulseClass = isIgActive ? 'status-pulse' : '';
+
+                                activeListHtml += `
+                                    <div class="flex items-center gap-3 p-3 rounded-xl ${cardBg}">
+                                        <div class="w-10 h-10 rounded-full bg-white border border-outline-variant/30 flex items-center justify-center font-bold text-sm text-blue-600">
+                                            ADB
+                                        </div>
+                                        <div class="flex-1 overflow-hidden">
+                                            <p class="text-sm font-bold text-slate-800 leading-tight">Perangkat Belum Dipetakan</p>
+                                            <p class="text-[11px] text-slate-500 flex items-center gap-1 mt-0.5">
+                                                <span class="material-symbols-outlined text-[13px]">smartphone</span>
+                                                ID: ${deviceId} (Silakan petakan di halaman Kelola Akun)
+                                            </p>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 shrink-0">
+                                            <span class="text-[10px] font-bold text-slate-500">${textStatus}</span>
+                                            <span class="flex h-2 w-2 relative">
+                                                <span class="${pulseClass} absolute inline-flex h-full w-full rounded-full ${indicatorColor} opacity-75"></span>
+                                                <span class="relative inline-flex rounded-full h-2 w-2 ${indicatorColor}"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                `;
+                            }
+                        });
+
+                        if (!hasActive) {
+                            activeListHtml = `
+                                <div class="text-center py-4 bg-slate-50 rounded-xl border border-dashed border-slate-200">
+                                    <p class="text-xs text-slate-500 italic">Tidak ada bot / perangkat aktif terdeteksi.</p>
+                                </div>
+                            `;
+                        }
+                        activeListContainer.innerHTML = activeListHtml;
+                    }
+
+                    // Update Tinggi Grafik Batang Performa Real-time
+                    if (data.grafik) {
+                        if (document.getElementById('bar00')) document.getElementById('bar00').style.height = Math.max(10, Math.min(data.grafik.h00 * 15, 100)) + '%';
+                        if (document.getElementById('bar06')) document.getElementById('bar06').style.height = Math.max(10, Math.min(data.grafik.h06 * 15, 100)) + '%';
+                        if (document.getElementById('bar12')) document.getElementById('bar12').style.height = Math.max(10, Math.min(data.grafik.h12 * 15, 100)) + '%';
+                        if (document.getElementById('bar18')) document.getElementById('bar18').style.height = Math.max(10, Math.min(data.grafik.h18 * 15, 100)) + '%';
+                        if (document.getElementById('barSkrg')) document.getElementById('barSkrg').style.height = Math.max(10, Math.min(data.grafik.skrg * 15, 100)) + '%';
+                    }
+
+                    // Update tabel riwayat
+                    if (data.logs) {
+                        window.allLogs = data.logs;
+                        filterAndRenderLogs();
+                    }
+                    
+                    // Fetch scraped targets count
+                    fetch('http://127.0.0.1:8000/api/get-scraped-targets')
+                        .then(r => r.json())
+                        .then(tData => {
+                            if (tData.status === "success") {
+                                if (document.getElementById('scrapedTargetsCount')) {
+                                    document.getElementById('scrapedTargetsCount').innerText = tData.count.toLocaleString();
+                                }
+                                window.scrapedTargetsList = tData.targets || [];
+                            }
+                        }).catch(e => console.error("Gagal memuat target scraper:", e));
+                })
+                .catch(err => {
+                    // --- BILA SERVER MATI: Paksa browser nulis pakai angka ingatan global terakhir ---
+                    console.warn(" Server offline. Mengunci tampilan data terakhir.");
+
+                    if (document.getElementById('statSukses')) document.getElementById('statSukses').innerText = angkaIngatanDashboard.sukses;
+                    if (document.getElementById('statGagal')) document.getElementById('statGagal').innerText = angkaIngatanDashboard.gagal;
+                    if (document.getElementById('statDevice')) document.getElementById('statDevice').innerText = angkaIngatanDashboard.device;
+                    if (document.getElementById('statAntrean')) document.getElementById('statAntrean').innerText = angkaIngatanDashboard.antrean;
+
+                    if (window.allLogs && window.allLogs.length > 0) {
+                        filterAndRenderLogs();
+                    } else {
+                        const tableBody = document.getElementById('logTableBody');
+                        if (tableBody && angkaIngatanDashboard.htmlTabel !== "") {
+                            tableBody.innerHTML = angkaIngatanDashboard.htmlTabel;
+                        }
+                    }
+
+                    if (document.getElementById('statTerminal')) {
+                        document.getElementById('statTerminal').innerText = "$ adb devices\n Terputus dari Server.\nMenunggu server dinyalakan kembali...";
+                    }
+                });
+        }
+
+        // TAMBAHAN WAJIB: Pemicu Otomatis Saat Halaman Diakses
+        window.addEventListener('DOMContentLoaded', () => {
+            initHeaderProfile();
+            const defaultLikeRadio = document.querySelector('input[value="like"]');
+            if (defaultLikeRadio) { defaultLikeRadio.checked = true; }
+            updateInputs('like');
+
+            // Jalankan pencatatan data riil pertama kali
+            loadStatistikDashboard();
+
+            // Lakukan AJAX polling refresh otomatis setiap 4 detik agar realtime tanpa hang
+            setInterval(loadStatistikDashboard, 4000);
+        });
+
+        // 3. Form Submission Logic
+        document.getElementById('automationForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const pilihanPerintah = this.querySelector('input[name="perintah"]:checked');
+            if (!pilihanPerintah) {
+                alert(' Silakan pilih jenis perintah bot terlebih dahulu!');
+                return;
+            }
+            const jenisBot = pilihanPerintah.value;
+
+            // Validasi khusus untuk comment (Komentar manual atau File txt wajib diisi salah satu)
+            if (jenisBot === 'comment') {
+                const textarea = document.getElementById('commentTextarea');
+                const fileInput = document.getElementById('commentFileInput');
+                const errorMsg = document.getElementById('commentError');
+                
+                if (textarea && fileInput) {
+                    const hasText = textarea.value.trim() !== '';
+                    const hasFile = fileInput.files.length > 0;
+                    
+                    if (!hasText && !hasFile) {
+                        if (errorMsg) {
+                            errorMsg.classList.remove('hidden');
+                        }
+                        alert('Silakan isi komentar manual ATAU unggah file komentar .txt!');
+                        return;
+                    } else {
+                        if (errorMsg) {
+                            errorMsg.classList.add('hidden');
+                        }
+                    }
+                }
+            }
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">progress_activity</span> Robot Sedang Bergerak di HP...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData(this);
+            const apiUrl = `http://127.0.0.1:8000/api/jalankan-bot-${jenisBot}`;
+
+            fetch(apiUrl, {
+                method: 'POST',
+                body: formData
+            })
+                .then(res => res.json())
+                .then(data => {
+                    submitBtn.innerHTML = originalBtnContent;
+                    submitBtn.disabled = false;
+                    if (data.status === "success" || data.status === "sukses") {
+                        alert(' Berhasil! ' + data.message);
+                        loadStatistikDashboard();
+                    } else {
+                        const errMsg = data.message || (data.detail ? JSON.stringify(data.detail) : JSON.stringify(data));
+                        alert(' Gagal: ' + errMsg);
+                    }
+                })
+                .catch(err => {
+                    submitBtn.innerHTML = originalBtnContent;
+                    submitBtn.disabled = false;
+                    alert(' Gagal terhubung ke API Python. Pastikan server Uvicorn sudah menyala!');
+                });
+        });
+
+        function bukaSettings() { window.location.href = "settings.html"; }
+        function prosesLogOut() {
+            if (confirm("Apakah Anda yakin ingin keluar dari Panel InstaADB?")) {
+                localStorage.clear();
+                window.location.href = "login.html";
+            }
+        }
+
+        function initHeaderProfile() {
+            const defaultProfile = {
+                name: "Admin Root",
+                role: "Super Administrator",
+                avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCu2vCTOSPK5r3-TblvZEKXEhPN0jWhZUcZb3MIu74ukghYOhv7fNHlM4ZakDjT2XI34MlwBUsgjpdSlJrCZSD9gtL02HuxD0zigQIfVdI-4OP49L_QIh6uG1_VfOp9vKNGBD7N5Cx9CwCzOwblkOl-m49xW-vfvXyBY4bRXySWef8Taum8m5wtwCOzZ3xtFL8TXxiZlVUecOX1fDy3AvcphT5dowIJk4TybtpOUDiA1K5d0BGWLDySs1tMLHF2nojK20BKgHCpewM"
+            };
+            const profile = JSON.parse(localStorage.getItem('admin_profile') || JSON.stringify(defaultProfile));
+
+            if (document.getElementById('headerProfileName')) {
+                document.getElementById('headerProfileName').innerText = profile.name;
+            }
+            if (document.getElementById('headerProfileRole')) {
+                document.getElementById('headerProfileRole').innerText = profile.role;
+            }
+            if (document.getElementById('headerProfileAvatar')) {
+                document.getElementById('headerProfileAvatar').src = profile.avatar;
+            }
+        }
+
+        // Fungsi Modal Scraped Targets
+        function bukaModalTargets() {
+            const modal = document.getElementById('modalScrapedTargets');
+            const txtArea = document.getElementById('txtAreaTargetsList');
+            if (modal && txtArea) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                
+                const list = window.scrapedTargetsList || [];
+                txtArea.value = list.join('\n');
+            }
+        }
+        
+        function tutupModalTargets() {
+            const modal = document.getElementById('modalScrapedTargets');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        }
+        
+        function copyTargetsToClipboard() {
+            const txtArea = document.getElementById('txtAreaTargetsList');
+            if (txtArea) {
+                txtArea.select();
+                txtArea.setSelectionRange(0, 99999);
+                navigator.clipboard.writeText(txtArea.value)
+                    .then(() => alert('Daftar target berhasil disalin ke clipboard!'))
+                    .catch(err => alert('Gagal menyalin: ' + err));
+            }
+        }
+
+        function kirimBulkDM() {
+            const msg = document.getElementById('bulkDmMessageInput').value.trim();
+            if (!msg) {
+                alert('Silakan tulis pesan DM terlebih dahulu!');
+                return;
+            }
+            if (!confirm('Apakah Anda yakin ingin mengirim DM massal ke semua username di atas? Ini akan memasukkan semua target ke antrean bot Chat.')) {
+                return;
+            }
+            
+            const submitBtn = event.currentTarget;
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">progress_activity</span> Mengirim...';
+            submitBtn.disabled = true;
+
+            const formData = new FormData();
+            formData.append('pesan', msg);
+            formData.append('operator', 'Admin Utama');
+            formData.append('device_id', document.getElementById('deviceSelect').value || 'all');
+            
+            fetch('http://127.0.0.1:8000/api/jalankan-bot-bulk-chat', {
+                method: 'POST',
+                body: formData
+            })
+            .then(res => res.json())
+            .then(data => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                if (data.status === "success" || data.status === "sukses") {
+                    alert(' Berhasil! ' + data.message);
+                    document.getElementById('bulkDmMessageInput').value = '';
+                    tutupModalTargets();
+                    loadStatistikDashboard();
+                } else {
+                    alert(' Gagal: ' + (data.message || JSON.stringify(data)));
+                }
+            })
+            .catch(err => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                alert('Gagal terhubung ke API. Pastikan server aktif!');
+            });
+        }
+    </script>
+
+    <!-- MODAL SCRAPED TARGETS -->
+    <div id="modalScrapedTargets" class="fixed inset-0 bg-black/50 z-[1000] hidden items-center justify-center animate-in fade-in duration-200">
+        <div class="bg-white rounded-2xl w-full max-w-lg mx-4 overflow-hidden border border-outline-variant shadow-2xl animate-in scale-in-95 duration-200">
+            <div class="p-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-low">
+                <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">database</span>
+                    <h3 class="font-title-lg text-title-lg">Daftar Username Hasil Scraping</h3>
+                </div>
+                <button onclick="tutupModalTargets()" class="text-on-surface-variant hover:bg-surface-container-highest p-1.5 rounded-full transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+            <div class="p-6 max-h-[300px] overflow-y-auto">
+                <p class="text-xs text-on-surface-variant mb-3 italic">Berikut adalah database username yang berhasil disalin oleh bot scraper. Anda dapat meng-copy daftar ini untuk digunakan pada bot Chat / Follower.</p>
+                <textarea id="txtAreaTargetsList" readonly class="w-full h-[200px] text-xs font-mono p-3 rounded-lg bg-surface-container-lowest border border-outline-variant focus:outline-none resize-none"></textarea>
+            </div>
+            
+            <!-- BLOK KIRIM DM MASSAL -->
+            <div class="p-6 border-t border-outline-variant bg-surface-container-low">
+                <p class="text-xs font-bold text-slate-700 mb-2">Kirim DM Massal ke Semua Target di Atas:</p>
+                <div class="flex gap-2">
+                    <input type="text" id="bulkDmMessageInput" placeholder="Tulis pesan promosi / DM di sini..." class="flex-1 text-xs rounded-lg border-outline-variant focus:border-primary focus:ring-primary">
+                    <button type="button" onclick="kirimBulkDM()" class="bg-secondary text-on-secondary hover:bg-secondary/95 text-xs font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5 shrink-0">
+                        <span class="material-symbols-outlined text-sm">send</span> Kirim DM Massal
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-6 border-t border-outline-variant bg-surface-container-low flex justify-end gap-2">
+                <button onclick="copyTargetsToClipboard()" class="bg-primary text-on-primary hover:bg-primary/95 text-xs font-semibold px-4 py-2 rounded-lg transition-colors flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm">content_copy</span> Salin Semua
+                </button>
+                <button onclick="tutupModalTargets()" class="bg-outline text-on-surface hover:bg-surface-container-highest border border-outline-variant text-xs font-semibold px-4 py-2 rounded-lg transition-colors">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>

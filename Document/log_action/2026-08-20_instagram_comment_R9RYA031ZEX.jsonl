@@ -1,0 +1,6 @@
+{"step": "comment_posts", "status": "on_progress", "error": null, "timestamp": "2026-08-20 10:34:23"}
+{"step": "open_first_post", "status": "complete", "error": null, "timestamp": "2026-08-20 10:34:18"}
+{"step": "navigate_search", "status": "complete", "error": null, "timestamp": "2026-08-20 10:33:49"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-20 10:33:17"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-20 10:33:12"}
+{"step": "comment", "status": "on_progress", "error": null, "timestamp": "2026-08-20 10:33:12"}

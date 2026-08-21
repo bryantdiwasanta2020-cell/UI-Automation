@@ -1,0 +1,23 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : switch_akun_ig.py
+================================================================================
+ Nama Bot    : Bot Switch Account Instagram
+ File Name   : switch_akun_ig.py
+ Deskripsi   : Beralih (switch) akun aktif Instagram pada perangkat tertentu secara otomatis.
+ API Server  : -
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 switch_akun_ig.py <target_username> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_username> (String) [WAJIB]
+     Deskripsi : Username akun target untuk beralih
+
+   * Posisi 2 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 switch_akun_ig.py "lukyytris13" R9RY801LRPW
+
+================================================================================

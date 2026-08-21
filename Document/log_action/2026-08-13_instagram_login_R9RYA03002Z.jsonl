@@ -1,0 +1,10 @@
+{"step": "login", "status": "complete", "error": null, "timestamp": "2026-08-13 14:28:29"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-13 14:28:00"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-13 14:27:56"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-13 14:27:51"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-13 14:27:51"}
+{"step": "login", "status": "failed", "error": "{'code': -32002, 'data': \"Selector [className='android.widget.EditText', instance=0]\", 'method': 'wait'}", "timestamp": "2026-08-13 14:22:20"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-13 14:22:00"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-13 14:21:57"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-13 14:21:50"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-13 14:21:50"}

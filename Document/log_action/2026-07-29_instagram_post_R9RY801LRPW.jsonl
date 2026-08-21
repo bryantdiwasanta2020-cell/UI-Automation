@@ -1,0 +1,11 @@
+{"step": "post", "status": "on_progress", "error": null, "timestamp": "2026-07-29 13:15:17"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-07-29 13:15:17"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-07-29 13:15:22"}
+{"step": "open_profile", "status": "complete", "error": null, "timestamp": "2026-07-29 13:15:23"}
+{"step": "open_creation_menu", "status": "complete", "error": null, "timestamp": "2026-07-29 13:15:54"}
+{"step": "select_feed_option", "status": "complete", "error": null, "timestamp": "2026-07-29 13:16:12"}
+{"step": "select_media", "status": "complete", "error": null, "timestamp": "2026-07-29 13:16:16"}
+{"step": "edit_media", "status": "complete", "error": null, "timestamp": "2026-07-29 13:16:20"}
+{"step": "write_caption", "status": "complete", "error": null, "timestamp": "2026-07-29 13:16:24"}
+{"step": "share_post", "status": "on_progress", "error": null, "timestamp": "2026-07-29 13:16:46"}
+{"step": "post", "status": "complete", "error": null, "timestamp": "2026-07-29 13:16:57"}

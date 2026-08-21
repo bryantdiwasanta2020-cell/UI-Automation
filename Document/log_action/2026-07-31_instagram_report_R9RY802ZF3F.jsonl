@@ -1,0 +1,7 @@
+{"step": "report", "status": "on_progress", "error": null, "timestamp": "2026-07-31 14:51:46"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-07-31 14:51:46"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-07-31 14:51:49"}
+{"step": "open_options", "status": "complete", "error": null, "timestamp": "2026-07-31 14:52:25"}
+{"step": "click_report", "status": "complete", "error": null, "timestamp": "2026-07-31 14:52:28"}
+{"step": "report_wizard", "status": "on_progress", "error": null, "timestamp": "2026-07-31 14:52:37"}
+{"step": "report", "status": "complete", "error": null, "timestamp": "2026-07-31 14:52:41"}

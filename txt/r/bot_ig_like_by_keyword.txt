@@ -1,0 +1,27 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_like_by_keyword.py
+================================================================================
+ Nama Bot    : Bot Like By Keyword / Hashtag Instagram
+ File Name   : bot_ig_like_by_keyword.py
+ Deskripsi   : Mencari keyword/hashtag di Instagram dan menyukai sejumlah postingan hasil pencarian.
+ API Server  : /api/jalankan-bot-like-by-keyword
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_like_by_keyword.py <keyword> [limit] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <keyword> (String) [WAJIB]
+     Deskripsi : Kata kunci pencarian / hashtag (cth: 'kucing')
+
+   * Posisi 2 : <limit> (Integer) [OPSIONAL] | Default: '10'
+     Deskripsi : Jumlah postingan yang disukai
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_like_by_keyword.py "kucing" 50 R9RY801LRPW
+   $ python3 bot_ig_like_by_keyword.py "kuliner" 10 all
+
+================================================================================

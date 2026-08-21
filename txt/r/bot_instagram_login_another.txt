@@ -1,0 +1,25 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_login_another.py
+================================================================================
+ Nama Bot    : Bot Login Instagram Another
+ File Name   : bot_instagram_login_another.py
+ Deskripsi   : Melakukan login akun Instagram tambahan ke perangkat.
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_login_another.py [username] [password] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <username> (String) [OPSIONAL] | Default: 'lukyytris13'
+     Deskripsi : Username Instagram untuk login
+
+   * Posisi 2 : <password> (String) [OPSIONAL] | Default: 'Bryant12345678'
+     Deskripsi : Password Instagram
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_login_another.py "user_saya" "pass123" R9RY801LRPW
+
+================================================================================

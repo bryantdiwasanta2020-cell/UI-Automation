@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <script>
+        if (!localStorage.getItem('admin_token')) {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Detail Log Aktivitas - InstaADB Panel</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-on-surface": "#eef0ff",
+                        "surface-container": "#eaedff",
+                        "secondary-fixed": "#85f8c4",
+                        "primary": "#3525cd",
+                        "outline": "#777587",
+                        "secondary-fixed-dim": "#68dba9",
+                        "surface-dim": "#d2d9f4",
+                        "surface": "#faf8ff",
+                        "on-secondary": "#ffffff",
+                        "surface-bright": "#faf8ff",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-error": "#ffffff",
+                        "on-background": "#131b2e",
+                        "background": "#faf8ff",
+                        "surface-container-high": "#e2e7ff",
+                        "on-tertiary-fixed-variant": "#920028",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-variant": "#dae2fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-primary-fixed-variant": "#3323cc",
+                        "tertiary-fixed": "#ffdada",
+                        "on-surface-variant": "#464555",
+                        "outline-variant": "#c7c4d8",
+                        "inverse-primary": "#c3c0ff",
+                        "tertiary-container": "#c20038",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006c4a",
+                        "on-secondary-fixed": "#002114",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#e2dfff",
+                        "on-error-container": "#93000a",
+                        "tertiary": "#950029",
+                        "primary-container": "#4f46e5",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005137",
+                        "surface-tint": "#4d44e3",
+                        "secondary-container": "#82f5c1",
+                        "on-primary-container": "#dad7ff",
+                        "inverse-surface": "#283044",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#dae2fd",
+                        "tertiary-fixed-dim": "#ffb3b6",
+                        "on-tertiary-container": "#ffd0d2",
+                        "surface-container-low": "#f2f3ff",
+                        "on-surface": "#131b2e",
+                        "on-secondary-container": "#00714e",
+                        "on-tertiary-fixed": "#40000c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "margin-page": "40px",
+                        "stack-lg": "24px",
+                        "stack-sm": "8px",
+                        "stack-md": "16px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "label-md": ["Inter"],
+                        "title-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "title-md": ["18px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "title-lg": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["11px", { "lineHeight": "16px", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c7c4d8;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #777587;
+        }
+
+        @media print {
+
+            aside,
+            header,
+            .bg-surface-container-low,
+            .flex.gap-2,
+            button,
+            #logCountInfo,
+            .flex.justify-between.items-end.mb-stack-lg {
+                display: none !important;
+            }
+
+            main {
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+            }
+
+            body {
+                background: white !important;
+                color: black !important;
+            }
+
+            .bg-surface-container-lowest {
+                border: none !important;
+                box-shadow: none !important;
+            }
+
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+            }
+
+            tr {
+                page-break-inside: avoid !important;
+            }
+
+            .max-h-\[500px\] {
+                max-height: none !important;
+                overflow: visible !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-background text-on-surface flex min-h-screen">
+    <!-- SideNavBar (Shared Component) -->
+    <aside class="w-64 h-screen fixed left-0 top-0 bg-surface dark:bg-surface-dim border-r border-outline-variant
+        dark:border-outline flex flex-col h-full py-stack-lg px-stack-md z-50">
+        <div class="mb-8 flex items-center gap-3 px-2">
+            <div class="w-10 h-10 rounded-lg flex items-center justify-center text-white" style="background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="w-6 h-6" fill="currentColor">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+                </svg>
+            </div>
+            <div>
+                <h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim leading-none">
+                    InstaADB Panel</h1>
+                <p class="text-xs text-on-surface-variant font-medium">Automation System</p>
+            </div>
+        </div>
+        <nav class="flex-1 space-y-1">
+            <!-- 1. Menu Dashboard Statistik (Aktif) -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 bg-primary text-white shadow-sm shadow-primary/30 font-semibold scale-[0.98]"
+                href="logs.html">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="font-label-md text-label-md">Dashboard Statistik</span>
+            </a>
+
+            <!-- 2. Menu Form Perintah -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-primary/5"
+                href="dashboard.html">
+                <span class="material-symbols-outlined">terminal</span>
+                <span class="font-label-md text-label-md">Form Perintah</span>
+            </a>
+
+            <!-- 3. Menu Manage Account -->
+            <a class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-on-surface-variant hover:text-primary hover:bg-primary/5"
+                href="accounts.html">
+                <span class="material-symbols-outlined">account_circle</span>
+                <span class="font-label-md text-label-md">Manage Account</span>
+            </a>
+        </nav>
+        <div class="mt-auto pt-4 border-t border-outline-variant space-y-1">
+
+            <button type="button" onclick="bukaSettings()"
+                class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors text-body-md font-medium">
+                <span class="material-symbols-outlined text-primary text-md">settings</span>
+                <span class="text-on-surface">Settings</span>
+            </button>
+
+            <button type="button" onclick="prosesLogOut()"
+                class="w-full flex items-center space-x-3 px-4 py-2.5 rounded-xl text-error hover:bg-error-container/10 transition-colors text-body-md font-medium">
+                <span class="material-symbols-outlined text-error text-md">logout</span>
+                <span>Log Out</span>
+            </button>
+        </div>
+    </aside>
+
+    <div class="ml-64 flex-1 flex flex-col min-w-0">
+        <!-- TopNavBar (Shared Component) -->
+        <header
+            class="flex justify-between items-center h-16 px-margin-page w-full bg-surface-bright dark:bg-surface-dim border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none sticky top-0 z-40">
+            <div class="flex items-center gap-stack-md">
+                <span class="font-title-lg text-title-lg font-bold text-primary dark:text-primary-fixed-dim">ADB
+                    Automation Control</span>
+            </div>
+            <div class="flex items-center gap-stack-md">
+                <div class="relative group">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+                    <input
+                        class="pl-10 pr-4 py-2 bg-surface-container border-none rounded-full text-body-md focus:ring-2 focus:ring-primary w-64 transition-all"
+                        placeholder="Cari log..." type="text" />
+                </div>
+                <button
+                    class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-full transition-all">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <button
+                    class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-full transition-all">
+                    <span class="material-symbols-outlined">help</span>
+                </button>
+                <div class="flex items-center gap-3 ml-stack-md cursor-pointer" onclick="bukaSettings()">
+                    <div class="text-right hidden sm:block">
+                        <p id="headerProfileName" class="text-xs font-bold leading-none">Administrator</p>
+                        <p id="headerProfileRole" class="text-[9px] text-on-surface-variant uppercase tracking-wider">
+                            System Root</p>
+                    </div>
+                    <img id="headerProfileAvatar"
+                        class="w-8 h-8 rounded-full object-cover border border-outline-variant"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuACr_qyKTNqppNBzM5P09I83r7bh8CTdNe4VdWZBV9FFOw2O6KzK91-lhDEpbQMa6mDY8iOtoXIk0sth5Xwj9zQgwjiGaEH1UOC9sfVGwQEdrlHnK1Ym7MByyAFiZvcZ1PsFZy4INThd9FumzZ_mlpnHaeGxnOD4WvYx9piNs8vyocTNOS3DH8bwtXSO6-zoEqsQq7MJKjz53g3OMh3FLBku2tNT23PHGF1TLxAcOZ2MBcIITYeDKP0-untKdzhBGIDjxkfdnInMt0" />
+                </div>
+            </div>
+        </header>
+        <!-- Main Content Area -->
+        <main class="p-margin-page overflow-x-hidden">
+            <!-- Breadcrumbs & Header Actions -->
+            <div class="flex justify-between items-end mb-stack-lg">
+                <div>
+                    <h2 class="font-headline-lg text-headline-lg text-on-surface mb-2">Detail Log Aktivitas</h2>
+                    <nav class="flex text-on-surface-variant font-label-md text-label-md gap-2">
+                        <a class="hover:text-primary" href="dashboard.html">Dashboard</a>
+                        <span>/</span>
+                        <span class="text-primary font-bold">Log Aktivitas</span>
+                    </nav>
+                </div>
+                <div class="flex gap-stack-md">
+                    <button onclick="exportCSV()"
+                        class="flex items-center gap-2 px-4 py-2 bg-surface-container border border-outline-variant text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container-high transition-colors">
+                        <span class="material-symbols-outlined">download</span>
+                        Unduh Log (CSV)
+                    </button>
+                    <button onclick="printPDF()"
+                        class="flex items-center gap-2 px-4 py-2 bg-primary text-on-primary rounded-lg font-label-md shadow-sm hover:opacity-90 transition-all">
+                        <span class="material-symbols-outlined">picture_as_pdf</span>
+                        Cetak PDF
+                    </button>
+                </div>
+            </div>
+            <!-- Advanced Filter Card -->
+            <div
+                class="bg-surface-container-low border border-outline-variant rounded-xl p-stack-lg mb-stack-lg shadow-sm">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+                    <div class="space-y-1">
+                        <label class="font-label-sm text-label-sm text-on-surface-variant">Rentang Waktu</label>
+                        <div class="relative">
+                            <span
+                                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm">calendar_today</span>
+                            <select id="filterWaktu" onchange="applyFilters()"
+                                class="w-full pl-10 pr-4 py-2 bg-white border border-outline-variant rounded-lg text-body-md focus:ring-primary focus:border-primary">
+                                <option value="all">Semua Waktu</option>
+                                <option value="24h">24 Jam Terakhir</option>
+                                <option value="7d">7 Hari Terakhir</option>
+                                <option value="30d">30 Hari Terakhir</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="font-label-sm text-label-sm text-on-surface-variant">Jenis Perintah</label>
+                        <select id="filterJenis" onchange="applyFilters()"
+                            class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg text-body-md focus:ring-primary focus:border-primary">
+                            <option value="all">Semua Aktivitas</option>
+                            <option value="like">Like</option>
+                            <option value="post">Post</option>
+                            <option value="post_story">Post Story</option>
+                            <option value="post_reels">Post Reels</option>
+                            <option value="follow">Follow</option>
+                            <option value="comment">Comment</option>
+                            <option value="chat">Direct Message</option>
+                            <option value="report">Report</option>
+                            <option value="share">Share</option>
+                            <option value="manage">Manage</option>
+                        </select>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="font-label-sm text-label-sm text-on-surface-variant">Status</label>
+                        <select id="filterStatus" onchange="applyFilters()"
+                            class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg text-body-md focus:ring-primary focus:border-primary">
+                            <option value="all">Semua Status</option>
+                            <option value="sukses">Sukses</option>
+                            <option value="gagal">Gagal</option>
+                            <option value="running">Sedang Berjalan</option>
+                            <option value="pending">Tertunda (Pending)</option>
+                        </select>
+                    </div>
+                    <div class="space-y-1">
+                        <label class="font-label-sm text-label-sm text-on-surface-variant">Cari Akun / Target</label>
+                        <input id="filterAkun" oninput="applyFilters()"
+                            class="w-full px-4 py-2 bg-white border border-outline-variant rounded-lg text-body-md focus:ring-primary focus:border-primary"
+                            placeholder="Contoh: @travel_spirit_off atau messi" type="text" />
+                    </div>
+                </div>
+                <div class="mt-stack-md flex justify-end">
+                    <button onclick="resetFilters()"
+                        class="text-primary font-label-md hover:underline flex items-center gap-1">
+                        <span class="material-symbols-outlined text-sm">restart_alt</span>
+                        Reset Filter
+                    </button>
+                </div>
+            </div>
+            <!-- Log Table Card -->
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-sm overflow-hidden">
+                <div class="overflow-x-auto max-h-[500px] overflow-y-auto">
+                    <table class="w-full text-left border-collapse relative">
+                        <thead class="sticky top-0 bg-surface-container-low z-10 shadow-sm">
+                            <tr>
+                                <th
+                                    class="px-stack-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                    Waktu</th>
+                                <th
+                                    class="px-stack-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                    Akun</th>
+                                <th
+                                    class="px-stack-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                    Aktivitas</th>
+                                <th
+                                    class="px-stack-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                    Target URL</th>
+                                <th
+                                    class="px-stack-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">
+                                    Status</th>
+                                <th
+                                    class="px-stack-lg py-4 font-label-md text-label-md text-on-surface-variant uppercase tracking-wider text-right">
+                                    Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logTableBody" class="divide-y divide-outline-variant">
+                            <!-- Rows will be injected here dynamically -->
+                        </tbody>
+                    </table>
+                    <!-- Pagination / Info -->
+                    <div
+                        class="px-stack-lg py-4 bg-surface-container-low border-t border-outline-variant flex items-center justify-between">
+                        <span id="logCountInfo" class="font-body-md text-body-md text-on-surface-variant">Memuat
+                            aktivitas bot...</span>
+                    </div>
+                </div>
+                <!-- Dashboard Summary Widgets (Bottom) -->
+                <div class="mt-stack-lg grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                    <div
+                        class="bg-white border border-outline-variant p-stack-md rounded-xl shadow-sm flex items-center gap-stack-md">
+                        <div
+                            class="w-12 h-12 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
+                            <span class="material-symbols-outlined">check_circle</span>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Sukses (Hari
+                                Ini)</p>
+                            <p id="statSukses" class="font-headline-md text-headline-md">0</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white border border-outline-variant p-stack-md rounded-xl shadow-sm flex items-center gap-stack-md">
+                        <div
+                            class="w-12 h-12 rounded-full bg-error-container text-on-error-container flex items-center justify-center">
+                            <span class="material-symbols-outlined">error</span>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Total Gagal (Hari
+                                Ini)</p>
+                            <p id="statGagal" class="font-headline-md text-headline-md">0</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-white border border-outline-variant p-stack-md rounded-xl shadow-sm flex items-center gap-stack-md">
+                        <div
+                            class="w-12 h-12 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center">
+                            <span class="material-symbols-outlined">bolt</span>
+                        </div>
+                        <div>
+                            <p class="font-label-sm text-label-sm text-on-surface-variant uppercase">Rata-rata Kecepatan
+                            </p>
+                            <p class="font-headline-md text-headline-md">4.2s <span
+                                    class="text-sm font-normal text-on-surface-variant">/ action</span></p>
+                        </div>
+                    </div>
+                </div>
+        </main>
+    </div>
+    <script>
+        function toggleLogDetail(id) {
+            const detailRow = document.getElementById(id);
+            if (detailRow) {
+                detailRow.classList.toggle('hidden');
+            }
+        }
+
+        function bukaSettings() {
+            window.location.href = "settings.html";
+        }
+
+        function prosesLogOut() {
+            if (confirm("Apakah Anda yakin ingin keluar dari Panel InstaADB?")) {
+                localStorage.clear();
+                window.location.href = "login.html";
+            }
+        }
+
+        // BARIS AMAN: Menyimpan data terakhir di luar fungsi agar tidak ter-reset interval saat server mati
+        let angkaIngatanDashboard = {
+            sukses: "0",
+            gagal: "0",
+            htmlTabel: ""
+        };
+
+        let allLogs = [];
+
+        // FUNGSI PRINT PDF
+        function printPDF() {
+            window.print();
+        }
+
+        // FUNGSI EKSPOR CSV
+        function exportCSV() {
+            const currentLogs = getFilteredLogs();
+            if (currentLogs.length === 0) {
+                alert("Tidak ada data untuk diekspor!");
+                return;
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += "Waktu,Akun,Aktivitas,Target URL,Status\n";
+
+            currentLogs.forEach(log => {
+                const waktu = log.waktu || '-';
+                const akun = log.akun || log.account || log.device_id || 'Unknown';
+                const aktivitas = log.aktivitas || '-';
+                const target = log.target || log.target_url || '-';
+                const status = log.status || 'PENDING';
+
+                // Escape quotes
+                const row = [waktu, akun, aktivitas, target, status].map(val => `"${val.replace(/"/g, '""')}"`).join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", `log_aktivitas_bot_${new Date().toISOString().slice(0, 10)}.csv`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // AMBIL DATA TER-FILTER
+        function getFilteredLogs() {
+            let filtered = [...allLogs];
+            const waktu = document.getElementById('filterWaktu').value;
+            const jenis = document.getElementById('filterJenis').value;
+            const status = document.getElementById('filterStatus').value;
+            const akun = document.getElementById('filterAkun').value.trim().toLowerCase();
+
+            // 1. Filter Akun / Target
+            if (akun) {
+                filtered = filtered.filter(log => {
+                    const akunStr = (log.akun || log.account || log.device_id || '').toLowerCase();
+                    const targetStr = (log.target || log.target_url || '').toLowerCase();
+                    return akunStr.includes(akun) || targetStr.includes(akun);
+                });
+            }
+
+            // 2. Filter Status
+            if (status !== 'all') {
+                filtered = filtered.filter(log => (log.status || '').toLowerCase() === status);
+            }
+
+            // 3. Filter Jenis Perintah
+            if (jenis !== 'all') {
+                filtered = filtered.filter(log => {
+                    const actLower = (log.aktivitas || '').toLowerCase();
+                    if (jenis === 'like') return actLower.includes('like');
+                    if (jenis === 'comment') return actLower.includes('comment');
+                    if (jenis === 'post') return (actLower.includes('upload') || actLower.includes('post')) && !actLower.includes('story');
+                    if (jenis === 'post_story') return actLower.includes('story') || actLower.includes('post_story');
+                    if (jenis === 'chat') return actLower.includes('dm') || actLower.includes('chat') || actLower.includes('send');
+                    if (jenis === 'manage') return actLower.includes('manage') || actLower.includes('follow') || actLower.includes('unfollow');
+                    if (jenis === 'report') return actLower.includes('report');
+                    if (jenis === 'share') return actLower.includes('share');
+                    return false;
+                });
+            }
+
+            // 4. Filter Waktu
+            if (waktu !== 'all') {
+                const now = new Date();
+                filtered = filtered.filter(log => {
+                    if (!log.waktu) return false;
+                    let dateStr = log.waktu.split(' (')[0].trim();
+                    let logDate = new Date(dateStr);
+                    if (isNaN(logDate.getTime())) {
+                        dateStr = dateStr.replace(' ', 'T');
+                        logDate = new Date(dateStr);
+                    }
+                    if (isNaN(logDate.getTime())) return false;
+
+                    const diffMs = now - logDate;
+                    if (waktu === '24h') return diffMs <= 24 * 60 * 60 * 1000;
+                    if (waktu === '7d') return diffMs <= 7 * 24 * 60 * 60 * 1000;
+                    if (waktu === '30d') return diffMs <= 30 * 24 * 60 * 60 * 1000;
+                    return true;
+                });
+            }
+
+            return filtered;
+        }
+
+        // TERAPKAN FILTER
+        function applyFilters() {
+            const filtered = getFilteredLogs();
+            renderLogs(filtered);
+        }
+
+        // RESET FILTER
+        function resetFilters() {
+            document.getElementById('filterWaktu').value = 'all';
+            document.getElementById('filterJenis').value = 'all';
+            document.getElementById('filterStatus').value = 'all';
+            document.getElementById('filterAkun').value = '';
+            applyFilters();
+        }
+
+        // RENDER ROW TABEL
+        function renderLogs(logsList) {
+            const tableBody = document.getElementById('logTableBody');
+            if (!tableBody) return;
+
+            let htmlRows = '';
+            const sortedLogs = [...logsList].reverse();
+
+            sortedLogs.forEach((log, index) => {
+                const statusLower = (log.status || "").toLowerCase();
+                let badgeClass = '';
+                let badgeText = log.status || 'PENDING';
+
+                if (statusLower === 'sukses') {
+                    badgeClass = 'bg-secondary-container text-on-secondary-container';
+                    badgeText = 'Sukses';
+                } else if (statusLower === 'gagal') {
+                    badgeClass = 'bg-error-container text-on-error-container';
+                    badgeText = 'Gagal';
+                } else if (statusLower === 'running') {
+                    badgeClass = 'bg-sky-100 text-sky-700';
+                    badgeText = 'Running';
+                } else {
+                    badgeClass = 'bg-surface-container text-on-surface-variant';
+                    badgeText = 'Pending';
+                }
+
+                htmlRows += `
+                    <tr class="hover:bg-surface-container transition-colors group">
+                        <td class="px-stack-lg py-4 font-body-md text-body-md">${log.waktu || '-'}</td>
+                        <td class="px-stack-lg py-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-6 h-6 rounded-full bg-primary-container text-primary flex items-center justify-center font-bold text-[10px]">ADB</div>
+                                <span class="font-label-md text-label-md">${log.akun || log.account || log.device_id || 'Unknown'}</span>
+                            </div>
+                        </td>
+                        <td class="px-stack-lg py-4">
+                            <span class="bg-surface-container-high px-2 py-1 rounded text-[11px] font-bold uppercase">${log.aktivitas || '-'}</span>
+                        </td>
+                        <td class="px-stack-lg py-4 font-body-md text-body-md text-primary truncate max-w-[200px]" title="${log.target || log.target_url || '-'}">
+                            ${log.target || log.target_url || '-'}
+                        </td>
+                        <td class="px-stack-lg py-4">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${badgeClass}">
+                                ${badgeText}
+                            </span>
+                        </td>
+                        <td class="px-stack-lg py-4 text-right">
+                            <button class="text-primary font-label-md hover:underline" onclick="toggleLogDetail('log-${index}')">Detail Log</button>
+                        </td>
+                    </tr>
+                    <tr class="hidden bg-inverse-surface text-inverse-on-surface" id="log-${index}">
+                        <td class="p-6" colspan="6">
+                            <div class="font-mono text-xs leading-relaxed opacity-90 overflow-x-auto">
+                                <p class="text-secondary-fixed">[${log.waktu || '-'}] Detail Eksekusi Job</p>
+                                <p>Status: ${badgeText.toUpperCase()}</p>
+                                <p>Operator: ${log.operator || 'Admin Utama'}</p>
+                                ${log.error_message ? `<p class="text-error">Error Detail: ${log.error_message}</p>` : `<p class="text-secondary-fixed">Status: Berhasil dijalankan.</p>`}
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            if (logsList.length === 0) {
+                htmlRows = `<tr><td colspan="6" class="text-center py-8 text-on-surface-variant italic">Tidak ada aktivitas bot yang cocok dengan filter.</td></tr>`;
+            }
+
+            if (document.getElementById('logCountInfo')) {
+                document.getElementById('logCountInfo').innerText = `Menampilkan ${logsList.length} aktivitas bot`;
+            }
+            tableBody.innerHTML = htmlRows;
+        }
+
+        // FUNGSI LOAD STATISTIK
+        function loadStatistikDashboard() {
+            fetch('http://127.0.0.1:8000/api/statistik')
+                .then(res => {
+                    if (!res.ok) throw new Error("Koneksi gagal");
+                    return res.json();
+                })
+                .then(data => {
+                    angkaIngatanDashboard.sukses = data.sukses.toLocaleString();
+                    angkaIngatanDashboard.gagal = data.gagal.toLocaleString();
+
+                    if (document.getElementById('statSukses')) document.getElementById('statSukses').innerText = angkaIngatanDashboard.sukses;
+                    if (document.getElementById('statGagal')) document.getElementById('statGagal').innerText = angkaIngatanDashboard.gagal;
+
+                    if (data.logs) {
+                        allLogs = data.logs;
+                        applyFilters();
+                    }
+                })
+                .catch(err => {
+                    console.warn("🔌 Server offline. Mengunci tampilan data terakhir.");
+                    if (document.getElementById('statSukses')) document.getElementById('statSukses').innerText = angkaIngatanDashboard.sukses;
+                    if (document.getElementById('statGagal')) document.getElementById('statGagal').innerText = angkaIngatanDashboard.gagal;
+                });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initHeaderProfile();
+            loadStatistikDashboard();
+            setInterval(loadStatistikDashboard, 4000);
+        });
+
+        function initHeaderProfile() {
+            const defaultProfile = {
+                name: "Admin Root",
+                role: "Super Administrator",
+                avatar: "https://lh3.googleusercontent.com/aida-public/AB6AXuCu2vCTOSPK5r3-TblvZEKXEhPN0jWhZUcZb3MIu74ukghYOhv7fNHlM4ZakDjT2XI34MlwBUsgjpdSlJrCZSD9gtL02HuxD0zigQIfVdI-4OP49L_QIh6uG1_VfOp9vKNGBD7N5Cx9CwCzOwblkOl-m49xW-vfvXyBY4bRXySWef8Taum8m5wtwCOzZ3xtFL8TXxiZlVUecOX1fDy3AvcphT5dowIJk4TybtpOUDiA1K5d0BGWLDySs1tMLHF2nojK20BKgHCpewM"
+            };
+            const profile = JSON.parse(localStorage.getItem('admin_profile') || JSON.stringify(defaultProfile));
+
+            if (document.getElementById('headerProfileName')) {
+                document.getElementById('headerProfileName').innerText = profile.name;
+            }
+            if (document.getElementById('headerProfileRole')) {
+                document.getElementById('headerProfileRole').innerText = profile.role;
+            }
+            if (document.getElementById('headerProfileAvatar')) {
+                document.getElementById('headerProfileAvatar').src = profile.avatar;
+            }
+        }
+    </script>
+</body>
+
+</html>

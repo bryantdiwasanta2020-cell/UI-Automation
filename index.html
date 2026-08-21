@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script>
+        if (localStorage.getItem('admin_token')) {
+            window.location.href = "logs.html";
+        } else {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>Test Bot Connection</title>
+</head>
+
+<body style="font-family: sans-serif; padding: 40px; background: #f0f2f5;">
+
+    <h2>Uji Coba Kontrol Bot Instagram</h2>
+    <p>Isi form di bawah ini untuk mengetes apakah API Python bisa menggerakkan skrip ADB kamu.</p>
+
+    <form action="http://127.0.0.1:8000/api/jalankan-bot" method="POST"
+        style="background: white; padding: 20px; border-radius: 8px; max-width: 400px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+        <div style="margin-bottom: 15px;">
+            <label>Nama Operator:</label><br>
+            <input type="text" name="operator" value="Bryant" style="width: 100%; padding: 8px; margin-top: 5px;"
+                required>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Pilih Perintah:</label><br>
+            <select name="perintah" style="width: 100%; padding: 8px; margin-top: 5px;">
+                <option value="like">Instagram Like (Reels)</option>
+                <option value="comment">Instagram Comment</option>
+                <option value="post">Instagram Post</option>
+                <option value="report">Instagram Report</option>
+            </select>
+        </div>
+
+        <div style="margin-bottom: 15px;">
+            <label>Target Username:</label><br>
+            <input type="text" name="target" placeholder="Contoh: cristiano"
+                style="width: 100%; padding: 8px; margin-top: 5px;">
+        </div>
+
+        <button type="submit"
+            style="background: #007bff; color: white; border: none; padding: 10px 15px; border-radius: 4px; cursor: pointer; width: 100%;">
+            JALANKAN BOT SEKARANG
+        </button>
+    </form>
+
+</body>
+
+</html>

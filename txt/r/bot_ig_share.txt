@@ -1,0 +1,26 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_share.py
+================================================================================
+ Nama Bot    : Bot Share Instagram
+ File Name   : bot_ig_share.py
+ Deskripsi   : Membagikan (share) postingan terbaru dari profil target ke Direct Message penerima.
+ API Server  : /api/jalankan-bot-share
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_share.py <target_user> <recipient> [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target_user> (String) [WAJIB]
+     Deskripsi : Username target yang postingannya ingin dibagikan
+
+   * Posisi 2 : <recipient> (String) [WAJIB]
+     Deskripsi : Username penerima DM
+
+   * Posisi 3 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_share.py "cristiano" "teman_ig" R9RY801LRPW
+
+================================================================================

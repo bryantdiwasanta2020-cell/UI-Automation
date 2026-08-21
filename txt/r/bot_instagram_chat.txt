@@ -1,0 +1,17 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_instagram_chat.py
+================================================================================
+ Nama Bot    : Bot Instagram Chat
+ File Name   : bot_instagram_chat.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_instagram_chat.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_instagram_chat.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_instagram_chat.py
+
+================================================================================

@@ -1,0 +1,48 @@
+{
+  "REPORT": {
+    "steps": [
+      {
+        "step": "1",
+        "name": "Connect Device",
+        "module": "ig_helpers.py",
+        "description": "Menghubungkan ke perangkat Android via ADB menggunakan uiautomator2."
+      },
+      {
+        "step": "2",
+        "name": "Open App",
+        "module": "ig_helpers.py",
+        "description": "Membuka aplikasi Instagram (com.instagram.android)."
+      },
+      {
+        "step": "PRE-RUN",
+        "name": "Switch Account",
+        "module": "switch_akun_ig.py",
+        "description": "Beralih ke akun yang ditentukan pada parameter my_account."
+      },
+      {
+        "step": "3",
+        "name": "Search Target Profile",
+        "module": "bot_ig_report.py",
+        "description": "Masuk ke halaman pencarian, mengetik username target, dan membuka profil target tersebut."
+      },
+      {
+        "step": "4",
+        "name": "Open Option Menu",
+        "module": "bot_ig_report.py",
+        "description": "Mengeklik ikon titik tiga di pojok kanan atas profil target untuk membuka menu opsi."
+      },
+      {
+        "step": "5",
+        "name": "Report Account",
+        "module": "bot_ig_report.py",
+        "description": "Mengeklik 'Report', mengikuti wizard pilihan alasan report, dan mengirim laporan."
+      },
+      {
+        "step": "CLEANUP",
+        "name": "Clean Exit",
+        "module": "bot_ig_report.py",
+        "description": "Melakukan force stop Instagram, membuka kembali aplikasi secara segar di Beranda, dan me-refresh feed."
+      }
+    ]
+  }
+}

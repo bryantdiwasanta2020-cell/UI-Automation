@@ -1,0 +1,30 @@
+{
+  "FARMING": {
+    "steps": [
+      {
+        "step": "1",
+        "name": "Initialize Devices",
+        "module": "bot_ig_farming.py",
+        "description": "Mengkoneksikan seluruh device aktif, memuat daftar kata kunci pencarian, dan durasi farming."
+      },
+      {
+        "step": "2",
+        "name": "Cyclic Farming Loop",
+        "module": "bot_ig_farming.py",
+        "description": "Melakukan loop scroll beranda, like acak, menjelajahi explore tab, menonton reels, dan sleep acak pada setiap perangkat secara bergiliran."
+      },
+      {
+        "step": "3",
+        "name": "Check Termination",
+        "module": "bot_ig_farming.py",
+        "description": "Memeriksa file stopper secara berkala untuk menghentikan farming secara tertib."
+      },
+      {
+        "step": "CLEANUP",
+        "name": "Clean Exit",
+        "module": "bot_ig_farming.py",
+        "description": "Melakukan force stop Instagram pada perangkat."
+      }
+    ]
+  }
+}

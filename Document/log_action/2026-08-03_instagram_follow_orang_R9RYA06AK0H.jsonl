@@ -1,0 +1,3 @@
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-03 17:35:13"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-03 17:35:08"}
+{"step": "follow_orang", "status": "on_progress", "error": null, "timestamp": "2026-08-03 17:35:08"}

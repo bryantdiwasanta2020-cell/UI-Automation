@@ -1,0 +1,5 @@
+{"step": "login", "status": "failed", "error": "Batas waktu otentikasi login terlampaui", "timestamp": "2026-08-12 11:05:48"}
+{"step": "login_state_machine", "status": "on_progress", "error": null, "timestamp": "2026-08-12 11:03:44"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-08-12 11:03:40"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-08-12 11:03:35"}
+{"step": "login", "status": "on_progress", "error": null, "timestamp": "2026-08-12 11:03:35"}

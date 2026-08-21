@@ -1,0 +1,8 @@
+{"step": "post_story", "status": "on_progress", "error": null, "timestamp": "2026-07-31 13:43:28"}
+{"step": "connect_device", "status": "complete", "error": null, "timestamp": "2026-07-31 13:43:28"}
+{"step": "open_app", "status": "complete", "error": null, "timestamp": "2026-07-31 13:43:34"}
+{"step": "ensure_home", "status": "complete", "error": null, "timestamp": "2026-07-31 13:44:03"}
+{"step": "open_story_camera", "status": "complete", "error": null, "timestamp": "2026-07-31 13:44:06"}
+{"step": "select_media", "status": "complete", "error": null, "timestamp": "2026-07-31 13:44:10"}
+{"step": "share_story", "status": "on_progress", "error": null, "timestamp": "2026-07-31 13:44:22"}
+{"step": "post_story", "status": "complete", "error": null, "timestamp": "2026-07-31 13:44:35"}

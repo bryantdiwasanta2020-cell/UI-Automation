@@ -1,0 +1,24 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_farming.py
+================================================================================
+ Nama Bot    : Bot Farming / Warmup Instagram
+ File Name   : bot_ig_farming.py
+ Deskripsi   : Melakukan penjelajahan beranda secara otomatis (scrolling, menyukai postingan random, berinteraksi) agar aktivitas terlihat organik.
+ API Server  : /api/jalankan-bot-farming
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_farming.py [device_id] [jumlah_post_farm]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+   * Posisi 2 : <jumlah_post_farm> (Integer) [OPSIONAL] | Default: '10'
+     Deskripsi : Jumlah postingan yang akan dijelajahi
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_farming.py R9RY801LRPW 20
+   $ python3 bot_ig_farming.py all 10
+
+================================================================================

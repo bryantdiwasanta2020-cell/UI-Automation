@@ -1,0 +1,29 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_scraper.py
+================================================================================
+ Nama Bot    : Bot Scraper Instagram Target
+ File Name   : bot_ig_scraper.py
+ Deskripsi   : Mengambil data pengikut (followers), yang diikuti (following), atau postingan target.
+ API Server  : /api/jalankan-bot-scraper
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_scraper.py <target> [tipe] [limit] [device_id]
+
+ [DAFTAR PARAMETER COMMAND]
+   * Posisi 1 : <target> (String) [WAJIB]
+     Deskripsi : Username target yang akan di-scrape
+
+   * Posisi 2 : <tipe> (String) [OPSIONAL] | Default: 'followers'
+     Deskripsi : Tipe scraping: 'followers', 'following', atau 'posts'
+
+   * Posisi 3 : <limit> (Integer) [OPSIONAL] | Default: '50'
+     Deskripsi : Jumlah item data yang ingin di-scrape
+
+   * Posisi 4 : <device_id> (String) [OPSIONAL] | Default: 'all'
+     Deskripsi : ID Perangkat Android ADB
+
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_scraper.py "cristiano" followers 100 R9RY801LRPW
+
+================================================================================

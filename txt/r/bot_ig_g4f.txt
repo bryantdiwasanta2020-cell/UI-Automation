@@ -1,0 +1,17 @@
+================================================================================
+ INSTAGRAM BOT PARAMETER SPECIFICATION : bot_ig_g4f.py
+================================================================================
+ Nama Bot    : Bot Ig G4F
+ File Name   : bot_ig_g4f.py
+ Deskripsi   : Skrip otomatisasi Instagram bot_ig_g4f.py
+--------------------------------------------------------------------------------
+
+ [CLI RUNNING COMMAND SYNTAX]
+   python3 bot_ig_g4f.py
+
+ [DAFTAR PARAMETER COMMAND]
+   (Tidak memerlukan parameter CLI / berjalan tanpa argument)
+ [CONTOH PERINTAH RUNNING]
+   $ python3 bot_ig_g4f.py
+
+================================================================================
